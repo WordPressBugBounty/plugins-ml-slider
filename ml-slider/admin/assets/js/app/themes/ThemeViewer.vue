@@ -63,19 +63,27 @@
 				<!-- Customize theme design (optional) -->
 				<div class="static-theme-customize" v-if="theme_customize.length">
 					<table>
-						<tr v-for="(item, index) in theme_customize" :key="index" :class="item.dependencies ? 'customizer-' + item.dependencies : ''">
+						<tr v-for="(row_item, row_index) in theme_customize" 
+							:key="row_index" 
+							:class="row_item.dependencies ? 'customizer-' + row_item.dependencies : ''">
 							<td>
-								{{ item.label }}
+								{{ row_item.label }}
 							</td>
 							<td>
-								<input 
-									type="text" 
-									class="colorpicker"
-									:name="`settings[theme_customize][${item.name}]`" 
-									v-model="item.value"
-									@change="themeCustomizeChange(item, index)"
-									data-alpha-enabled="true"
-								>
+								<div v-for="(field_item, field_index) in row_item.fields" 
+									:key="field_index"
+									class="ms-color-tooltip-wrapper">
+									<input 
+										type="text" 
+										class="colorpicker"
+										:name="`settings[theme_customize][${field_item.name}]`" 
+										v-model="field_item.value"
+										data-alpha-enabled="true"
+									>
+									<span class="ms-color-tooltip">
+										{{ field_item.label }}
+									</span>
+								</div>
 							</td>
 						</tr>
 					</table>
@@ -346,7 +354,8 @@ export default {
 					params: {
 						action: 'ms_get_theme_customization',
 						slideshow_id: this.current.id,
-						theme: this.selectedTheme['folder'] // Just the folder!
+						theme: this.selectedTheme['folder'], // Just the folder!
+						type: this.selectedTheme['type'] // free, premium, etc.
 					}
 				}).then(response => {
 					var customize_data = response.data.data;
@@ -354,21 +363,25 @@ export default {
 					// Assign defaults from manifest, including default values
 					this.theme_customize = customize_data.manifest || [];
 
-					// Replace default values with the saved ones
-					for (let i = 0; i < this.theme_customize.length; i++) {
-						// The 'name' in theme_customize should match keys in saved_settings
-						const name = this.theme_customize[i].name; 
-						
-						// Check if saved_settings contains the key matching 'name'
-						if (customize_data.saved_settings 
-							&& customize_data.saved_settings.hasOwnProperty(name)
-							&& typeof customize_data.saved_settings[name] !== 'undefined') {
-							this.theme_customize[i].value = customize_data.saved_settings[name];
-						} else {
-							// Use default value if saved setting for this name doesn't exist
-							this.theme_customize[i].value = this.theme_customize[i].default;
+					// Iterate each settings row
+					this.theme_customize.forEach((row_item, row_index) => {
+
+						// Replace default values with the saved ones
+						for (let i = 0; i < row_item.fields.length; i++) {
+							// The 'name' in theme_customize should match keys in saved_settings
+							const name = row_item.fields[i].name; 
+							
+							// Check if saved_settings contains the key matching 'name'
+							if (customize_data.saved_settings 
+								&& customize_data.saved_settings.hasOwnProperty(name)
+								&& typeof customize_data.saved_settings[name] !== 'undefined') {
+								this.theme_customize[row_index].fields[i].value = customize_data.saved_settings[name];
+							} else {
+								// Use default value if saved setting for this name doesn't exist
+								this.theme_customize[row_index].fields[i].value = this.theme_customize[row_index].fields[i].default;
+							}
 						}
-					}
+					});
 					this.updateColorPicker();
 				}).catch(error => {
 					this.notifyError('metaslider/theme-error', error, true)
@@ -483,10 +496,12 @@ export default {
 				})).then(response => {
 					this.theme_customize = this.selectedTheme.customize || [];
 					
-					// Add value property by copying default property value
-					for (let i = 0; i < this.theme_customize.length; i++) {
-						this.theme_customize[i].value = this.theme_customize[i].default;
-					}
+					this.theme_customize.forEach((row_item, row_index) => {
+						// Add value property by copying default property value
+						for (let i = 0; i < row_item.fields.length; i++) {
+							this.theme_customize[row_index].fields[i].value = this.theme_customize[row_index].fields[i].default;
+						}
+					});
 
 					this.updateColorPicker();
 
@@ -576,16 +591,6 @@ export default {
 		nonSelectablePremiumTheme(type) {
 			return !this.proUser && type === 'premium';
 		},
-		themeCustomizeChange(item, index) {
-			// Logic to handle color change
-			// This change method is not triggered when executed through color picker, 
-			// only by manually changing the color text field
-			console.log(`Color for ${item.name} changed to ${item.value}`);
-
-			// Commented but lines below should work - read comment above for more details
-			//this.theme_customize[index].value = item.value;
-			//this.$set(this.theme_customize, index, { ...item, value: item.value });
-		},
 		showHideColorPicker() {
 			this.$nextTick( function () {
 				var $ = window.jQuery;
@@ -607,10 +612,10 @@ export default {
 					$('tr.customizer-links').show();
 				}
 
-				if ($('.ms-settings-table select[name="settings[navigation]"]').val() === 'false') {
-					$('tr.customizer-navigation').hide();
-				} else {
+				if ($('.ms-settings-table select[name="settings[navigation]"]').val() === 'true') {
 					$('tr.customizer-navigation').show();
+				} else {
+					$('tr.customizer-navigation').hide();
 				}
 			});
 		}

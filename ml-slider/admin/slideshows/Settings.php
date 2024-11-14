@@ -87,6 +87,7 @@ class MetaSlider_Slideshow_Settings
             'slices' => 15,
             'center' => false,
             'smartCrop' => true,
+            'cropMultiply' => 1,
             'smoothHeight' => false,
             'carouselMode' => false,
             'infiniteLoop' => false,
