@@ -2,7 +2,7 @@
 Contributors: andergmartins, htmgarcia, publishpress, stevejburge, rochdesigns
 Tags: slider, video slider, image slider, carousel slider, gallery
 Requires at least: 5.0
-Stable tag: 3.93.0
+Stable tag: 3.94.0
 Requires PHP: 7.0
 Tested up to: 6.7
 License: GPLv2 or later
@@ -319,6 +319,23 @@ Yes, you can build Elementor slides and Beaver Builder slideshows. You can creat
 
 The format is based on [Keep a Changelog recommendations](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+= [3.94.0] - 18 Dec, 2024 =
+
+* ADDED: Allow users to sort slides in a slideshow by different criteria, #995;
+* ADDED: Add new pro themes screenshots to promote Pro, #1393;
+* ADDED: Progress bar, #1045;
+* ADDED: Allow users to choose the background color for their slideshow, #1332;
+* FIXED: Improve the thumbnails for Highway, Bubble and Outline, #1388;
+* FIXED: Italian, Spanish and French translation updates, #1379;
+* FIXED: Update AppSero, #1392;
+* FIXED: Simply Dark preview shows "Previous" and "Next", #1397;
+* FIXED: Improve the Nexus and other thumbnails, #1238;
+* FIXED: rgba missing in color customization in slideshow edit, #1394;
+* FIXED: Arrow should be hidden when first or last slide is active, #1345;
+* FIXED: Documentation link is wrong, #1380;
+* FIXED: Trash, restore and delete translations not working, #1336;
+* FIXED: Precognition theme double navigation, #1413;
 
 = [3.93.0] - 14 Nov, 2024 =
 

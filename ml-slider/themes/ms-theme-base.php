@@ -178,7 +178,7 @@ return $options;
 
         // Only enable this for dots nav
         if ('true' === $settings['navigation'] && 'false' === $settings['carouselMode']) {
-            $nav .= "<ol class='flex-control-nav titleNav-%s'>";
+            $nav .= "<ol class='flex-control-nav titleNav-{$slideshow_id}'>";
             foreach ($this->get_slides($slideshow_id) as $count => $slide) {
                 // Check if the title is inherited or manually set
                 if ((bool) get_post_meta($slide->ID, 'ml-slider_inherit_image_title', true)) {
@@ -259,21 +259,34 @@ return $options;
      */
     public function theme_customize_css($theme, $settings, $slideshow_id)
     {
-        // This CSS only works with Flexslider
-        if ($settings['type'] !== 'flex' || ! isset($settings['theme_customize'])) {
-            return "";
+        $theme_settings = get_post_meta($slideshow_id, 'metaslider_slideshow_theme', true);
+
+        // @since 3.94 - Are we using this core theme through a custom theme v2?
+        if (isset($theme_settings['folder']) && '_theme_v2' === substr($theme_settings['folder'], 0, 9)) {
+            $custom_themes  = get_option('metaslider-themes');
+            $stored_data    = isset($custom_themes[$theme_settings['folder']]) && isset($custom_themes[$theme_settings['folder']]['customize']) 
+                            ? $custom_themes[$theme_settings['folder']]['customize']
+                            : array();
+        } else {
+            // Is a core theme - customization settings are stored in ml-slider_settings postmeta db
+            $stored_data = $settings['theme_customize'];
         }
 
-        $theme_settings = get_post_meta($slideshow_id, 'metaslider_slideshow_theme');
-
         $manifest   = array();
-        $type       = isset($theme_settings[0]['type']) && isset($theme_settings[0]) ? $theme_settings[0]['type'] : 'free';
+        $type       = isset($theme_settings['type']) ? $theme_settings['type'] : 'free';
 
-        // If is not a free theme, maybe override $manifest path
+        $themes_class = MetaSlider_Themes::get_instance();
+
+        // Is a premium, external or custom theme (v2), override $manifest path
         if ($type !== 'free') {
+            // Check if is a custom v2 based on a free theme
+            $manifest = $themes_class->add_base_customize_settings_single($theme);
+
             /**
-             * Check if we have extra themes/ folders added from external sources,
-             * including MetaSlider Pro 
+             * Check if is a premium or custom theme (v2) based on a premium theme
+             * by looping extra themes/ folders added from external sources,
+             * including MetaSlider Pro.
+             * We may also support external themes (custom coded themes added by users).
              * 
              * e.g. 
              * array(
@@ -281,55 +294,26 @@ return $options;
              *  '/path/to/wp-content/themes/my-theme/ms-themes/'
              * )
              */
-            $extra_themes = apply_filters('metaslider_extra_themes', array());
+            if (! count($manifest)) {
+                $extra_themes = apply_filters('metaslider_extra_themes', array());
 
-            foreach ($extra_themes as $location) {
-                // Check if customize.php file that belongs to $theme as theme name (lowercase) exists
-                if (file_exists($customize_file = trailingslashit($location) . trailingslashit($theme) . 'customize.php')) {
-                    // Get the data from customize.php files
-                    $manifest = MetaSlider_Themes::get_instance()->add_base_customize_settings_single(
-                        $theme, $customize_file
-                    );
-                    break;
-                }
-            }
-        } else {
-            // Get data from themes/$theme/customize.php
-            $manifest = MetaSlider_Themes::get_instance()->add_base_customize_settings_single($theme);
-        }
-
-        $output = "";
-
-        // Loop each theme customize setting from customize.php 
-        foreach ($manifest as $row_item) {
-
-            foreach ($row_item['fields'] as $field_item) {
-
-                // Check if setting from manifest exists in db
-                if (isset($settings['theme_customize'][$field_item['name']])
-                    && isset($field_item['css'])
-                ) {
-                    if (is_array($field_item['css'])) {
-                        // CSS is an array of strings
-                        foreach ($field_item['css'] as $css_item) {
-
-                            $output .= sprintf(
-                                $css_item, 
-                                "#metaslider-id-{$slideshow_id}", 
-                                $settings['theme_customize'][$field_item['name']]
-                            ) . "\n";
-                        }
-                    } else {
-                        // CSS is a single string
-                        $output .= sprintf(
-                            $field_item['css'], 
-                            "#metaslider-id-{$slideshow_id}", 
-                            $settings['theme_customize'][$field_item['name']]
-                        ) . "\n";
+                foreach ($extra_themes as $location) {
+                    // Check if customize.php file that belongs to $theme as theme name (lowercase) exists
+                    if (file_exists($customize_file = trailingslashit($location) . trailingslashit($theme) . 'customize.php')) {
+                        // Get the data from customize.php files
+                        $manifest = $themes_class->add_base_customize_settings_single(
+                            $theme, $customize_file
+                        );
+                        break;
                     }
                 }
             }
+        } else {
+            // Is a free theme - Get data from themes/$theme/customize.php
+            $manifest = $themes_class->add_base_customize_settings_single($theme);
         }
+
+        $output = $themes_class->build_customize_css($manifest, $stored_data, $slideshow_id);
 
         return $output;
     }
@@ -341,11 +325,31 @@ return $options;
      */
     public function theme_customize($css, $settings, $slideshow_id)
     {
+        // /wp-admin/admin.php?page=metaslider-theme-editor&theme_slug=<slug>1&version=v2
+        $is_theme_editor_screen = is_admin() 
+            && function_exists('get_current_screen') 
+            && ($screen = get_current_screen())
+            && 'metaslider-pro_page_metaslider-theme-editor' === $screen->id 
+            && isset($_GET['version']) 
+            && $_GET['version'] == 'v2';
+
+        /* This CSS only works with Flexslider
+         * Important: even if is empty, 'theme_customize' is required in 'ml-slider_settings' postmeta db 
+         * for themes created with v2 theme editor */
+        $doesnt_use_customize = $settings['type'] !== 'flex' || ! isset($settings['theme_customize']);
+
+        
+        if ($is_theme_editor_screen || $doesnt_use_customize) {
+            return "";
+        }
+
         $css .= $this->theme_customize_css(
             $this->id,
             $settings,
             $slideshow_id
         );
+
+        remove_filter('metaslider_css', array($this, 'theme_customize'), 10, 3);
 
         return $css;
     }

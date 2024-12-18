@@ -43,11 +43,13 @@
 		li {
 		  position: absolute;
 		  top: 50%;
+		  transform: translateY(-50%);
 		  background-color: #d48931;
 		  width: 45px;
 		  height: 45px;
 		  border-radius: 100px;
 		  transition: ease 0.5s;
+		  z-index: 2;
   
 		  &:hover {
 			background-color: #174d51;
@@ -55,10 +57,24 @@
   
 		  &.flex-nav-prev {
 			left: -60px;
+
+			& > a.flex-disabled {
+				display: none;
+			}
+			&:has(> a.flex-disabled) {
+				display: none;
+			}
 		  }
   
 		  &.flex-nav-next {
 			right: -60px;
+
+			& > a.flex-disabled {
+				display: none;
+			}
+			&:has(> a.flex-disabled) {
+				display: none;
+			}
 		  }
 
   
@@ -71,6 +87,7 @@
 			&.flex-prev,
 			&.flex-next {
 			  top: 50%;
+			  
 			}
   
 			&.flex-prev {

@@ -37,7 +37,7 @@
 				justify-content: center;
 				line-height: 15px;
 				margin: 0;
-				padding: 0 !important;
+				padding: 0;
 				position: absolute;
 				-webkit-transition: top 0.2s;
 				transition: top 0.2s;
@@ -107,7 +107,7 @@
 						mask-image: url("images/arrow.svg");
                         mask-repeat: no-repeat;
 						mask-position: 50% 50%;
-						mask-size: 100%;
+						mask-size: 47px auto;
 						content: "" !important;
 						display: block;
 						height: 47px;
@@ -183,6 +183,7 @@
 					font-size: 0.9rem;
 					padding: 20px 30px 55px 30px;
 					text-align: center;
+					line-height: 1.4em;
 				}
 			}
 			.flex-active-slide {

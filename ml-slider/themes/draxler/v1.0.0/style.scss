@@ -102,7 +102,7 @@
 
 					&:after {
 						mask-image: url(images/left.svg);
-						mask-position: 16px center;
+						mask-position: center center;
 					}
 				}
 
@@ -112,7 +112,7 @@
 
 					&:after {
 						mask-image: url(images/right.svg);
-						mask-position: 17px center;
+						mask-position: center center;
 					}
 				}
 			}

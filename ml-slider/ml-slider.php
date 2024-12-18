@@ -5,7 +5,7 @@
  * Plugin Name: MetaSlider
  * Plugin URI:  https://www.metaslider.com
  * Description: MetaSlider gives you the power to create a beautiful slideshow, carousel, or gallery on your WordPress site.
- * Version:     3.93.0
+ * Version:     3.94.0
  * Author:      MetaSlider
  * Author URI:  https://www.metaslider.com
  * License:     GPL-2.0+
@@ -42,7 +42,7 @@ if (! class_exists('MetaSliderPlugin')) {
          *
          * @var string
          */
-        public $version = '3.93.0';
+        public $version = '3.94.0';
 
         /**
          * Pro installed version number
@@ -622,6 +622,19 @@ if (! class_exists('MetaSliderPlugin')) {
             // check the slideshow is published and the ID is correct
             if (! $slider || 'publish' !== $slider->post_status || 'ml-slider' !== $slider->post_type) {
                 return "<!-- MetaSlider {$atts['id']} not found -->";
+            }
+
+            /* @since 3.94 - Check if we're using a custom theme with v2 version 
+             * in order to load it's base theme (aka core theme) */
+            $theme = get_post_meta($id, 'metaslider_slideshow_theme', true);
+
+            if (isset($theme['folder']) && '_theme' === substr($theme['folder'], 0, 6)) {
+                $custom_themes = get_option('metaslider-themes');
+
+                if (isset($custom_themes[$theme['folder']]['version']) 
+                    && $custom_themes[$theme['folder']]['version'] == 'v2') {
+                    $atts['theme'] = $custom_themes[$theme['folder']]['base'];
+                }
             }
 
             // Set up the slideshow and load the slideshow theme
@@ -2357,7 +2370,7 @@ if (! class_exists('MetaSliderPlugin')) {
                             'ml-slider'
                         ) . "</a>";
                 }
-                $meta[] = "<a href='https://www.metaslider.com/documentation/' target='_blank'>" . esc_html__(
+                $meta[] = "<a href='https://www.metaslider.com/docs/' target='_blank'>" . esc_html__(
                         'Documentation',
                         'ml-slider'
                     ) . "</a>";

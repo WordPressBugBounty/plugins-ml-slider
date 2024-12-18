@@ -164,6 +164,23 @@
 	  width: 60px;
 	}
   
+	/*.flexslider ul.flex-direction-nav li a::before, 
+	a.rslides_nav::before, 
+	div.nivoSlider div.nivo-directionNav a::before, 
+	.coin-slider .coin-slider div a::before {
+		background-image: none;
+		mask-image: url("images/arrow.svg");
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: 35px;
+		background-color: #fff;
+		content: '' !important;
+		display: block;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+	}*/
+	
 	.flexslider ul.flex-direction-nav li a::before, 
 	a.rslides_nav::before, 
 	div.nivoSlider div.nivo-directionNav a::before, 

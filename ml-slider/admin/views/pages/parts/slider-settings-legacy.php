@@ -573,7 +573,14 @@
                     'helptext' => esc_html__(
                         "Infinite loop of slides when Carousel Mode is enabled. This option disables arrows and navigation.",
                         "ml-slider"
+                    ),
+                    'dependencies' => array(
+                        array(
+                            'show' => 'progressBar', // Show Progress Bar
+                            'when' => false // When infinteLoop is false
+                        )
                     )
+                    
                 ),
                 'carouselMargin' => array(
                     'priority' => 45,
@@ -652,6 +659,19 @@
                     ) ? 'checked' : '',
                     'helptext' => esc_html__(
                         "Allow touch swipe navigation of the slider on touch-enabled devices.",
+                        "ml-slider"
+                    )
+                ),
+                'progressBar' => array(
+                    'priority' => 84,
+                    'type' => 'checkbox',
+                    'label' => esc_html__("Progress Bar", "ml-slider"),
+                    'class' => 'option flex',
+                    'checked' => $this->slider->get_setting(
+                        'progressBar'
+                    ) == 'true' ? 'checked' : '',
+                    'helptext' => esc_html__(
+                        "Displays a visual indicator showing the time left before the next slide.",
                         "ml-slider"
                     )
                 ),
@@ -772,7 +792,7 @@
                     'label' => esc_html__("Image Animation", "ml-slider"),
                     'class' => 'option flex',
                     'helptext' => esc_html__(
-                        'Easing adds gradual acceleration and deceleration to slide transitions, rather than abrupt starts and stops. Easing only uses the "Slide" Effect.',
+                        'This feature adds gradual acceleration and deceleration to slide transitions, rather than abrupt starts and stops. This feature only works with the "Slide" Transition Effect.',
                         "ml-slider"
                     ),
                     'value' => $this->slider->get_setting('easing'),

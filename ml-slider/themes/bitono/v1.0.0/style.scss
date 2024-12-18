@@ -104,7 +104,7 @@
 
 					&:after {
 						mask-image: url(images/left.svg);
-						mask-position: 12px center;
+						mask-position: center center;
 					}
 				}
 
@@ -113,12 +113,16 @@
 
 					&:after {
 						mask-image: url(images/right.svg);
-						mask-position: 14px center;
 					}
 				}
 			}
 		}
 
+		.flex-control-paging li a {
+			text-indent: 99999px;
+			overflow: hidden;
+		}
+		
 		.flex-control-nav {
 			bottom: 20px;
 	
