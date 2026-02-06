@@ -70,7 +70,7 @@ class MetaSlider_Admin_Pages extends MetaSliderPlugin
      */
     public function load_wysiwyg()
     {
-        $global_settings = $this->get_global_settings();
+        $global_settings = metaslider_global_settings();
 
         if (! isset($global_settings['tinyMce']) 
             || ( isset($global_settings['tinyMce'] ) && true == $global_settings['tinyMce'])
@@ -111,7 +111,7 @@ class MetaSlider_Admin_Pages extends MetaSliderPlugin
 
         // @TODO - Move the logic below and MetaSlider->get_breakpoints() to a single place to avoid duplication
         $default_settings   = get_site_option( 'metaslider_default_settings' );
-        $global_settings    = $this->get_global_settings();
+        $global_settings    = metaslider_global_settings();
         
         if ( $default_settings 
             && ! isset( $global_settings['mobileSettings'] ) 
@@ -172,8 +172,17 @@ class MetaSlider_Admin_Pages extends MetaSliderPlugin
             'hide_on_tablet'  => esc_html__('Hide on Tablet', 'ml-slider'),
             'hide_on_laptop'  => esc_html__('Hide on Laptop', 'ml-slider'),
             'hide_on_desktop' => esc_html__('Hide on Desktop', 'ml-slider'),
+            'add_button' => esc_html__('Add Button', 'ml-slider'),
+            'close' => esc_html__('Close', 'ml-slider'),
+            'insert' => esc_html__('Insert', 'ml-slider'),
+            'url' => esc_html__('URL', 'ml-slider'),
+            'enter_url' => esc_html__('Please enter a valid URL.', 'ml-slider'),
+            'enter_text' => esc_html__('Please enter link text for the button.', 'ml-slider'),
+            'open_new_window' => esc_html__('Open in new window', 'ml-slider'),
+            'button_color' => esc_html__('Button Color', 'ml-slider'),
+            'text_color' => esc_html__('Text Color', 'ml-slider'),
+            'link_text' => esc_html__('Link Text', 'ml-slider'),
             'mobile_settings' => !isset($global_settings['mobileSettings']) || (isset($global_settings['mobileSettings']) && $global_settings['mobileSettings'] === true)
-
         ));
         wp_enqueue_script('metaslider-admin-script');
         do_action('metaslider_register_admin_scripts');
