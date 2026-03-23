@@ -2,7 +2,7 @@
 Contributors: andergmartins, htmgarcia, publishpress, stevejburge, rochdesigns
 Tags: slider, video slider, image slider, carousel slider, gallery
 Requires at least: 5.0
-Stable tag: 3.106.0
+Stable tag: 3.107.0
 Requires PHP: 7.0
 Tested up to: 6.9
 License: GPLv2 or later
@@ -319,6 +319,29 @@ Yes, you can build Elementor slides and Beaver Builder slideshows. You can creat
 
 The format is based on [Keep a Changelog recommendations](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+= [3.107.0] - Mar 23, 2026 =
+
+* ADDED: Vertical slideshow quickstart demo, #2051;
+* ADDED: Hide captions based on screen sizes controls per slideshow, #2054;
+* ADDED: Loading bar to creating slideshow screen for quick start, #2057;
+* ADDED: More labels to quick start grid, #2058;
+* ADDED: Layer slides demos to quick start, #2060;
+* ADDED: Local video with captions demo to quick start, #2061;
+* ADDED: Title on Quick Start screen, #2098;
+* ADDED: Import slideshows: support for video captions (text track), #2101;
+* FIXED: Sanitize unserialized data on legacy import, #2094;
+* FIXED: Validate images and sanitize folder data from theme's manifest on legacy import, #2088;
+* FIXED: Custom width/height should be hidden, #2072;
+* FIXED: Don't use $type var due is reserved, #2076;
+* FIXED: Preview notice when sldieshow is empty is interrupted by automatic saving process, #2090;
+* FIXED: Quickstart: move vertical to animation type dropdown, #2100;
+* CHANGED: Update HTML Purifier to 4.19, #2078;
+* CHANGED: Axios to 1.13.5, #2095;
+* CHANGED: Webpack to 5.104.1, #2095;
+* CHANGED: Progress bar location, #2056;
+* CHANGED: Move image settings under "Images Options" panel, #2000, #2007;
+* CHANGED: Italian, Spanish and French translation updates, #2074;
 
 = [3.106.0] - Mar 02, 2026 =
 

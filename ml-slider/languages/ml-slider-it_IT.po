@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Plugins - Slider, Gallery, and Carousel by MetaSlider "
 "&#8211; Responsive WordPress Slideshows - Stable (latest release)\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
-"POT-Creation-Date: 2026-01-27T15:26:02+00:00\n"
-"PO-Revision-Date: 2026-01-30 09:44+0100\n"
+"POT-Creation-Date: 2026-03-02T17:59:24+00:00\n"
+"PO-Revision-Date: 2026-03-03 16:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: it\n"
@@ -37,36 +37,35 @@ msgstr ""
 "MetaSlider ti dà la possibilità di creare una bellissima presentazione, un "
 "carosello o una galleria sul tuo sito WordPress."
 
-#: admin/lib/helpers.php:408
+#: admin/lib/helpers.php:410
 msgid "Some of these features are available in MetaSlider Pro"
 msgstr "Alcune di queste caratteristiche sono disponibili in MetaSlider Pro"
 
-#: admin/lib/helpers.php:430
-#| msgid "Some of these features are available in MetaSlider Pro"
+#: admin/lib/helpers.php:436
 msgid "This feature is available with MetaSlider Lightbox"
 msgstr "Questa caratteristica è disponibile in MetaSlide Lightbox"
 
-#: admin/lib/helpers.php:582
+#: admin/lib/helpers.php:588
 msgid "Activate MetaSlider Lightbox to show your slides in a lightbox window."
 msgstr ""
 "Attiva MetaSlider Lightbox per mostrare le tue diapositive in una finestra "
 "lightbox."
 
-#: admin/lib/helpers.php:583
+#: admin/lib/helpers.php:589
 msgid "Activate MetaSlider Lightbox"
 msgstr "Attiva MetaSlider Lightbox"
 
-#: admin/lib/helpers.php:593
+#: admin/lib/helpers.php:599
 msgid "Install MetaSlider Lightbox to show your slides in a lightbox window."
 msgstr ""
 "Installa MetaSlider Lightbox per mostrare le tue diapositive in una finestra "
 "lightbox."
 
-#: admin/lib/helpers.php:594
+#: admin/lib/helpers.php:600
 msgid "Install MetaSlider Lightbox"
 msgstr "Installa MetaSlider Lightbox"
 
-#: admin/Notices.php:98
+#: admin/Notices.php:101
 msgctxt "Keep the plugin name \"MetaSlider\" when possible"
 msgid ""
 "Like MetaSlider? Please help us by giving a positive review at WordPress.org"
@@ -74,14 +73,14 @@ msgstr ""
 "Sei soddisfatto di MetaSlider? Aiutaci lasciando una recensione positiva su "
 "WordPress.org"
 
-#: admin/Notices.php:108
+#: admin/Notices.php:111
 msgid ""
 "Spice up your site with animated layers and video slides with MetaSlider Pro"
 msgstr ""
 "Vivacizza il tuo sito con livelli animati e diapositive video con MetaSlider "
 "Pro"
 
-#: admin/Notices.php:119
+#: admin/Notices.php:122
 msgid ""
 "Increase your revenue and conversion with video slides and many more "
 "MetaSlider Pro features"
@@ -89,96 +88,117 @@ msgstr ""
 "Aumenta le tue entrate e le conversioni con le diapositive video e molte "
 "altre caratteristiche di MetaSlider Pro"
 
-#: admin/Notices.php:130
+#: admin/Notices.php:133
 msgid ""
 "Can you translate? Want to improve MetaSlider for speakers of your language?"
 msgstr "Puoi tradurre? Vuoi migliorare MetaSlider per chi parla la tua lingua?"
 
-#: admin/Notices.php:145
+#: admin/Notices.php:148
 msgid "Do you want to display your slideshow media inside a lightbox?"
 msgstr "Vuoi visualizzare i media della tua presentazione in una lightbox?"
 
-#: admin/Notices.php:337
+#: admin/Notices.php:340
 msgid "weeks"
 msgstr "settimane"
 
-#: admin/Notices.php:357
+#: admin/Notices.php:360
 msgid "Let's Start &rarr;"
 msgstr "Iniziamo &rarr;"
 
-#: admin/Notices.php:358
+#: admin/Notices.php:361
 msgctxt "Keep the plugin name \"MetaSlider\" when possible"
 msgid "Review MetaSlider &rarr;"
 msgstr "Recensisci MetaSlider &rarr;"
 
-#: admin/Notices.php:359
+#: admin/Notices.php:362
 msgid "Find out more &rarr;"
 msgstr "Scopri di più &rarr;"
 
-#: admin/Notices.php:360
+#: admin/Notices.php:363
 msgid "Get MetaSlider Pro &rarr;"
 msgstr "Ottieni MetaSlider Pro &rarr;"
 
-#: admin/Notices.php:361
+#: admin/Notices.php:364
 msgid "Sign up &rarr;"
 msgstr "Iscriviti &rarr;"
 
-#: admin/Notices.php:362
+#: admin/Notices.php:365
 msgid "Go there &rarr;"
 msgstr "Vai a &rarr;"
 
-#: admin/Notices.php:366
+#: admin/Notices.php:369
 msgid "Click to install the MetaSlider Lightbox plugin &rarr;"
 msgstr "Fai clic per installare il plugin etaSlider Lightbox &rarr;"
 
-#: admin/Notices.php:369
+#: admin/Notices.php:372
 msgid "Read more"
 msgstr "Leggi tutto"
 
-#: admin/Notices.php:383 inc/slide/metaslide.class.php:144
-#: inc/slide/metaslide.image.class.php:127
+#: admin/Notices.php:386 admin/Notices.php:635
+#: inc/slide/metaslide.class.php:144 inc/slide/metaslide.image.class.php:127
 #: inc/slide/metaslide.image.class.php:231
 #: inc/slide/metaslide.image.class.php:285
-#: inc/slide/metaslide.image.class.php:403 ml-slider.php:890 ml-slider.php:972
-#: ml-slider.php:1084 ml-slider.php:2882 ml-slider.php:2923
+#: inc/slide/metaslide.image.class.php:403 ml-slider.php:892 ml-slider.php:974
+#: ml-slider.php:1086 ml-slider.php:2721 ml-slider.php:2765 ml-slider.php:2839
 msgid "The security check failed. Please refresh the page and try again."
 msgstr "Il controllo di sicurezza è fallito. Aggiorna la pagina e riprova."
 
-#: admin/Notices.php:391 admin/routes/api.php:140
+#: admin/Notices.php:394 admin/Notices.php:642 admin/routes/api.php:140
 #: inc/slide/metaslide.class.php:152 inc/slide/metaslide.image.class.php:135
 #: inc/slide/metaslide.image.class.php:154
 #: inc/slide/metaslide.image.class.php:239
-#: inc/slide/metaslide.image.class.php:293 ml-slider.php:898 ml-slider.php:980
-#: ml-slider.php:1092 ml-slider.php:2890 ml-slider.php:2931
+#: inc/slide/metaslide.image.class.php:293 ml-slider.php:900 ml-slider.php:982
+#: ml-slider.php:1094 ml-slider.php:2729 ml-slider.php:2773 ml-slider.php:2847
 msgid "Access denied. Sorry, you do not have permission to complete this task."
 msgstr "Accesso negato. Non hai i permessi per completare questa attività."
 
-#: admin/Notices.php:399 inc/slide/metaslide.class.php:161
-#: inc/slide/metaslide.image.class.php:144
+#: admin/Notices.php:402 admin/Notices.php:649
+#: inc/slide/metaslide.class.php:161 inc/slide/metaslide.image.class.php:144
 #: inc/slide/metaslide.image.class.php:248
 #: inc/slide/metaslide.image.class.php:302
-#: inc/slide/metaslide.image.class.php:421 ml-slider.php:907 ml-slider.php:989
-#: ml-slider.php:1101 ml-slider.php:2899 ml-slider.php:2940
+#: inc/slide/metaslide.image.class.php:421 ml-slider.php:909 ml-slider.php:991
+#: ml-slider.php:1103 ml-slider.php:2738 ml-slider.php:2781 ml-slider.php:2856
 msgid "Bad request"
 msgstr "Richiesta sbagliata"
 
-#: admin/Notices.php:407
+#: admin/Notices.php:410
 msgid "This item does not exist. Please refresh the page and try again."
 msgstr "Questo elemento non esiste. Aggiorna la pagina e riprova."
 
-#: admin/Notices.php:420
+#: admin/Notices.php:423
 msgid "The option was successfully updated"
 msgstr "L'opzione è stata aggiornata correttamente"
 
-#: admin/Notices.php:486
+#: admin/Notices.php:489
 msgid "The requested data does not exist."
 msgstr "I dati richiesti non esistono."
 
-#: admin/Notices.php:511
+#: admin/Notices.php:514
 msgid "The attempt to update the option failed."
 msgstr "Il tentativo di aggiornare l'opzione è fallito."
 
-#: admin/Pages.php:138 admin/Pages.php:178
+#: admin/Notices.php:615
+msgid "Thanks for using MetaSlider, the WordPress slideshow plugin"
+msgstr ""
+"Grazie per utilizzare MetaSlider, il plugin per le presentazioni di WordPress"
+
+#: admin/Notices.php:618
+msgid "Dismiss"
+msgstr "Ignora"
+
+#: admin/Notices.php:662
+msgid "Invalid ad identifier"
+msgstr "Identificatore ad non valido"
+
+#: admin/Notices.php:670
+msgid "There was an error dimissing the quickstart ad"
+msgstr "C'è stato un errore nell'ignorare l'annuncio di inizio rapido"
+
+#: admin/Notices.php:675
+msgid "The quickstart ad was successfully hidden!"
+msgstr "L'annuncio di avvio rapido è stato nascosto correttamente!"
+
+#: admin/Pages.php:138 admin/Pages.php:177
 msgid "URL"
 msgstr "URL"
 
@@ -244,11 +264,11 @@ msgstr ""
 "Attenzione: questa impostazione è solo per gli sviluppatori avanzati. Se non "
 "sei sicuro, lasciala selezionata."
 
-#: admin/Pages.php:168
+#: admin/Pages.php:167
 msgid "Tone"
 msgstr "Tono"
 
-#: admin/Pages.php:169 admin/views/pages/parts/slider-settings.php:1231
+#: admin/Pages.php:168 admin/views/pages/parts/slider-settings.php:1231
 #: themes/architekt/customize.php:530 themes/bitono/customize.php:707
 #: themes/blend/customize.php:736 themes/bubble/customize.php:723
 #: themes/clarity/customize.php:661 themes/cubic/customize.php:691
@@ -261,61 +281,60 @@ msgstr "Tono"
 msgid "Opacity"
 msgstr "Opacità"
 
-#: admin/Pages.php:170
-#| msgid "Shortcode"
+#: admin/Pages.php:169
 msgid "Shortcodes"
 msgstr "Gli shortcode"
 
-#: admin/Pages.php:171
+#: admin/Pages.php:170
 msgid "Hide on Smartphone"
 msgstr "Nascondi negli smartphone"
 
-#: admin/Pages.php:172
+#: admin/Pages.php:171
 msgid "Hide on Tablet"
 msgstr "Nascondi nei tablet"
 
-#: admin/Pages.php:173
+#: admin/Pages.php:172
 msgid "Hide on Laptop"
 msgstr "Nascondi nei compter portatili"
 
-#: admin/Pages.php:174
+#: admin/Pages.php:173
 msgid "Hide on Desktop"
 msgstr "Nascondi nei desktop"
 
-#: admin/Pages.php:175
+#: admin/Pages.php:174
 msgid "Add Button"
 msgstr "Aggiungi un pulsante"
 
-#: admin/Pages.php:176
+#: admin/Pages.php:175
 msgid "Close"
 msgstr "Chiudi"
 
-#: admin/Pages.php:177
+#: admin/Pages.php:176
 msgid "Insert"
 msgstr "Inserisci"
 
-#: admin/Pages.php:179
+#: admin/Pages.php:178
 msgid "Please enter a valid URL."
 msgstr "Inserisci un URL valido."
 
-#: admin/Pages.php:180
+#: admin/Pages.php:179
 msgid "Please enter link text for the button."
 msgstr "Inserisci il texto del link per il pulsante."
 
-#: admin/Pages.php:181
+#: admin/Pages.php:180
 msgid "Open in new window"
 msgstr "Apri in una nuova finestra"
 
-#: admin/Pages.php:182
+#: admin/Pages.php:181
 msgid "Button Color"
 msgstr "Colore pulsante"
 
-#: admin/Pages.php:183 themes/radix/customize.php:42
+#: admin/Pages.php:182 themes/radix/customize.php:42
 #: themes/radix/customize.php:55
 msgid "Text Color"
 msgstr "Colore del testo"
 
-#: admin/Pages.php:184
+#: admin/Pages.php:183
 msgid "Link Text"
 msgstr "Texto del link"
 
@@ -355,11 +374,11 @@ msgid "Maximum Number of Custom Field in Post Feed Sliders"
 msgstr ""
 "Numero massimo di campi personalizzati negli slider dei feed degli articoli"
 
-#: admin/routes/api.php:1207
+#: admin/routes/api.php:1210
 msgid "Import slug not found"
 msgstr "Slug di importazione non trovato"
 
-#: admin/routes/api.php:1223
+#: admin/routes/api.php:1226
 msgid "Import data could not be processed"
 msgstr "I dati di importazione non possono essere processati"
 
@@ -381,16 +400,16 @@ msgstr "Precedente"
 msgid "Next"
 msgstr "Seguente"
 
-#: admin/slideshows/Slideshows.php:437 admin/slideshows/Slideshows.php:542
+#: admin/slideshows/Slideshows.php:440 admin/slideshows/Slideshows.php:545
 msgid "Import file is invalid."
 msgstr "File di importazione non valido."
 
-#: admin/slideshows/Slideshows.php:490
+#: admin/slideshows/Slideshows.php:493
 #, php-format
 msgid "Failed to import video from URL: %s. Error: %s"
 msgstr "Impossibile importare il video dall'URL: %s. Errore: %s"
 
-#: admin/slideshows/Slideshows.php:518
+#: admin/slideshows/Slideshows.php:521
 #, php-format
 msgid "Failed to import image from URL: %s. Error: %s"
 msgstr "Impossibile importare l'immagine dall'URL: %s. Errore: %s"
@@ -871,18 +890,22 @@ msgid "This animation is used when changing slides."
 msgstr "Questa animazione viene usata al cambio delle diapositive."
 
 #: admin/views/pages/parts/slider-settings.php:474
+#: admin/views/pages/start.php:139
 msgid "Fade"
 msgstr "Dissolvenza"
 
 #: admin/views/pages/parts/slider-settings.php:478
+#: admin/views/pages/start.php:138
 msgid "Slide"
 msgstr "Scorrimento"
 
 #: admin/views/pages/parts/slider-settings.php:482
+#: admin/views/pages/start.php:140
 msgid "Zooming"
 msgstr "Ingrandimento"
 
 #: admin/views/pages/parts/slider-settings.php:486
+#: admin/views/pages/start.php:141
 msgid "Flip"
 msgstr "Capovolgi"
 
@@ -1016,6 +1039,7 @@ msgid "Horizontal"
 msgstr "Orizzontale"
 
 #: admin/views/pages/parts/slider-settings.php:681
+#: admin/views/pages/start.php:132
 msgid "Vertical"
 msgstr "Verticale"
 
@@ -1024,7 +1048,6 @@ msgid "Reverse"
 msgstr "Inverti"
 
 #: admin/views/pages/parts/slider-settings.php:697
-#| msgid "Reverse the animation direction."
 msgid "Reverse the slide direction."
 msgstr "Inverti la direzione della diapositiva."
 
@@ -1121,7 +1144,6 @@ msgstr ""
 "carosello."
 
 #: admin/views/pages/parts/slider-settings.php:868
-#| msgid "Hide Navigation On"
 msgid "Slides per Navigation Click"
 msgstr "Diapositive per il clic sulla navigazione"
 
@@ -1440,7 +1462,6 @@ msgstr "Personalizza il riquadro del contenitore della presentazione."
 
 #: admin/views/pages/parts/slider-settings.php:1309
 #: admin/assets/dist/js/app.js:2
-#| msgid "Some of these features are available in MetaSlider Pro"
 msgid "This feature is available in MetaSlider Pro"
 msgstr "Questa caratteristica è disponibile in MetaSlider Pro"
 
@@ -1529,7 +1550,7 @@ msgstr "Modalità senza conflitti"
 msgid "Delay adding the flexslider class to the slideshow."
 msgstr "Ritarda l'aggiunta della classe flexslider alla presentazione."
 
-#: admin/views/pages/parts/slider-settings.php:1490 ml-slider.php:1947
+#: admin/views/pages/parts/slider-settings.php:1490 ml-slider.php:1800
 msgid "Trashed Slides"
 msgstr "Diapositive cestinate"
 
@@ -1576,19 +1597,19 @@ msgstr ""
 "L'aggiunta di CSS personalizzato è una caratteristica di MetaSlider Pro. Fai "
 "clic per approfondire."
 
-#: admin/views/pages/parts/toolbar.php:90
+#: admin/views/pages/parts/toolbar.php:91
 msgid "Add CSS"
 msgstr "Aggiungi CSS"
 
-#: admin/views/pages/parts/toolbar.php:98
+#: admin/views/pages/parts/toolbar.php:99
 msgid "Save slideshow"
 msgstr "Salva la presentazione"
 
-#: admin/views/pages/parts/toolbar.php:112 admin/assets/dist/js/app.js:2
+#: admin/views/pages/parts/toolbar.php:113 admin/assets/dist/js/app.js:2
 msgid "Save"
 msgstr "Salva"
 
-#: admin/views/pages/parts/toolbar.php:123 ml-slider.php:2018
+#: admin/views/pages/parts/toolbar.php:124 ml-slider.php:1856
 msgid "Return to Published Slides"
 msgstr "Torna alle diapositive pubblicate"
 
@@ -1608,68 +1629,213 @@ msgstr "Importa"
 msgid "Export"
 msgstr "Esporta"
 
-#: admin/views/pages/start.php:5
-msgid "Carousel Slideshow"
-msgstr "Presentazione a carosello"
+#: admin/views/pages/start.php:6
+msgid "MetaSliderQuickstart class does not exists."
+msgstr "La classe MetaSliderQuickstart non esiste."
 
-#: admin/views/pages/start.php:9
-msgid "Carousel Slideshow with Captions"
-msgstr "Presentazione a carosello con didascalie"
+#: admin/views/pages/start.php:29
+msgid "Creating slideshow... Please wait!"
+msgstr "Creazione della presentazione in corso… Attendi!"
 
-#: admin/views/pages/start.php:20
-msgid "Thanks for using MetaSlider, the WordPress slideshow plugin"
-msgstr ""
-"Grazie per utilizzare MetaSlider, il plugin per le presentazioni di WordPress"
+#: admin/views/pages/start.php:78
+msgid "Start with a demo"
+msgstr "Inizia con una demo"
 
-#: admin/views/pages/start.php:26
-msgid "Create a slideshow with your images"
-msgstr "Crea una presentazione con le tue immagini"
+#: admin/views/pages/start.php:82
+msgid "Use your own media"
+msgstr "Usa i tuoi media"
 
-#: admin/views/pages/start.php:27
-msgid "Choose your own images to start a new slideshow."
-msgstr "Scegli le tue immagini per iniziare una nuova presentazione."
+#: admin/views/pages/start.php:91
+msgid "Blank slideshow"
+msgstr "Presentazione vuota"
 
-#: admin/views/pages/start.php:34
-msgid "Uploading images..."
-msgstr "Caricamento immagini in corso…"
-
-#: admin/views/pages/start.php:41
-msgctxt "Uploader: Drop files to upload - or - Select Files"
-msgid "or"
-msgstr "o"
-
-#: admin/views/pages/start.php:44
-msgid "Open Media Library"
-msgstr "Apri la libreria dei media"
-
-#: admin/views/pages/start.php:59
+#: admin/views/pages/start.php:99
 msgid "Import a demo slideshow"
 msgstr "Importa una presentazione dimostrativa"
 
-#: admin/views/pages/start.php:62
+#: admin/views/pages/start.php:102
 msgid "Use sample slides to quickly create a new slideshow."
 msgstr ""
 "Utilizza le diapositive di esempio per creare rapidamente una nuova "
 "presentazione."
 
-#: admin/views/pages/start.php:69
-msgid "Blank Slideshow"
-msgstr "Presentazione vuota"
+#: admin/views/pages/start.php:109
+msgid "Slide Type"
+msgstr "Tipo di diapositiva"
 
-#: admin/views/pages/start.php:70
-msgid "Image Slideshow"
-msgstr "Presentazione d'immagini"
+#: admin/views/pages/start.php:110 ml-slider.php:747
+msgid "Image"
+msgstr "Immagine"
 
-#: admin/views/pages/start.php:84
-msgid "Create a Slideshow"
-msgstr "Crea una presentazione"
+#: admin/views/pages/start.php:111 inc/metaslider.quickstart.class.php:430
+#: ml-slider.php:788
+msgid "Vimeo"
+msgstr "Vimeo"
+
+#: admin/views/pages/start.php:112 inc/metaslider.quickstart.class.php:397
+#: ml-slider.php:789
+msgid "YouTube"
+msgstr "YouTube"
+
+#: admin/views/pages/start.php:113 ml-slider.php:790
+msgid "TikTok"
+msgstr "TikTok"
+
+#: admin/views/pages/start.php:114 inc/metaslider.quickstart.class.php:474
+#: ml-slider.php:791
+msgid "External Image"
+msgstr "Immagine esterna"
+
+#: admin/views/pages/start.php:115 inc/metaslider.quickstart.class.php:485
+#: ml-slider.php:792
+msgid "External Video"
+msgstr "Video esterno"
+
+#: admin/views/pages/start.php:116 inc/metaslider.quickstart.class.php:496
+#: ml-slider.php:793
+msgid "Custom HTML"
+msgstr "HTML personalizzato"
+
+#: admin/views/pages/start.php:117 ml-slider.php:794
+msgid "Image Folder"
+msgstr "Cartella d'immagini"
+
+#: admin/views/pages/start.php:118 ml-slider.php:795
+msgid "Post Images"
+msgstr "Immagini dell'articolo"
+
+#: admin/views/pages/start.php:119 admin/views/pages/start.php:148
+#: ml-slider.php:796
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: admin/views/pages/start.php:120 inc/metaslider.quickstart.class.php:463
+#: ml-slider.php:797
+msgid "Post Feed"
+msgstr "Feed articolo"
+
+#: admin/views/pages/start.php:121 ml-slider.php:798
+msgid "Layer Slide"
+msgstr "Diapositiva del livello"
+
+#: admin/views/pages/start.php:122 inc/metaslider.quickstart.class.php:441
+#: ml-slider.php:799
+msgid "Local Video"
+msgstr "Video locale"
+
+#: admin/views/pages/start.php:127
+msgid "Features"
+msgstr "Caratteristiche"
+
+#: admin/views/pages/start.php:128
+msgid "Boxed"
+msgstr "Boxed"
+
+#: admin/views/pages/start.php:129
+msgid "Full-width"
+msgstr "Larghezza piena"
+
+#: admin/views/pages/start.php:130
+msgid "Carousel"
+msgstr "Carosello"
+
+#: admin/views/pages/start.php:131
+msgid "Thumbnail Navigation"
+msgstr "Navigazione delle miniature"
+
+#: admin/views/pages/start.php:137
+msgid "Animation Type"
+msgstr "Tipo di animazione"
+
+#: admin/views/pages/start.php:142
+msgid "Ken Burns"
+msgstr "Ken Burns"
+
+#: admin/views/pages/start.php:147
+msgid "Integration"
+msgstr "Integrazione"
+
+#: admin/views/pages/start.php:149
+msgid "The Events Calendar"
+msgstr "The Events Calendar"
+
+#: admin/views/pages/start.php:150 admin/views/pages/start.php:211
+msgid "WordPress Posts"
+msgstr "Articoli WordPress"
+
+#: admin/views/pages/start.php:155
+msgid "Free and Pro"
+msgstr "Gratuito e Pro"
+
+#: admin/views/pages/start.php:156
+msgid "Free only"
+msgstr "Solo gratuito"
+
+#: admin/views/pages/start.php:157
+msgid "Pro only"
+msgstr "Solo Pro"
+
+#: admin/views/pages/start.php:167
+msgid "No demos match your filters."
+msgstr "Nessuna demo coincide con i tuoi filtri."
+
+#: admin/views/pages/start.php:231
+#, php-format
+msgid "Create %s slideshow?"
+msgstr "Creare una presentazione %s?"
+
+#: admin/views/pages/start.php:237
+msgid "Cancel"
+msgstr "Annulla"
+
+#: admin/views/pages/start.php:240
+msgid "Yes, please!"
+msgstr "Sì!"
+
+#: admin/views/pages/start.php:246
+msgid "Demo"
+msgstr "Demo"
+
+#: admin/views/pages/start.php:252 admin/assets/dist/js/app.js:2
+msgid "Get MetaSlider Pro!"
+msgstr "Ottieni MetaSlider Pro!"
+
+#: admin/views/pages/start.php:255
+msgid "Upgrade now to unlock this demo slideshow!"
+msgstr "Aggiorna ora per sbloccare questa presentazione demo!"
+
+#: admin/views/pages/start.php:258 admin/views/pages/theme-editor.php:36
+#: admin/views/pages/upgrade.php:26 admin/views/pages/upgrade.php:193
+#: admin/assets/dist/js/app.js:2
+msgid "Upgrade now"
+msgstr "Aggiorna ora"
+
+#: admin/views/pages/start.php:276
+msgid "Create a slideshow with your images"
+msgstr "Crea una presentazione con le tue immagini"
+
+#: admin/views/pages/start.php:277
+msgid "Choose your own images to start a new slideshow."
+msgstr "Scegli le tue immagini per iniziare una nuova presentazione."
+
+#: admin/views/pages/start.php:283
+msgid "Uploading images..."
+msgstr "Caricamento immagini in corso…"
+
+#: admin/views/pages/start.php:291
+msgctxt "Uploader: Drop files to upload - or - Select Files"
+msgid "or"
+msgstr "o"
+
+#: admin/views/pages/start.php:294
+msgid "Open Media Library"
+msgstr "Apri la libreria dei media"
 
 #: admin/views/pages/theme-editor.php:11
 msgid "Introducing the Theme Editor in MetaSlider Pro"
 msgstr "Introduzione dell'editor dei temi in MetaSlider Pro"
 
-#: admin/views/pages/theme-editor.php:18 ml-slider.php:536
-#| msgid "Enable Legacy Theme Editor"
+#: admin/views/pages/theme-editor.php:18 ml-slider.php:538
 msgid "Theme Editor"
 msgstr "Editor dei temi"
 
@@ -1702,11 +1868,6 @@ msgid ""
 msgstr ""
 "Aggiorna a MetaSlider Pro e potrai creare in pochi minuti una fantastica "
 "presentazione per WordPress."
-
-#: admin/views/pages/theme-editor.php:36 admin/views/pages/upgrade.php:26
-#: admin/views/pages/upgrade.php:193 admin/assets/dist/js/app.js:2
-msgid "Upgrade now"
-msgstr "Aggiorna ora"
 
 #: admin/views/pages/upgrade.php:13
 msgid "Comparison Chart"
@@ -1922,7 +2083,6 @@ msgid "Custom delay is available in MetaSlider Pro"
 msgstr "Il ritardo personalizzato è disponibile in MetaSlider Pro"
 
 #: admin/views/slides/tabs/advanced.php:30
-#| msgid "Duplicate this slideshow"
 msgid "Repeat this slide"
 msgstr "Ripeti questa diapositiva"
 
@@ -2031,8 +2191,6 @@ msgid "Image Link URL"
 msgstr "URL link immagine"
 
 #: admin/views/slides/tabs/link.php:10
-#| msgid ""
-#| "When visitors click on your image slide, they will be taken to this URL."
 msgid ""
 "When visitors click on your image slide, they will be taken to this URL. "
 "Alternatively, if your theme has a button, the link will be applied to the "
@@ -2108,12 +2266,10 @@ msgstr ""
 "larghezza compresa tra %1$spx e %2$spx"
 
 #: admin/views/slides/tabs/schedule.php:15
-#| msgid "Schedule your slides"
 msgid "Schedule this slide"
 msgstr "Programma questa diapositiva"
 
 #: admin/views/slides/tabs/schedule.php:18
-#| msgid "Some of these features are available in MetaSlider Pro"
 msgid "Schedule is available in MetaSlider Pro"
 msgstr "La programmazione è disponibile in MetaSlider Pro"
 
@@ -2177,6 +2333,158 @@ msgstr "Abilita questo per ereditare il testo alternativo dell'immagine"
 msgid "Use the image alt text"
 msgstr "Usa il testo alternativo dell'immagine"
 
+#: inc/metaslider.quickstart.class.php:23
+msgid "Nature Site"
+msgstr "Sito di natura"
+
+#: inc/metaslider.quickstart.class.php:34
+msgid "Travel Itinerary"
+msgstr "Itinerario di viaggio"
+
+#: inc/metaslider.quickstart.class.php:45
+msgid "City Guide"
+msgstr "Guida della città"
+
+#: inc/metaslider.quickstart.class.php:56
+msgid "Black and White Photography"
+msgstr "Fotografia bianco e nero"
+
+#: inc/metaslider.quickstart.class.php:67
+msgid "Productivity Guide"
+msgstr "Guida alla produzione"
+
+#: inc/metaslider.quickstart.class.php:78
+msgid "Real Estate Listings"
+msgstr "Annunci immobiliari"
+
+#: inc/metaslider.quickstart.class.php:89
+msgid "Architecture"
+msgstr "Architettura"
+
+#: inc/metaslider.quickstart.class.php:100
+msgid "Landscape Photography"
+msgstr "Fotografia di paesaggio"
+
+#: inc/metaslider.quickstart.class.php:111
+msgid "Client Logos"
+msgstr "Loghi dei clienti"
+
+#: inc/metaslider.quickstart.class.php:122
+msgid "Wildlife Photography"
+msgstr "Fotografia naturalistica"
+
+#: inc/metaslider.quickstart.class.php:133
+msgid "Images"
+msgstr "Immagini"
+
+#: inc/metaslider.quickstart.class.php:144
+msgid "Image Carousel"
+msgstr "Carosello d'immagini"
+
+#: inc/metaslider.quickstart.class.php:155
+msgid "Image Carousel with Captions"
+msgstr "Carosello d'immagini con didascalie"
+
+#: inc/metaslider.quickstart.class.php:166
+msgid "Entertainment YouTube Shorts Feed"
+msgstr "Feed dei video brevi di intrattenimento su YouTube"
+
+#: inc/metaslider.quickstart.class.php:177
+msgid "Album Cover Showcase"
+msgstr "Vetrina delle copertine degli album"
+
+#: inc/metaslider.quickstart.class.php:188
+msgid "Business Presentation"
+msgstr "Presentazione d'affari"
+
+#: inc/metaslider.quickstart.class.php:199
+msgid "Books by Genre"
+msgstr "Libri per genere"
+
+#: inc/metaslider.quickstart.class.php:210
+msgid "Testimonials"
+msgstr "Testimonianze"
+
+#: inc/metaslider.quickstart.class.php:221
+msgid "Skincare Routine Guide"
+msgstr "Guida alla routine della cura della pelle"
+
+#: inc/metaslider.quickstart.class.php:232
+msgid "Indoor Plant Selection Guide"
+msgstr "Guida alla selezione delle piante d'interni"
+
+#: inc/metaslider.quickstart.class.php:243
+msgid "TikTok Vertical Videos"
+msgstr "Video verticali TikTok"
+
+#: inc/metaslider.quickstart.class.php:254
+msgid "Daily Routine Videos"
+msgstr "Video sulla routine quotidiana"
+
+#: inc/metaslider.quickstart.class.php:265
+msgid "Coffee Brewing Guide"
+msgstr "Guida alla preparazione del caffè"
+
+#: inc/metaslider.quickstart.class.php:276
+msgid "Upcoming City Events"
+msgstr "Eventi prossimi in città"
+
+#: inc/metaslider.quickstart.class.php:287
+msgid "Product Categories"
+msgstr "Categorie di prodotti"
+
+#: inc/metaslider.quickstart.class.php:298
+msgid "Recent WooCommerce Products"
+msgstr "Prodotti WooCommerce recenti"
+
+#: inc/metaslider.quickstart.class.php:309
+msgid "Latest News Posts"
+msgstr "Articoli ultime notizie"
+
+#: inc/metaslider.quickstart.class.php:320
+msgid "Product Demo"
+msgstr "Demo del prodotto"
+
+#: inc/metaslider.quickstart.class.php:331
+msgid "Trending Videos"
+msgstr "Video di tendenza"
+
+#: inc/metaslider.quickstart.class.php:342
+msgid "Hotel Rooms"
+msgstr "Stanze d'albergo"
+
+#: inc/metaslider.quickstart.class.php:353
+msgid "Client Testimonials"
+msgstr "Testimonianze dei clienti"
+
+#: inc/metaslider.quickstart.class.php:364
+msgid "Meet the Team"
+msgstr "Incontra il team"
+
+#: inc/metaslider.quickstart.class.php:375
+msgid "Curated Videos"
+msgstr "Video selezionati"
+
+#: inc/metaslider.quickstart.class.php:386
+msgid "Natural Skincare Presentation"
+msgstr "Presentazione sulla cura naturale della pelle"
+
+#: inc/metaslider.quickstart.class.php:408
+msgid "YouTube Shorts Carousel"
+msgstr "Carosello video brevi di YouTube"
+
+#: inc/metaslider.quickstart.class.php:419
+msgid "TikTok Carousel"
+msgstr "Carosello TikTok"
+
+#: inc/metaslider.quickstart.class.php:452
+msgid "Layer Slides"
+msgstr "Diapositive del livello"
+
+#: inc/metaslider.quickstart.class.php:507
+msgid "WooCommerce Carousel"
+msgstr "Carosello WooCommerce"
+
 #: inc/metaslider.systemcheck.class.php:91
 #, php-format
 msgid ""
@@ -2206,7 +2514,7 @@ msgstr "Titolo:"
 msgid "Select Slider:"
 msgstr "Seleziona lo slider:"
 
-#: inc/metaslider.widget.class.php:125 ml-slider.php:2147
+#: inc/metaslider.widget.class.php:125 ml-slider.php:1985
 #: admin/assets/dist/js/app.js:2
 msgid "No slideshows found"
 msgstr "Nessuna presentazione trovata"
@@ -2301,11 +2609,10 @@ msgid "Play"
 msgstr "Riproduci"
 
 #: inc/slider/metaslider.flex.class.php:867
-#| msgid "Pause Text"
 msgid "Pause"
 msgstr "Pausa"
 
-#: ml-slider.php:264
+#: ml-slider.php:265
 #, php-format
 msgid ""
 "MetaSlider Pro is installed but is out of date. You may update it %shere%s. "
@@ -2314,104 +2621,52 @@ msgstr ""
 "MetaSlider Pro è installato ma non è aggiornato. Puoi aggiornarlo %squi%s. "
 "Per saperne di più su questo avviso fai clic %squi%s"
 
-#: ml-slider.php:531
+#: ml-slider.php:533
 msgid "Home"
 msgstr "Home"
 
-#: ml-slider.php:532
+#: ml-slider.php:534
 msgid "Quick Start"
 msgstr "Avvio rapido"
 
-#: ml-slider.php:533
+#: ml-slider.php:535
 msgid "Settings & Help"
 msgstr "Impostazioni e aiuto"
 
-#: ml-slider.php:537
+#: ml-slider.php:539
 msgid "Upgrade to Pro"
 msgstr "Aggiorna a Pro"
 
-#: ml-slider.php:574 ml-slider.php:577
+#: ml-slider.php:576 ml-slider.php:579
 msgid "All Slideshows"
 msgstr "Tutte le presentazioni"
 
-#: ml-slider.php:585 ml-slider.php:588
+#: ml-slider.php:587 ml-slider.php:590
 msgid "Create Slideshow"
 msgstr "Crea una presentazione"
 
-#: ml-slider.php:745
-msgid "Image"
-msgstr "Immagine"
-
-#: ml-slider.php:746 admin/assets/dist/js/admin.js:1
+#: ml-slider.php:748 admin/assets/dist/js/admin.js:1
 #: admin/assets/js/admin.js:199
 msgid "Add to slideshow"
 msgstr "Aggiungi alla presentazione"
 
-#: ml-slider.php:786
-msgid "Vimeo"
-msgstr "Vimeo"
-
-#: ml-slider.php:787
-msgid "YouTube"
-msgstr "YouTube"
-
-#: ml-slider.php:788
-msgid "TikTok"
-msgstr "TikTok"
-
-#: ml-slider.php:789
-msgid "External Image"
-msgstr "Immagine esterna"
-
-#: ml-slider.php:790
-msgid "External Video"
-msgstr "Video esterno"
-
-#: ml-slider.php:791
-msgid "Custom HTML"
-msgstr "HTML personalizzato"
-
-#: ml-slider.php:792
-msgid "Image Folder"
-msgstr "Cartella d'immagini"
-
-#: ml-slider.php:793
-msgid "Post Images"
-msgstr "Immagini dell'articolo"
-
-#: ml-slider.php:794
-msgid "WooCommerce"
-msgstr "WooCommerce"
-
-#: ml-slider.php:795
-msgid "Post Feed"
-msgstr "Feed articolo"
-
-#: ml-slider.php:796
-msgid "Layer Slide"
-msgstr "Diapositiva del livello"
-
-#: ml-slider.php:797
-msgid "Local Video"
-msgstr "Video locale"
-
-#: ml-slider.php:922
+#: ml-slider.php:924
 msgid "The slide was successfully restored"
 msgstr "La diapositiva è stata ripristinata con successo"
 
-#: ml-slider.php:945
+#: ml-slider.php:947
 msgid "The attempt to restore the slide failed."
 msgstr "Il tentativo di ripristinare la diapositiva è fallito."
 
-#: ml-slider.php:1004
+#: ml-slider.php:1006
 msgid "The slide was successfully trashed"
 msgstr "La diapositiva è stata cestinata con successo"
 
-#: ml-slider.php:1116
+#: ml-slider.php:1118
 msgid "The slide was permanently deleted"
 msgstr "La diapositiva è stata eliminata definitivamente"
 
-#: ml-slider.php:1554
+#: ml-slider.php:1407
 #, php-format
 msgid ""
 "Please consider moving your slides to <b>FlexSlider</b>. We're adding all "
@@ -2421,27 +2676,15 @@ msgstr ""
 "aggiungendo tutte le nuove funzionalità di MetaSlider a questa opzione.  <a "
 "href=\"%s\">Scopri di più</a>."
 
-#: ml-slider.php:1930
+#: ml-slider.php:1783
 msgid "Slide permanently deleted."
 msgstr "Diapositiva eliminata definitivamente."
 
-#: ml-slider.php:1933
+#: ml-slider.php:1786
 msgid "Slide restored."
 msgstr "Diapositiva ripristinata."
 
-#: ml-slider.php:1975
-msgid "Loading... Please wait!"
-msgstr "Caricamento in corso… attendi!"
-
-#: ml-slider.php:1978
-msgid ""
-"Loading... Please wait! This may take some minutes due we're downloading "
-"sample Local videos."
-msgstr ""
-"Caricamento in corso… attendi! Questa operazione potrebbe richiedere alcuni "
-"minuti perché si stanno scaricando dei video locali di esempio."
-
-#: ml-slider.php:2008
+#: ml-slider.php:1846
 #, php-format
 msgid ""
 "You are viewing slides that have been trashed, which will be automatically "
@@ -2450,33 +2693,33 @@ msgstr ""
 "Stai visualizzando delle diapositive che sono state cestinate e che verranno "
 "eliminate automaticamente tra %s giorni."
 
-#: ml-slider.php:2041
+#: ml-slider.php:1879
 msgid "Move slideshow to trash"
 msgstr "Sposta la presentazione nel cestino"
 
-#: ml-slider.php:2096
+#: ml-slider.php:1934
 msgid "Add slideshow"
 msgstr "Aggiungi presentazione"
 
-#: ml-slider.php:2126
+#: ml-slider.php:1964
 msgctxt "Keep the plugin name \"MetaSlider\" when possible"
 msgid "Select slideshow to insert into post"
 msgstr "Seleziona la presentazione da inserire nell'articolo"
 
-#: ml-slider.php:2132
+#: ml-slider.php:1970
 msgid "Choose slideshow"
 msgstr "Scegli la presentazione"
 
-#: ml-slider.php:2142
+#: ml-slider.php:1980
 msgid "Insert slideshow"
 msgstr "Inserisci la presentazione"
 
-#: ml-slider.php:2177
+#: ml-slider.php:2015
 msgid "Create slides by adding text, videos and more to your images"
 msgstr ""
 "Crea diapositive aggiungendo testo, video e molto altro alle tue immagini."
 
-#: ml-slider.php:2181
+#: ml-slider.php:2019
 msgid ""
 "With Layer slides, you can create beautiful, stylish layers of different "
 "elements."
@@ -2484,7 +2727,7 @@ msgstr ""
 "Con le diapositive a livelli puoi creare bellissimi ed eleganti livelli di "
 "elementi diversi."
 
-#: ml-slider.php:2185
+#: ml-slider.php:2023
 msgid ""
 "You start with an image and then can add text, video, colors, animations, "
 "more images, and even shortcodes."
@@ -2492,25 +2735,25 @@ msgstr ""
 "Inizia con un'immagine e poi può aggiungere testo, video, colori, "
 "animazioni, altre immagini e persino shortcode."
 
-#: ml-slider.php:2191 ml-slider.php:2232 ml-slider.php:2273 ml-slider.php:2316
-#: ml-slider.php:2359 ml-slider.php:2402 ml-slider.php:2445 ml-slider.php:2484
-#: ml-slider.php:2523 ml-slider.php:2594 ml-slider.php:2629 ml-slider.php:2664
+#: ml-slider.php:2029 ml-slider.php:2070 ml-slider.php:2111 ml-slider.php:2154
+#: ml-slider.php:2197 ml-slider.php:2240 ml-slider.php:2283 ml-slider.php:2322
+#: ml-slider.php:2361 ml-slider.php:2432 ml-slider.php:2467 ml-slider.php:2502
 #: admin/assets/dist/js/app.js:2
 msgid "Find out more about MetaSlider Pro"
 msgstr "Leggi tutto su MetaSlider Pro"
 
-#: ml-slider.php:2220
+#: ml-slider.php:2058
 msgid "Create slideshows with your Vimeo videos"
 msgstr "Crea presentazioni con i tuoi video Vimeo"
 
-#: ml-slider.php:2224
+#: ml-slider.php:2062
 msgid ""
 "With Vimeo slides, you can build beautiful slideshows with your Vimeo videos."
 msgstr ""
 "Con le diapositive di Vimeo, puoi creare bellissime presentazioni con i tuoi "
 "video di Vimeo."
 
-#: ml-slider.php:2228
+#: ml-slider.php:2066
 msgid ""
 "Vimeo slides will display your videos with auto play, mute, the ability to "
 "hide controls, and much more."
@@ -2519,11 +2762,11 @@ msgstr ""
 "automatica, silenziamento, possibilità di nascondere i controlli e molto "
 "altro ancora."
 
-#: ml-slider.php:2261
+#: ml-slider.php:2099
 msgid "Create slideshows with your YouTube videos"
 msgstr "Crea presentazioni con i tuoi video YouTube"
 
-#: ml-slider.php:2265
+#: ml-slider.php:2103
 msgid ""
 "With YouTube slides, you can build beautiful slideshows with your YouTube "
 "videos."
@@ -2531,7 +2774,7 @@ msgstr ""
 "Con le diapositive di YouTube, puoi creare bellissime presentazioni con i "
 "tuoi video di YouTube."
 
-#: ml-slider.php:2269
+#: ml-slider.php:2107
 msgid ""
 "YouTube slides will display your videos with auto play, mute, lazy load, the "
 "ability to hide controls, and much more."
@@ -2540,11 +2783,11 @@ msgstr ""
 "automatica, silenziamento, possibilità di nascondere i controlli e molto "
 "altro ancora."
 
-#: ml-slider.php:2302
+#: ml-slider.php:2140
 msgid "Create slideshows with your posts"
 msgstr "Crea presentazioni con i tuoi articoli"
 
-#: ml-slider.php:2306
+#: ml-slider.php:2144
 msgid ""
 "With Post Feed slides, you can build slideshows with your latest posts, "
 "events, or WooCommerce products."
@@ -2552,7 +2795,7 @@ msgstr ""
 "Con le diapositive dei feed degli articoli, puoi creare presentazioni con i "
 "tuoi ultimi articoli, eventi o prodotti WooCommerce."
 
-#: ml-slider.php:2310
+#: ml-slider.php:2148
 msgid ""
 "Post Feed slides will automatically display your posts with images, text, "
 "custom fields, and much more."
@@ -2560,11 +2803,11 @@ msgstr ""
 "Le diapositive feed degli articoli visualizzeranno automaticamente i tuoi "
 "articoli con immagini, testo, campi personalizzati e molto altro ancora."
 
-#: ml-slider.php:2345
+#: ml-slider.php:2183
 msgid "Create slideshows with images stored outside of WordPress"
 msgstr "Crea presentazioni con immagini memorizzate fuori da WordPress"
 
-#: ml-slider.php:2349
+#: ml-slider.php:2187
 msgid ""
 "With External URL slides, you can load images directly from non-WordPress "
 "sources such as CDNs or image hosts."
@@ -2572,7 +2815,7 @@ msgstr ""
 "Con le diapositive URL esterne, ti sarà possibile caricare le immagini "
 "direttamente da fonti diverse da WordPress, come CDN o host di immagini."
 
-#: ml-slider.php:2353
+#: ml-slider.php:2191
 msgid ""
 "External URL slides give you all the power of MetaSlider, using images "
 "stored anywhere you want."
@@ -2580,11 +2823,11 @@ msgstr ""
 "Le diapositive con URL esterno ti offrono tutta la potenza di MetaSlider, "
 "utilizzando le immagini memorizzate ovunque tu voglia."
 
-#: ml-slider.php:2388
+#: ml-slider.php:2226
 msgid "Create slideshows with videos in your media library"
 msgstr "Crea presentazioni con i video della tua libreria dei media"
 
-#: ml-slider.php:2392
+#: ml-slider.php:2230
 msgid ""
 "With Local Video slides, you can build beautiful slideshows with videos in "
 "your WordPress media library."
@@ -2592,7 +2835,7 @@ msgstr ""
 "Con le diapositive per video locale puoi costruire bellissime presentazioni "
 "con i video della tua libreria dei media di WordPress."
 
-#: ml-slider.php:2396
+#: ml-slider.php:2234
 msgid ""
 "Local Video slides will display your MP4, WebM, and MOV videos with cover "
 "images, auto play, mute, lazy load, the ability to hide controls, and much "
@@ -2603,11 +2846,11 @@ msgstr ""
 "caricamento differito, la possibilità di nascondere i controlli e molto "
 "altro."
 
-#: ml-slider.php:2431
+#: ml-slider.php:2269
 msgid "Create slideshows with videos stored outside of WordPress"
 msgstr "Crea presentazioni con video memorizzati fuori da WordPress"
 
-#: ml-slider.php:2435
+#: ml-slider.php:2273
 msgid ""
 "With External Video slides, you can add videos directly from non-WordPress "
 "sources."
@@ -2615,7 +2858,7 @@ msgstr ""
 "Con le diapositive video esterno, ti sarà possibile caricare i video "
 "direttamente da fonti diverse da WordPress."
 
-#: ml-slider.php:2439
+#: ml-slider.php:2277
 msgid ""
 "External Video Slides will display your MP4, WebM, and MOV videos. Features "
 "include text captions, cover images, auto play, mute, lazy load, the ability "
@@ -2626,11 +2869,11 @@ msgstr ""
 "copertina, riproduzione automatica, silenziazione, caricamento differito, la "
 "possibilità di nascondere i controlli e molto altro."
 
-#: ml-slider.php:2474
+#: ml-slider.php:2312
 msgid "Create slideshows with custom HTML"
 msgstr "Crea presentazioni con HTML personalizzato"
 
-#: ml-slider.php:2478
+#: ml-slider.php:2316
 msgid ""
 "With Custom HTML slides, you can design slides using images, HTML and CSS. "
 "This gives you complete control over the layout and styling."
@@ -2639,11 +2882,11 @@ msgstr ""
 "immagini, HTML e CSS. Questo ti dà un completo controllo sul layout e lo "
 "stile."
 
-#: ml-slider.php:2513
+#: ml-slider.php:2351
 msgid "Create slideshows with Tiktok Videos"
 msgstr "Crea presentazioni con i video Tiktok"
 
-#: ml-slider.php:2517
+#: ml-slider.php:2355
 msgid ""
 "A TikTok Slide will display a video in your slideshow directly from "
 "TikTok.com."
@@ -2651,11 +2894,11 @@ msgstr ""
 "Una diapositiva TikTok visualizza un video nella presentazione direttamente "
 "da TikTok.com."
 
-#: ml-slider.php:2580
+#: ml-slider.php:2418
 msgid "Create slideshows with images from a folder"
 msgstr "Crea presentazioni con le immagini di una cartella"
 
-#: ml-slider.php:2584
+#: ml-slider.php:2422
 msgid ""
 "The Image Folder slide type extracts images from a specified folder and "
 "displays them as slides."
@@ -2663,19 +2906,18 @@ msgstr ""
 "Il tipo di diapositiva \"Cartella immagini\" estrae le immagini da una "
 "cartella specificata e le visualizza come diapositive."
 
-#: ml-slider.php:2588
-#| msgid "Create slideshows with videos from your WordPress media library."
+#: ml-slider.php:2426
 msgid ""
 "This slide type displays images from folders in your WordPress Media Library."
 msgstr ""
 "Questo tipo di diapositiva visualizza le immagini dalle cartelle della tua "
 "libreria dei media di WordPress."
 
-#: ml-slider.php:2615
+#: ml-slider.php:2453
 msgid "Create slideshows with Post Images"
 msgstr "Crea presentazioni con le immagini degli articoli"
 
-#: ml-slider.php:2619
+#: ml-slider.php:2457
 msgid ""
 "The Post Images slide type extracts images from the current post and "
 "displays them as slides."
@@ -2683,7 +2925,7 @@ msgstr ""
 "Il tipo di diapositiva di immagine dell'articolo estrae le immagini "
 "dall'articolo attuale e le visualizza come diapositive."
 
-#: ml-slider.php:2623
+#: ml-slider.php:2461
 msgid ""
 "This slide type supports featured images, post content images, WooCommerce "
 "galleries, Advanced Custom Fields images and galleries."
@@ -2692,14 +2934,11 @@ msgstr ""
 "immagini del contenuto dell'articolo, le gallerie di WooCommerce, le "
 "immagini e le gallerie di Advanced Custom Fields."
 
-#: ml-slider.php:2650
+#: ml-slider.php:2488
 msgid "Create slideshows with your WooCommerce products"
 msgstr "Crea presentazioni con i tuoi prodotti WooCommerce"
 
-#: ml-slider.php:2654
-#| msgid ""
-#| "With Post Feed slides, you can build slideshows with your latest posts, "
-#| "events, or WooCommerce products."
+#: ml-slider.php:2492
 msgid ""
 "With WooCommerce slides, you can build slideshows with your WooCommerce "
 "products."
@@ -2707,10 +2946,7 @@ msgstr ""
 "Con le diapositive WooCommerce puoi creare presentazioni con i tuoi prodotti "
 "WooCommerce."
 
-#: ml-slider.php:2658
-#| msgid ""
-#| "Post Feed slides will automatically display your posts with images, text, "
-#| "custom fields, and much more."
+#: ml-slider.php:2496
 msgid ""
 "WooCommerce slides will automatically display your products with images, "
 "text, custom fields, and much more."
@@ -2718,35 +2954,39 @@ msgstr ""
 "Le diapositive WooCommerce mostreranno automaticamente i tuoi prodotti con "
 "immagini, testo, campi personalizzati e molto altro."
 
-#: ml-slider.php:2702
+#: ml-slider.php:2540
 msgid "Premium Support"
 msgstr "Supporto Premium"
 
-#: ml-slider.php:2708
+#: ml-slider.php:2546
 msgid "MetaSlider Pro"
 msgstr "MetaSlider Pro"
 
-#: ml-slider.php:2712
+#: ml-slider.php:2550
 msgid "Support"
 msgstr "Supporto"
 
-#: ml-slider.php:2717
+#: ml-slider.php:2555
 msgid "Documentation"
 msgstr "Documentazione"
 
-#: ml-slider.php:2721
+#: ml-slider.php:2559
 msgid "Leave a review"
 msgstr "Scrivi una recensione"
 
-#: ml-slider.php:2840
+#: ml-slider.php:2678
 msgid "Uploading..."
 msgstr "Caricamento in corso..."
 
-#: ml-slider.php:2847
+#: ml-slider.php:2685
 msgid "Upload Complete"
 msgstr "Caricamento completato"
 
-#: ml-slider.php:3043
+#: ml-slider.php:2810
+msgid "Import file is missing"
+msgstr "Il file di importazione è mancante"
+
+#: ml-slider.php:2960
 msgid ""
 "You attempted to edit a slideshow that does not exist. Perhaps it was moved "
 "to trash?"
@@ -4029,12 +4269,11 @@ msgid "Preparing 1 slide..."
 msgstr "Preparando 1 diapostiva…"
 
 #: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:149
-#: admin/assets/js/admin.js:1352 admin/assets/js/admin.js:1395
+#: admin/assets/js/admin.js:1351 admin/assets/js/admin.js:1394
 msgid "1 slide added successfully"
 msgstr "1 diapostiva aggiunta correttamente"
 
 #: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:198
-#| msgid "Slide restored"
 msgid "Slide Types"
 msgstr "Tipi di diapositiva"
 
@@ -4058,17 +4297,17 @@ msgstr "Diapositiva aggiornata correttamente"
 msgid "Stop on first slide after looping"
 msgstr "Arresta sulla prima diapositiva dopo il loop"
 
-#: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:1180
+#: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:1179
 msgid "Crop position saved and image cropped"
 msgstr "Posizione del ritaglio salvata e immagine ritagliata"
 
-#: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:1197
+#: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:1196
 msgid "There was an error when saving crop position or cropping the image"
 msgstr ""
 "C'è stato un errore durante il salvataggio della posizione di ritaglio o nel "
 "ritagliare l'immagine"
 
-#: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:1410
+#: admin/assets/dist/js/admin.js:1 admin/assets/js/admin.js:1409
 msgid "Device options are enabled for this slide. Adjust using the Device tab."
 msgstr ""
 "Le opzioni per i dispositivi sono abilitati per questa diapositiva. Puoi "
@@ -4173,7 +4412,6 @@ msgstr ""
 "Salvataggio delle diapositive %s. Questo può richiedere qualche istante."
 
 #: admin/assets/dist/js/app.js:2
-#| msgid "Preparing %s slides..."
 msgid "Saving %s slides."
 msgstr "Salvataggio di %s diapositive."
 
@@ -4251,7 +4489,7 @@ msgstr "Nessun messaggio di errore riportato."
 
 #: admin/assets/dist/js/app.js:2
 msgid ""
-"We recommend to enable %1$s\"Recommended Theme Options\"%2$s to "
+"We recommend you enable %1$s\"Recommended Theme Options\"%2$s to "
 "automatically adjust slideshow settings when selecting a new theme."
 msgstr ""
 "Ti consigliamo di abilitare le %1$s\"Opzioni del tema raccomandate\"%2$s "
@@ -4310,10 +4548,6 @@ msgstr "Seleziona un tema personalizzato"
 #: admin/assets/dist/js/app.js:2
 msgid "All themes"
 msgstr "Tutti i temi"
-
-#: admin/assets/dist/js/app.js:2
-msgid "Get MetaSlider Pro!"
-msgstr "Ottieni MetaSlider Pro!"
 
 #: admin/assets/dist/js/app.js:2
 msgid "Upgrade now to unlock this theme!"
@@ -4835,7 +5069,6 @@ msgid "Thumbnail (Pro)"
 msgstr "Miniatura (Pro)"
 
 #: admin/assets/dist/js/app.js:2
-#| msgid "Thumbnails - Visible On Hover (Pro)"
 msgid "Thumbnails - Visible On Hover"
 msgstr "Miniature - Visibile in hover"
 
@@ -4997,9 +5230,6 @@ msgstr ""
 "presentazione: Nivo Slider, Coin Slider e Responsive Slides"
 
 #: admin/assets/dist/js/app.js:2
-#| msgid ""
-#| "You can safely enable this setting. None of your slideshows use the "
-#| "legacy libraries."
 msgid ""
 "We recommend disabling these libraries. You can safely disable the "
 "libraries. None of your slideshows use the legacy libraries."
@@ -5211,7 +5441,6 @@ msgstr ""
 "le immagini siano accessibili dal sito sorgente."
 
 #: admin/assets/dist/js/app.js:2
-#| msgid "Import"
 msgid "Important!"
 msgstr "Importante!"
 
@@ -5418,9 +5647,6 @@ msgid "Export %s slideshows"
 msgstr "Esporta %s presentazioni"
 
 #: admin/assets/dist/js/app.js:2
-#| msgid ""
-#| "Select the slideshows you wish to export below, then press here to export "
-#| "them."
 msgid ""
 "Select the slideshows you wish to export below, then click here to export "
 "them."
@@ -5569,6 +5795,22 @@ msgstr "presentazione"
 #: admin/assets/js/gutenberg/editor-block.js:82
 msgid "gallery"
 msgstr "galleria"
+
+#~ msgid "Carousel Slideshow"
+#~ msgstr "Presentazione a carosello"
+
+#~ msgid "Image Slideshow"
+#~ msgstr "Presentazione d'immagini"
+
+#~ msgid "Loading... Please wait!"
+#~ msgstr "Caricamento in corso… attendi!"
+
+#~ msgid ""
+#~ "Loading... Please wait! This may take some minutes due we're downloading "
+#~ "sample Local videos."
+#~ msgstr ""
+#~ "Caricamento in corso… attendi! Questa operazione potrebbe richiedere "
+#~ "alcuni minuti perché si stanno scaricando dei video locali di esempio."
 
 #~ msgid "Device Options"
 #~ msgstr "Opzioni dispositivi"
@@ -5839,9 +6081,6 @@ msgstr "galleria"
 #~ msgid "A simple theme that neatly blends into any existing website."
 #~ msgstr ""
 #~ "Un tema semplice che si fonde perfettamente con qualsiasi sito esistente."
-
-#~ msgid "Dismiss"
-#~ msgstr "Ignora"
 
 #~ msgid "100% width"
 #~ msgstr "Larghezza 100%"
@@ -6259,9 +6498,6 @@ msgstr "galleria"
 
 #~ msgid "View all galleries"
 #~ msgstr "Visualizza tutte le gallerie"
-
-#~ msgid "Cancel"
-#~ msgstr "Annulla"
 
 #~ msgid "Ok"
 #~ msgstr "Ok"
