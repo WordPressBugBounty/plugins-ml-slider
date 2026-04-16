@@ -192,7 +192,7 @@ eventually be removed/refactored */
     width: 40%;
 }
 .metaslider .ms-settings-table tr:not(.highlight) td:nth-of-type(2) {
-    width: 60%;
+    width: auto; /* 60% */
 }
 
 /* Toggle settings */

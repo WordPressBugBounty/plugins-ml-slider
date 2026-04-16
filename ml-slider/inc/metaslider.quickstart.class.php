@@ -69,7 +69,7 @@ class MetaSliderQuickstart
                 'price' => 'free',
                 'type' => array( 'image' ), 
                 'features' => array(),
-                'animation' => array( 'slide', 'vertical' ),
+                'animation' => array( 'slide' ),
                 'integration' => false,
                 'demo' => 'https://demo.metaslider.com/productivity-guide/'
             ),
@@ -215,6 +215,17 @@ class MetaSliderQuickstart
                 'animation' => array( 'fade' ),
                 'integration' => false,
                 'demo' => 'https://demo.metaslider.com/creative-agency-hero/'
+            ),
+            array(
+                'slug' => 'fashion-trends',
+                'label' => esc_html__( 'Fashion Trends', 'ml-slider' ),
+                'type' => array( 'html_overlay' ),
+                'is_dummy' => true, // Is Pro
+                'price' => 'pro',
+                'features' => array( 'boxed' ),
+                'animation' => array( 'zooming' ),
+                'integration' => false,
+                'demo' => 'https://demo.metaslider.com/fashion-trends/'
             ),
             array(
                 'slug' => 'entertainment-youtube-shorts-feed',
@@ -567,6 +578,17 @@ class MetaSliderQuickstart
                 'animation' => array( 'slide' ),
                 'integration' => array( 'woocommerce' ),
                 'demo' => 'https://demo.metaslider.com/woocommerce-carousel/'
+            ),
+            array(
+                'slug' => 'bold-motion',
+                'label' => __( 'Bold Motion', 'ml-slider' ),
+                'is_dummy' => true, // Is Pro
+                'price' => 'pro',
+                'type' => array( 'external_video' ),
+                'features' => array( 'boxed' ),
+                'animation' => array( 'slide', 'vertical' ),
+                'integration' => false,
+                'demo' => 'https://demo.metaslider.com/bold-motion/'
             )
         );
 

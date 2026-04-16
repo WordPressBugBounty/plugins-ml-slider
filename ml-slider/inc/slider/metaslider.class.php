@@ -141,6 +141,7 @@ class MetaSlider
             'carouselMode' => false,
             'carouselMargin' => 5,
             'minItems' => 2,
+            'maxItems' => 0,
             'forceHeight' => false,
             'firstSlideFadeIn' => false,
             'easing' => 'linear',

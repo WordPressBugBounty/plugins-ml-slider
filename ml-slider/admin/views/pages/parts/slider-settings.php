@@ -841,7 +841,11 @@ echo $this->build_settings_rows($aFields);
                             'when' => true
                         ),
                         array(
-                            'show' => 'minItems', // Show Carousel items
+                            'show' => 'minItems', // Show Min Carousel items
+                            'when' => true // When carouselMode is true
+                        ),
+                        array(
+                            'show' => 'maxItems', // Show Max Carousel items
                             'when' => true // When carouselMode is true
                         ),
                         array(
@@ -898,13 +902,29 @@ echo $this->build_settings_rows($aFields);
                     'max' => 99,
                     'step' => 1,
                     'value' => $this->slider->get_setting('minItems'),
-                    'label' => esc_html__("Carousel Items", "ml-slider"),
+                    'label' => esc_html__("Display Minimum", "ml-slider"),
                     'class' => 'flex',
                     'helptext' => esc_html__(
-                        "Minimum number of slides to be displayed at once in the carousel.",
+                        "Minimum number of slides to be displayed at the same time in the carousel.",
                         "ml-slider"
                     ),
-                    'after' => ''
+                    'after' => 'slides'
+                ),
+                'maxItems' => array(
+                    'priority' => 41,
+                    'type' => 'number',
+                    'size' => 3,
+                    'min' => 0,
+                    'max' => 99,
+                    'step' => 1,
+                    'value' => $this->slider->get_setting('maxItems'),
+                    'label' => esc_html__("Display Maximum", "ml-slider"),
+                    'class' => 'flex',
+                    'helptext' => esc_html__(
+                        "Maximum number of slides to be displayed at the same time in the carousel. Set to 0 to adjust automatically.",
+                        "ml-slider"
+                    ),
+                    'after' => 'slides'
                 ),
                 'navStep' => array(
                     'priority' => 45,

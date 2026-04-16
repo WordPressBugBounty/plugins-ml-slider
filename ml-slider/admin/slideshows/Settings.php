@@ -97,6 +97,7 @@ class MetaSlider_Slideshow_Settings
             'infiniteLoop' => false,
             'carouselMargin' => 5,
             'minItems' => 2,
+            'maxItems' => 0,
             'forceHeight' => false,
             'firstSlideFadeIn' => false,
             'easing' => 'linear',
@@ -173,7 +174,7 @@ class MetaSlider_Slideshow_Settings
          * Reason is these settings have true/false + string options, so is better to handle all as strings
          * Keep original value if is different to 'on' and 'off'. 
          * We include actual booleans in $map just in case. */
-        $dropdowns = array('effect', 'cropMultiply', 'direction', 'easing', 'links', 'navigation', 'smartCrop', 'random', 'loop', 'layer_scaling', 'navStep');
+        $dropdowns = array('effect', 'cropMultiply', 'direction', 'easing', 'links', 'navigation', 'smartCrop', 'random', 'loop', 'layer_scaling');
 
         foreach ($dropdowns as $dropdown) {
             if (isset($settings[$dropdown])) {

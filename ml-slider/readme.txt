@@ -2,7 +2,7 @@
 Contributors: andergmartins, htmgarcia, publishpress, stevejburge, rochdesigns
 Tags: slider, video slider, image slider, carousel slider, gallery
 Requires at least: 5.0
-Stable tag: 3.107.0
+Stable tag: 3.108.0
 Requires PHP: 7.0
 Tested up to: 6.9
 License: GPLv2 or later
@@ -303,6 +303,10 @@ This variety of options is why we love WordPress and why you do too. However, gi
 
 Yes, you can build Elementor slides and Beaver Builder slideshows. You can create Visual Composer sliders and Divi slideshows. No matter what page-builder plugin you use, MetaSlider will work for you whenever you need to build slide shows.
 
+= Where do I send security reports? = 
+
+You can email security@metaslider.com. You can also submit patches via Wordfence and Patchstack. Our Wordfence code is kznqwzcbuliukyojtqqkrzpmmrwmrbry.
+
 == Screenshots ==
 
 1. Image slides with MetaSlider
@@ -319,6 +323,21 @@ Yes, you can build Elementor slides and Beaver Builder slideshows. You can creat
 
 The format is based on [Keep a Changelog recommendations](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+= [3.108.0] - Apr 16, 2026 =
+
+* ADDED: Responsive preview options, #1802;
+* ADDED: Maximum carousel items settings, #1980;
+* ADDED: Cascade theme, #2091;
+* ADDED: Theme to Image carousel demo, #2137;
+* FIXED: Edit frontend links in multilingual sites are broken, #1946;
+* FIXED: MetaSlider block for apiVersion 3, #2123;
+* FIXED: Sanitize theme folder correctly, #2128;
+* FIXED: Productivity guide demo tags, #2131;
+* FIXED: Preview buttons and label improvements, #2132;
+* CHANGED: Make arrows vertical for Jenga theme, #2093;
+* CHANGED: Italian, Spanish and French translation updates, #2115, #2119;
+* CHANGED: Text change for max / min slides, #2142, #2138;
 
 = [3.107.0] - Mar 23, 2026 =
 

@@ -347,7 +347,7 @@ class MetaSlider_Api
         $manifest       = array();
         $data           = $this->get_request_data($request, array('slideshow_id', 'theme', 'type'));
         $slideshow_id   = absint($data['slideshow_id']);
-        $folder         = sanitize_text_field($data['theme']);
+        $folder         = sanitize_key($data['theme']);
         $type           = sanitize_text_field($data['type']);
         $settings       = get_post_meta($slideshow_id, 'ml-slider_settings', true);
 

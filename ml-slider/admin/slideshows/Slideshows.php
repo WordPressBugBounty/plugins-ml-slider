@@ -516,10 +516,10 @@ class MetaSlider_Slideshows
 
                                 if ( is_wp_error( $attachment_id ) ) {
                                     // Log and collect the error
+                                    // To get technical error, print: $attachment_id->get_error_message()
                                     $error_message = sprintf(
-                                        __( 'Failed to import video from URL: %s. Error: %s', 'ml-slider' ),
-                                        esc_url( $slide[$export_key] ),
-                                        $attachment_id->get_error_message()
+                                        __( 'Failed to import video from URL: %s.', 'ml-slider' ),
+                                        esc_url( $slide[$export_key] )
                                     );
                                     array_push( $errors[$index], $error_message );
 
@@ -541,10 +541,10 @@ class MetaSlider_Slideshows
 
                         if ( is_wp_error( $attachment_id ) ) {
                             // Log and collect the error
+                            // To get technical error, print: $attachment_id->get_error_message()
                             $error_message = sprintf(
-                                __( 'Failed to import text track from URL: %s. Error: %s', 'ml-slider' ),
-                                esc_url( $slide[$export_key] ),
-                                $attachment_id->get_error_message()
+                                __( 'Failed to import text track from URL: %s.', 'ml-slider' ),
+                                esc_url( $slide[$export_key] )
                             );
                             array_push( $errors[$index], $error_message );
 
@@ -577,10 +577,10 @@ class MetaSlider_Slideshows
 
                             if ( is_wp_error( $attachment_id ) ) {
                                 // Log and collect the error
+                                // To get technical error, print: $attachment_id->get_error_message()
                                 $error_message = sprintf(
-                                    __( 'Failed to import image from URL: %s. Error: %s', 'ml-slider' ),
-                                    esc_url( $slide[$export_key] ),
-                                    $attachment_id->get_error_message()
+                                    __( 'Failed to import image from URL: %s.', 'ml-slider' ),
+                                    esc_url( $slide[$export_key] )
                                 );
                                 array_push( $errors[$index], $error_message );
 
