@@ -2,23 +2,21 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: MetaSlider 3.108.0\n"
+"Project-Id-Version: MetaSlider Slideshow 3.109.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/project\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-16T13:46:16+00:00\n"
+"POT-Creation-Date: 2026-05-05T14:30:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: ml-slider\n"
 
 #. Plugin Name of the plugin
-#. Author of the plugin
 #: ml-slider.php:5
-#: ml-slider.php:9
-msgid "MetaSlider"
+msgid "MetaSlider Slideshow"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -33,28 +31,33 @@ msgstr ""
 msgid "MetaSlider gives you the power to create a beautiful slideshow, carousel, or gallery on your WordPress site."
 msgstr ""
 
+#. Author of the plugin
+#: ml-slider.php:9
+msgid "MetaSlider"
+msgstr ""
+
 #: admin/lib/helpers.php:410
 msgid "Some of these features are available in MetaSlider Pro"
 msgstr ""
 
 #: admin/lib/helpers.php:436
-msgid "This feature is available with MetaSlider Lightbox"
+msgid "This feature is available with MetaSlider Gallery"
 msgstr ""
 
 #: admin/lib/helpers.php:588
-msgid "Activate MetaSlider Lightbox to show your slides in a lightbox window."
+msgid "Activate MetaSlider Gallery to show your slides in a lightbox window."
 msgstr ""
 
 #: admin/lib/helpers.php:589
-msgid "Activate MetaSlider Lightbox"
+msgid "Activate MetaSlider Gallery"
 msgstr ""
 
 #: admin/lib/helpers.php:599
-msgid "Install MetaSlider Lightbox to show your slides in a lightbox window."
+msgid "Install MetaSlider Gallery to show your slides in a lightbox window."
 msgstr ""
 
 #: admin/lib/helpers.php:600
-msgid "Install MetaSlider Lightbox"
+msgid "Install MetaSlider Gallery"
 msgstr ""
 
 #: admin/Notices.php:101
@@ -108,7 +111,7 @@ msgid "Go there &rarr;"
 msgstr ""
 
 #: admin/Notices.php:369
-msgid "Click to install the MetaSlider Lightbox plugin &rarr;"
+msgid "Click to install the MetaSlider Gallery plugin &rarr;"
 msgstr ""
 
 #: admin/Notices.php:372
@@ -908,7 +911,7 @@ msgid "Open in lightbox?"
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:473
-msgid "All slides will open in a lightbox, using MetaSlider Lightbox"
+msgid "All slides will open in a lightbox, using MetaSlider Gallery"
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:495
@@ -924,22 +927,22 @@ msgid "This animation is used when changing slides."
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:523
-#: admin/views/pages/start.php:172
+#: admin/views/pages/start.php:173
 msgid "Fade"
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:527
-#: admin/views/pages/start.php:171
+#: admin/views/pages/start.php:172
 msgid "Slide"
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:531
-#: admin/views/pages/start.php:173
+#: admin/views/pages/start.php:174
 msgid "Zooming"
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:535
-#: admin/views/pages/start.php:174
+#: admin/views/pages/start.php:175
 msgid "Flip"
 msgstr ""
 
@@ -1064,7 +1067,7 @@ msgid "Horizontal"
 msgstr ""
 
 #: admin/views/pages/parts/slider-settings.php:730
-#: admin/views/pages/start.php:176
+#: admin/views/pages/start.php:177
 msgid "Vertical"
 msgstr ""
 
@@ -1675,7 +1678,7 @@ msgid "Custom HTML"
 msgstr ""
 
 #: admin/views/pages/start.php:152
-#: admin/views/pages/start.php:182
+#: admin/views/pages/start.php:183
 #: ml-slider.php:796
 msgid "WooCommerce"
 msgstr ""
@@ -1724,70 +1727,75 @@ msgstr ""
 msgid "Video Caption"
 msgstr ""
 
-#: admin/views/pages/start.php:170
+#: admin/views/pages/start.php:166
+#: admin/views/pages/start.php:264
+msgid "Hero Image"
+msgstr ""
+
+#: admin/views/pages/start.php:171
 msgid "Animation Type"
 msgstr ""
 
-#: admin/views/pages/start.php:175
+#: admin/views/pages/start.php:176
 msgid "Ken Burns"
 msgstr ""
 
-#: admin/views/pages/start.php:181
+#: admin/views/pages/start.php:182
 msgid "Integration"
 msgstr ""
 
-#: admin/views/pages/start.php:183
+#: admin/views/pages/start.php:184
 msgid "The Events Calendar"
 msgstr ""
 
-#: admin/views/pages/start.php:184
-#: admin/views/pages/start.php:259
+#: admin/views/pages/start.php:185
+#: admin/views/pages/start.php:260
 msgid "WordPress Posts"
 msgstr ""
 
-#: admin/views/pages/start.php:189
+#: admin/views/pages/start.php:190
 msgid "Free and Pro"
 msgstr ""
 
-#: admin/views/pages/start.php:190
+#: admin/views/pages/start.php:191
 msgid "Free only"
 msgstr ""
 
-#: admin/views/pages/start.php:191
+#: admin/views/pages/start.php:192
 msgid "Pro only"
 msgstr ""
 
-#: admin/views/pages/start.php:201
+#: admin/views/pages/start.php:202
 msgid "No demos match your filters."
 msgstr ""
 
-#: admin/views/pages/start.php:279
+#: admin/views/pages/start.php:284
 #, php-format
 msgid "Create %s slideshow?"
 msgstr ""
 
-#: admin/views/pages/start.php:285
+#: admin/views/pages/start.php:290
 msgid "Cancel"
 msgstr ""
 
-#: admin/views/pages/start.php:288
+#: admin/views/pages/start.php:293
 msgid "Yes, please!"
 msgstr ""
 
-#: admin/views/pages/start.php:294
+#: admin/views/pages/start.php:299
 msgid "Demo"
 msgstr ""
 
-#: admin/views/pages/start.php:300
+#: admin/views/pages/start.php:305
 #: admin/assets/dist/js/app.js:2
 msgid "Get MetaSlider Pro!"
 msgstr ""
 
-#: admin/views/pages/start.php:303
+#: admin/views/pages/start.php:308
 msgid "Upgrade now to unlock this demo slideshow!"
 msgstr ""
 
-#: admin/views/pages/start.php:306
+#: admin/views/pages/start.php:311
 #: admin/views/pages/theme-editor.php:36
 #: admin/views/pages/upgrade.php:26
 #: admin/views/pages/upgrade.php:193
@@ -1795,24 +1803,24 @@ msgstr ""
 msgid "Upgrade now"
 msgstr ""
 
-#: admin/views/pages/start.php:324
+#: admin/views/pages/start.php:329
 msgid "Create a slideshow with your images"
 msgstr ""
 
-#: admin/views/pages/start.php:325
+#: admin/views/pages/start.php:330
 msgid "Choose your own images to start a new slideshow."
 msgstr ""
 
-#: admin/views/pages/start.php:331
+#: admin/views/pages/start.php:336
 msgid "Uploading images..."
 msgstr ""
 
-#: admin/views/pages/start.php:339
+#: admin/views/pages/start.php:344
 msgctxt "Uploader: Drop files to upload - or - Select Files"
 msgid "or"
 msgstr ""
 
-#: admin/views/pages/start.php:342
+#: admin/views/pages/start.php:347
 msgid "Open Media Library"
 msgstr ""
 
@@ -4698,6 +4706,14 @@ msgstr ""
 msgid "A stylish theme ideal for WooCommerce products."
 msgstr ""
 
+#: themes/manifest-premium.php:116
+msgid "A modern theme with a clean design to display your captions below the slides."
+msgstr ""
+
+#: themes/manifest-premium.php:117
+msgid "Captions from Image, External Image, Local Video, External video, YouTube and Vimeo slides are displayed below the slideshow."
+msgstr ""
+
 #: themes/manifest.php:15
 msgid "This is the default MetaSlider theme. Use this theme to adjust colors to your preference."
 msgstr ""
@@ -5098,6 +5114,10 @@ msgstr ""
 
 #: admin/assets/dist/js/app.js:2
 msgid "Toggle full width (Use F key)"
+msgstr ""
+
+#: admin/assets/dist/js/app.js:2
+msgid "Desktop preview"
 msgstr ""
 
 #: admin/assets/dist/js/app.js:2

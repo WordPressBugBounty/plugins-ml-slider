@@ -2,7 +2,7 @@
 Contributors: andergmartins, htmgarcia, publishpress, stevejburge, rochdesigns
 Tags: slider, video slider, image slider, carousel slider, gallery
 Requires at least: 5.0
-Stable tag: 3.108.0
+Stable tag: 3.109.0
 Requires PHP: 7.0
 Tested up to: 6.9
 License: GPLv2 or later
@@ -323,6 +323,17 @@ You can email security@metaslider.com. You can also submit patches via Wordfence
 
 The format is based on [Keep a Changelog recommendations](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
+
+= [3.109.0] - May 05, 2026 =
+
+* ADDED: Desktop view for preview, #2152;
+* ADDED: Filter and labels for Hero images in quickstart demos, #2153;
+* FIXED: Import error for quickstarts, #2114;
+* CHANGED: Axios to 1.15.2, #2112;
+* CHANGED: Italian, Spanish and French translation updates, #2151;
+* CHANGED: Plugin icons, #2154;
+* CHANGED: Plugin name to "MetaSlider Slideshow", #2155;
+* CHANGED: Update reference to MetaSlider Gallery plugin, #2156;
 
 = [3.108.0] - Apr 16, 2026 =
 

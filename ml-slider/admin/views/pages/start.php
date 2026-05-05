@@ -163,6 +163,7 @@ $demo_slideshows = apply_filters( 'metaslider_quickstart_options_data', $demo_sl
 										<option value="carousel"><?php esc_html_e( 'Carousel', 'ml-slider' ) ?></option>
 										<option value="thumbnail-nav"><?php esc_html_e( 'Thumbnail Navigation', 'ml-slider' ) ?></option>
 										<option value="video-caption"><?php esc_html_e( 'Video Caption', 'ml-slider' ) ?></option>
+										<option value="hero"><?php esc_html_e( 'Hero Image', 'ml-slider' ) ?></option>
 									</select>
 								</div>
 								<div class="alignleft actions mb-3">
@@ -257,6 +258,10 @@ $demo_slideshows = apply_filters( 'metaslider_quickstart_options_data', $demo_sl
 										<?php if ( is_array( $item['integration'] ) && in_array( 'posts', $item['integration'] ) ) { ?>
 											<span class="quickstart-posts-label"><?php 
 												esc_html_e( 'WordPress Posts',  'ml-slider' ) ?></span>
+										<?php } ?>
+										<?php if ( in_array( 'hero', $item['features'] ) ) { ?>
+											<span class="quickstart-hero-label"><?php 
+												esc_html_e( 'Hero Image',  'ml-slider' ) ?></span>
 										<?php } ?>
 										<?php if ( $item['price'] == 'pro' ) { ?>
 											<span class="quickstart-pro-label">Pro</span>

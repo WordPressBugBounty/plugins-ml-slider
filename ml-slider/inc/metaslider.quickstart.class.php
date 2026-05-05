@@ -244,7 +244,7 @@ class MetaSliderQuickstart
                 'type' => array( 'image' ),
                 'is_dummy' => true, // Is Pro
                 'price' => 'pro',
-                'features' => array( 'boxed', 'lightbox' ),
+                'features' => array( 'boxed', 'lightbox', 'hero' ),
                 'animation' => array( 'slide' ),
                 'integration' => false,
                 'demo' => 'https://demo.metaslider.com/album-cover-showcase/'
@@ -453,7 +453,7 @@ class MetaSliderQuickstart
                 'type' => array( 'image' ),
                 'is_dummy' => true, // Is Pro
                 'price' => 'pro',
-                'features' => array( 'boxed', 'thumbnail-nav' ),
+                'features' => array( 'boxed', 'thumbnail-nav', 'hero' ),
                 'animation' => array( 'slide' ),
                 'integration' => false,
                 'demo' => 'https://demo.metaslider.com/natural-skincare-presentation/'

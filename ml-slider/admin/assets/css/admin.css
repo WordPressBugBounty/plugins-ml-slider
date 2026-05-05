@@ -2357,6 +2357,11 @@ td .dot.available {
             }
 
             .quickstart-type-label {
+                background: #1e6091;
+                color: #fff;
+            }
+
+            .quickstart-hero-label {
                 background: #29375b;
                 color: #fff;
             }

@@ -470,7 +470,7 @@ echo $this->build_settings_rows($aFields);
                     'after' => '',
                     'class' => 'flex',
                     'checked' => '',
-                    'helptext' => __("All slides will open in a lightbox, using MetaSlider Lightbox", "ml-slider"),
+                    'helptext' => __("All slides will open in a lightbox, using MetaSlider Gallery", "ml-slider"),
                     'addon_required' => true
                 ),
                 'lightbox_ad' => array(
