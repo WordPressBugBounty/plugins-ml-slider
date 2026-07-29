@@ -181,6 +181,54 @@ return array(
                         'onhover'
                     )
                 )
+            ),
+            array(
+                'label' => esc_html__('Focus Outline Color', 'ml-slider'),
+                'info' => esc_html__('The outline color shown around an arrow when it receives focus, for accessibility.', 'ml-slider'),
+                'name' => 'arrows_focus_outline_color',
+                'type' => 'color',
+                'default' => '#fff',
+                'css' => '[ms_id] .flexslider:not(.filmstrip) .flex-direction-nav li a:focus { outline-color: [ms_value] }',
+                'scope' => array(
+                    'links' => array(
+                        'true',
+                        'onhover'
+                    )
+                )
+            ),
+            array(
+                'label' => esc_html__('Focus Outline Width', 'ml-slider'),
+                'info' => esc_html__('The width of the outline shown around an arrow when it receives focus, for accessibility.', 'ml-slider'),
+                'name' => 'arrows_focus_outline_width',
+                'type' => 'range',
+                'default' => 2,
+                'metric' => 'px',
+                'min' => 0,
+                'max' => 10,
+                'css' => '[ms_id] .flexslider:not(.filmstrip) .flex-direction-nav li a:focus { outline-width: [ms_value]px }',
+                'scope' => array(
+                    'links' => array(
+                        'true',
+                        'onhover'
+                    )
+                )
+            ),
+            array(
+                'label' => esc_html__('Focus Outline Offset', 'ml-slider'),
+                'info' => esc_html__('The distance between the outline and the arrow when it receives focus, for accessibility.', 'ml-slider'),
+                'name' => 'arrows_focus_outline_offset',
+                'type' => 'range',
+                'default' => 2,
+                'metric' => 'px',
+                'min' => -10,
+                'max' => 20,
+                'css' => '[ms_id] .flexslider:not(.filmstrip) .flex-direction-nav li a:focus { outline-offset: [ms_value]px }',
+                'scope' => array(
+                    'links' => array(
+                        'true',
+                        'onhover'
+                    )
+                )
             )
         )
     ),

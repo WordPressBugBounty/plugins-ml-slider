@@ -5,7 +5,7 @@
  * Plugin Name: MetaSlider Slideshow
  * Plugin URI:  https://www.metaslider.com
  * Description: MetaSlider gives you the power to create a beautiful slideshow, carousel, or gallery on your WordPress site.
- * Version:     3.110.0
+ * Version:     3.111.0
  * Author:      MetaSlider
  * Author URI:  https://www.metaslider.com
  * License:     GPL-2.0+
@@ -44,7 +44,7 @@ if (! class_exists('MetaSliderPlugin')) {
          *
          * @var string
          */
-        public $version = '3.110.0';
+        public $version = '3.111.0';
 
         /**
          * Pro installed version number
@@ -340,6 +340,7 @@ if (! class_exists('MetaSliderPlugin')) {
             add_action('media_upload_folder', array($this, 'upgrade_to_pro_tab_folder'));
             add_action('media_upload_post_images', array($this, 'upgrade_to_pro_tab_post_images'));
             add_action('media_upload_woocommerce', array($this, 'upgrade_to_pro_tab_woocommerce'));
+            add_action('media_upload_background_color', array($this, 'upgrade_to_pro_tab_background_color'));
 
             // TODO: Refactor to Slide class object
             add_action('wp_ajax_delete_slide', array($this, 'ajax_delete_slide'));
@@ -774,7 +775,7 @@ if (! class_exists('MetaSliderPlugin')) {
          */
         public function custom_media_upload_tab_name($tabs)
         {
-            $metaslider_tabs = array('post_feed', 'layer', 'youtube', 'vimeo', 'external_url', 'local_video', 'external_video', 'custom_html', 'tiktok', 'folder', 'post_images', 'woocommerce');
+            $metaslider_tabs = array('post_feed', 'layer', 'youtube', 'vimeo', 'external_url', 'local_video', 'external_video', 'custom_html', 'tiktok', 'folder', 'post_images', 'woocommerce', 'background_color');
 
             // restrict our tab changes to the MetaSlider plugin page
             if ((isset($_GET['page']) && $_GET['page'] == 'metaslider') || (isset($_GET['tab']) && in_array(
@@ -791,6 +792,7 @@ if (! class_exists('MetaSliderPlugin')) {
                         'external_url' => __("External Image", "ml-slider"),
                         'external_video' => __("External Video", "ml-slider"),
                         'custom_html' => __("Custom HTML", "ml-slider"),
+                        'background_color' => __("Background Color", "ml-slider"),
                         'folder' => __("Image Folder", "ml-slider"),
                         'post_images' => __("Post Images", "ml-slider"),
                         'woocommerce' => __("WooCommerce", "ml-slider"),
@@ -1619,11 +1621,11 @@ if (! class_exists('MetaSliderPlugin')) {
                     case 'html':
                         $output .= '<tr class="' . esc_attr(
                                 $row["type"]
-                            ) . '" id="' . esc_attr(
+                            ) . ( ! $row["visible"] ? ' ms-hidden-by-default' : '' ) . '" id="' . esc_attr(
                                 $row["id"]
-                            ) . '" style="' . ( 
-                                ! $row["visible"] ? 'display:none' : '' 
-                            ) . '"><td colspan="2">' . 
+                            ) . '" style="' . (
+                                ! $row["visible"] ? 'display:none' : ''
+                            ) . '"><td colspan="2">' .
                             $row["content"] . '</td></tr>';
                         break;
                 }
@@ -2325,6 +2327,49 @@ if (! class_exists('MetaSliderPlugin')) {
                     ) . "</h2>",
                     "<p>" . esc_html__(
                         'With Custom HTML slides, you can design slides using images, HTML and CSS. This gives you complete control over the layout and styling.',
+                        'ml-slider'
+                    ) . "</p>",
+                    '<a class="probutton button button-primary button-hero" href="' . esc_url(
+                        $link
+                    ) . '" target="_blank">' . esc_html__(
+                        "Find out more about MetaSlider Slideshow Pro",
+                        "ml-slider"
+                    ) . '<span class="dashicons dashicons-external"></span></a>',
+                    "</div>"
+                )
+            );
+        }
+
+        /**
+         * Return the MetaSlider pro upgrade Background color
+         * 
+         * @since 3.111
+         */
+        public function upgrade_to_pro_tab_background_color()
+        {
+            if (function_exists('is_plugin_active') && ! is_plugin_active('ml-slider-pro/ml-slider-pro.php')) {
+                return wp_iframe(array($this, 'upgrade_to_pro_iframe_background_color'));
+            }
+        }
+
+        /**
+         * Media Manager iframe HTML - Background Color
+         * 
+         * @since 3.111
+         */
+        public function upgrade_to_pro_iframe_background_color()
+        {
+            $link = apply_filters('metaslider_hoplink', 'https://www.metaslider.com/upgrade/');
+            $link .= '?utm_source=lite&amp;utm_medium=more-slide-types-background-color&amp;utm_campaign=pro';
+            $this->upgrade_to_pro_iframe(
+                array(
+                    '<div class="left"><img src="' . esc_url(METASLIDER_ADMIN_URL . 'images/upgrade/background-color.png') . '" alt="" /></div>',
+                    "<div ><h2>" . esc_html__(
+                        'Create slides with background colors and text',
+                        'ml-slider'
+                    ) . "</h2>",
+                    "<p>" . esc_html__(
+                        'With Background Color slides, you can create slides using a solid or gradient background color. Perfect for text-only slides, calls to action or quick banners.',
                         'ml-slider'
                     ) . "</p>",
                     '<a class="probutton button button-primary button-hero" href="' . esc_url(

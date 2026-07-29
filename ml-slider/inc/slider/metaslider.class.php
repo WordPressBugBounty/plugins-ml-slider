@@ -838,6 +838,28 @@ class MetaSlider
     }
 
     /**
+     * Check if any of this slideshow's slides have a Font Awesome icon in their caption,
+     * so the icon stylesheet is only loaded on the front end when it's actually needed.
+     *
+     * Note: the inserted <i class="fa-solid"> markup only survives to the front end because
+     * the default `metaslider_html_purifier_config` permits the `class` attribute on inline
+     * elements (see metaslider_filter_unsafe_html() / inc/slide/metaslide.image.class.php).
+     * A site that narrows that filter to strip `class` would silently lose icon rendering.
+     *
+     * @since 3.111
+     */
+    public function has_font_awesome_icons()
+    {
+        $slides = $this->get_slides()->posts;
+        foreach ($slides as $slide) {
+            if (false !== strpos($slide->post_excerpt, 'fa-solid')) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Include slider assets, JS and CSS paths are specified by child classes.
      */
     public function enqueue_scripts()
@@ -851,6 +873,11 @@ class MetaSlider
         if (filter_var($this->get_setting('printCss'), FILTER_VALIDATE_BOOLEAN)) {
             wp_enqueue_style('metaslider-' . $this->get_setting('type') . '-slider', METASLIDER_ASSETS_URL . $this->css_path, false, METASLIDER_ASSETS_VERSION);
             wp_enqueue_style('metaslider-public', METASLIDER_ASSETS_URL . 'metaslider/public.css', false, METASLIDER_ASSETS_VERSION);
+
+            if ($this->has_font_awesome_icons()) {
+                wp_enqueue_style('metaslider-fontawesome', METASLIDER_ADMIN_ASSETS_URL . 'vendor/fontawesome/css/fontawesome.min.css', false, METASLIDER_ASSETS_VERSION);
+                wp_enqueue_style('metaslider-fontawesome-solid', METASLIDER_ADMIN_ASSETS_URL . 'vendor/fontawesome/css/solid.min.css', array('metaslider-fontawesome'), METASLIDER_ASSETS_VERSION);
+            }
 
             $extra_css = apply_filters("metaslider_css", "", $this->settings, $this->id);
             $extra_css .= apply_filters("metaslider_theme_css", "", $this->settings, $this->id);

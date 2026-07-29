@@ -915,6 +915,7 @@ window.jQuery(function ($) {
                         .find('.metaslider-ui-controls').append(
                         '<button class="undo-delete-slide" title="' + metaslider.restore_language + '" data-slide-id="' + $this.data('slideId') + '">' + metaslider.restore_language + '</button>'
                     );
+                    $slide.find('.ms-delete-overlay').remove();
 
                     // Grab the image from the slide
                     var img = $slide.find('.thumb').css('background-image')
@@ -1070,6 +1071,7 @@ window.jQuery(function ($) {
                         .find('.metaslider-ui-controls').append(
                         '<button class="undo-delete-slide" title="' + metaslider.restore_language + '" data-slide-id="' + $this.data('slideId') + '">' + metaslider.restore_language + '</button>'
                     );
+                    $slide.find('.ms-delete-overlay').remove();
 
                     // Grab the image from the slide
                     var img = $slide.find('.thumb').css('background-image')

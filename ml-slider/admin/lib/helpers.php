@@ -611,3 +611,96 @@ function metaslider_lightbox_ad()
         '<a href="' . esc_url( $link ) . '" target="_blank" class="ms-ad-button">' . 
         $text . ' &rarr;</a></div>';
 }
+
+/**
+ * Whether the MetaSlider Gallery plugin is active
+ * @since 3.111
+ * 
+ * @return bool
+ */
+function metaslider_gallery_plugin_active()
+{
+    return function_exists('is_plugin_active') && is_plugin_active(metaslider_plugin_is_installed('ml-slider-lightbox'));
+}
+
+/**
+ * Returns the installed MetaSlider Gallery (ml-slider-lightbox) version.
+ *
+ * @since 3.111
+ *
+ * @return string
+ */
+function metaslider_lightbox_version()
+{
+    // Get version from db if available
+    if ( $version = metaslider_plugin_data( 'ml-slider-lightbox', 'version' ) ) {
+        return $version;
+    }
+
+    // Callback for the old way of getting version
+    $file = trailingslashit(WP_PLUGIN_DIR) . metaslider_plugin_is_installed('ml-slider-lightbox');
+    $data = get_file_data($file, array('Version' => 'Version'));
+    return $data['Version'];
+}
+
+/**
+ * Build the nonce-protected admin-post.php URL that converts a slideshow
+ * into a new MetaSlider Gallery. Handled on the MetaSlider Gallery side by
+ * `admin_post_ml_convert_slideshow` (class-ml-gallery-slideshow-convert.php
+ * in the ml-slider-lightbox plugin).
+ *
+ * @since 3.111
+ * 
+ * @param int $slider_id The slideshow (ml-slider) post ID.
+ * @return string
+ */
+function metaslider_convert_to_gallery_url($slider_id)
+{
+    return wp_nonce_url(
+        admin_url('admin-post.php?action=ml_convert_slideshow&slideshow_id=' . (int) $slider_id),
+        'ml_convert_slideshow_' . (int) $slider_id
+    );
+}
+
+/**
+ * Ad shown (in a popup) when "Convert to Gallery" is clicked but MetaSlider
+ * Gallery isn't installed/active yet. Same install-vs-activate branching as
+ * metaslider_lightbox_ad() in admin/lib/helpers.php, with copy specific to
+ * converting a slideshow into a gallery rather than the lightbox feature.
+ *
+ * @since 3.111
+ * 
+ * @return string HTML.
+ */
+function metaslider_gallery_convert_ad()
+{
+    $path = metaslider_plugin_is_installed('ml-slider-lightbox');
+
+    // Is installed but NOT active
+    if ($path && !metaslider_gallery_plugin_active()) {
+        $content = esc_html__('Activate MetaSlider Gallery to convert this slideshow into a gallery.', 'ml-slider');
+        $text = esc_html__('Activate MetaSlider Gallery', 'ml-slider');
+        $link = wp_nonce_url(
+            sprintf(
+                self_admin_url('plugins.php?action=activate&plugin=%s'),
+                str_replace('/', '%2F', $path)
+            ),
+            'activate-plugin_' . $path
+        );
+    } else {
+        // Is NOT installed
+        $content = esc_html__('Install MetaSlider Gallery to convert this slideshow into a gallery.', 'ml-slider');
+        $text = esc_html__('Install MetaSlider Gallery', 'ml-slider');
+        $link = wp_nonce_url(
+            self_admin_url(
+                'update.php?action=install-plugin&plugin=ml-slider-lightbox&installing_metaslider_lightbox=true'
+            ),
+            'install-plugin_ml-slider-lightbox'
+        );
+    }
+
+return '<div class="ms-gallery-ad-toolbar"><div class="mb-2">' .
+        $content . '</div>' .
+        '<a href="' . esc_url($link) . '" target="_blank" class="ms-ad-button">' .
+        $text . ' &rarr;</a></div>';
+}

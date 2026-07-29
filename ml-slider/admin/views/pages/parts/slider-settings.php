@@ -12,6 +12,33 @@ $breakpoints      = array(
     'desktop'    => isset( $default_settings['desktop'] ) ? (int) $default_settings['desktop'] : 1440
 );
 
+?>
+<div class="ms-settings-search">
+    <div class="ms-settings-search-field">
+        <span class="dashicons dashicons-search" aria-hidden="true"></span>
+        <input
+            type="search"
+            id="ms-settings-search"
+            class="ms-settings-search-input"
+            placeholder="<?php esc_attr_e('Search settings', 'ml-slider'); ?>"
+            aria-label="<?php esc_attr_e('Search settings', 'ml-slider'); ?>"
+        />
+        <button
+            type="button"
+            id="ms-settings-search-clear"
+            class="ms-settings-search-clear tipsy-tooltip-top"
+            title="<?php esc_attr_e('Clear search', 'ml-slider'); ?>"
+            aria-label="<?php esc_attr_e('Clear search', 'ml-slider'); ?>"
+            style="display:none;"
+        >
+            <span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
+        </button>
+    </div>
+    <p class="ms-settings-search-empty" style="display:none;">
+        <?php esc_html_e('No settings found.', 'ml-slider'); ?>
+    </p>
+</div>
+<?php
 // Slider libraries
 $aFields = array(
     'type' => array(
@@ -1564,7 +1591,7 @@ echo $this->build_settings_rows($aFields);
     $count = count(metaslider_has_trashed_slides($this->slider->id));
     if ( ! metaslider_viewing_trashed_slides( $this->slider->id ) ) { 
         ?>
-        <div class="ms-settings-box trasedSlidesOptions ms-off" style="<?php echo ! $count ? 'display: none;' : ''  ?>">
+        <div class="ms-settings-box trasedSlidesOptions ms-off<?php echo ! $count ? ' ms-hidden-by-default' : ''  ?>" style="<?php echo ! $count ? 'display: none;' : ''  ?>">
             <div class="ms-highlight">
                 <?php esc_html_e( 'Trashed Slides', 'ml-slider' ) ?>
                 <a href="#" class="ms-toggle-static">
