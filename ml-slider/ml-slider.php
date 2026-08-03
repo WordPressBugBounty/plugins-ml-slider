@@ -5,7 +5,7 @@
  * Plugin Name: MetaSlider Slideshow
  * Plugin URI:  https://www.metaslider.com
  * Description: MetaSlider gives you the power to create a beautiful slideshow, carousel, or gallery on your WordPress site.
- * Version:     3.111.0
+ * Version:     3.111.1
  * Author:      MetaSlider
  * Author URI:  https://www.metaslider.com
  * License:     GPL-2.0+
@@ -44,7 +44,7 @@ if (! class_exists('MetaSliderPlugin')) {
          *
          * @var string
          */
-        public $version = '3.111.0';
+        public $version = '3.111.1';
 
         /**
          * Pro installed version number
@@ -446,6 +446,20 @@ if (! class_exists('MetaSliderPlugin')) {
                 $show_ui = true;
             }
 
+            $capabilities = array(
+                'edit_posts' => $capability,
+                'edit_others_posts' => $capability,
+                'edit_private_posts' => $capability,
+                'edit_published_posts' => $capability,
+                'publish_posts' => $capability,
+                'read_private_posts' => $capability,
+                'delete_posts' => $capability,
+                'delete_private_posts' => $capability,
+                'delete_published_posts' => $capability,
+                'delete_others_posts' => $capability,
+                'create_posts' => $capability,
+            );
+
             register_post_type(
                 'ml-slider',
                 array(
@@ -456,6 +470,9 @@ if (! class_exists('MetaSliderPlugin')) {
                     'publicly_queryable' => false,
                     'show_in_nav_menus' => false,
                     'show_ui' => $show_ui,
+                    'capability_type' => 'ml-slider',
+                    'map_meta_cap' => true,
+                    'capabilities' => $capabilities,
                     'labels' => array(
                         'name' => 'MetaSlider'
                     )
@@ -473,9 +490,27 @@ if (! class_exists('MetaSliderPlugin')) {
                     'show_in_nav_menus' => false,
                     'show_ui' => $show_ui,
                     'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt'),
+                    'capability_type' => 'ml-slide',
+                    'map_meta_cap' => true,
+                    'capabilities' => $capabilities,
                     'labels' => array(
                         'name' => 'Meta Slides'
                     )
+                )
+            );
+
+            // @since 3.111.1 - Defense in depth: even if a lower-privileged user somehow owns an
+            // ml-slider post, restrict edit settings to users with the correct capability
+            register_post_meta(
+                'ml-slider',
+                'ml-slider_settings',
+                array(
+                    'single' => true,
+                    'type' => 'array',
+                    'show_in_rest' => false,
+                    'auth_callback' => function ($allowed, $meta_key, $post_id) {
+                        return current_user_can('edit_post', $post_id);
+                    },
                 )
             );
         }
@@ -2846,7 +2881,7 @@ if (! class_exists('MetaSliderPlugin')) {
 
                 foreach ( $msQuickstart->quickstart_options() as $option ) {
                     if ( isset( $option['slug'] ) && $option['slug'] === $slug ) {
-                        $price = $option['price'] ?? null;
+                        $price = isset( $option['price'] ) ? $option['price'] : null;
                         break;
                     }
                 }

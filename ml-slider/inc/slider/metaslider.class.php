@@ -56,9 +56,10 @@ class MetaSlider
         if (
             is_array($settings) &&
             isset($settings['type']) &&
-            in_array($settings['type'], array( 'flex', 'coin', 'nivo', 'responsive' )) 
+            in_array($settings['type'], array( 'flex', 'coin', 'nivo', 'responsive' ))
         ) {
-            return $settings;
+            // Only trust keys we actually recognise
+            return array_intersect_key($settings, $this->get_default_parameters());
         } else {
             return $this->get_default_parameters();
         }
@@ -76,6 +77,11 @@ class MetaSlider
             $defaults = $this->get_default_parameters();
 
             if (isset($defaults[$name])) {
+                // Make sure to return a string, even if the default is boolean
+                if (gettype($defaults[$name]) == 'boolean') {
+                    return $defaults[$name] ? 'true' : 'false';
+                }
+
                 return $defaults[$name] ? $defaults[$name] : 'false';
             }
         } else {
@@ -644,6 +650,26 @@ class MetaSlider
     }
 
     /**
+     * Coerce a setting into a JS-safe integer token, without turning an empty/disabled
+     * setting (e.g. an unset width/height, normalised by get_setting() to the string
+     * 'false') into 0. Anything that's neither numeric nor the 'true'/'false' sentinel
+     * is untrusted and is coerced to 0 rather than ever being output raw.
+     *
+     * @since 3.111.1
+     * 
+     * @param mixed $val
+     * @return int|string
+     */
+    protected function to_js_int($val)
+    {
+        if (is_numeric($val)) {
+            return (int) $val;
+        }
+
+        return ($val === 'true' || $val === 'false') ? $val : 0;
+    }
+
+    /**
      * Build the javascript parameter arguments for the slider.
      *
      * @return string parameters
@@ -657,8 +683,10 @@ class MetaSlider
             if ($param = $this->get_param($name)) {
                 $val = $this->get_setting($name);
 
-                if (gettype($default) == 'integer' || $val == 'true' || $val == 'false') {
-                    $options[$param] = $val;
+                if (is_int($default)) {
+                    $options[$param] = $this->to_js_int($val);
+                } elseif (is_bool($default) || $val === 'true' || $val === 'false') {
+                    $options[$param] = $val === 'true' ? 'true' : 'false';
                 } else {
                     $options[$param] = '"' . esc_js($val) . '"';
                 }

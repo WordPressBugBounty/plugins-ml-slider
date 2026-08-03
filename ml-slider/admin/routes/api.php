@@ -1168,7 +1168,7 @@ class MetaSlider_Api
 
         // If there are files here, then we need to prepare them
         // Dont use get_file_params() as it's WP4.4
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- REST route access is checked by can_access(), and uploaded files are validated by process_uploads().
         $images = isset($_FILES['files']) ? $this->process_uploads($_FILES['files'], $data['image_data']) : array();
 
         // $images should be an array of image data at this point

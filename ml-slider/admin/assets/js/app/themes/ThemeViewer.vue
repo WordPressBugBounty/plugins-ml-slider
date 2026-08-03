@@ -767,8 +767,8 @@ export default {
 </script>
 
 <style lang="scss">
-	@import '../assets/styles/globals.scss';
-	@import '../assets/styles/mixins.scss';
+	@use '../assets/styles/globals.scss' as *;
+	@use '../assets/styles/mixins.scss' as *;
 
 	@mixin custom-theme-box() {
 		.theme-image-wrapper {

@@ -251,8 +251,10 @@ class MetaSlider_Admin_Table extends WP_List_table
             $params[] = '%' . $wpdb->esc_like($search) . '%';
         }
 
-        $prepared_query = $wpdb->prepare($query, $params); // WPCS: unprepared SQL OK.
-        return $wpdb->get_results($prepared_query, ARRAY_A); // WPCS: unprepared SQL OK.
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Query fragments are fixed SQL above, with all dynamic values passed through $wpdb->prepare().
+        $prepared_query = $wpdb->prepare($query, $params);
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $prepared_query is prepared immediately above.
+        return $wpdb->get_results($prepared_query, ARRAY_A);
     }
 
     public function get_slides($slideshowId, $status)

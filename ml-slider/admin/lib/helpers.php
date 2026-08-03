@@ -509,8 +509,12 @@ function metaslider_intermediate_image_src( $width, $attachment_id )
 function metaslider_filter_unsafe_html( $content, $slide, $slider_id, $settings )
 {
     try {
-        if ( ! class_exists( 'HTMLPurifier' ) ) {
-            require_once( METASLIDER_PATH . 'lib/htmlpurifier/library/HTMLPurifier.auto.php' );
+        if ( ! class_exists( 'HTMLPurifier_Config' ) || ! class_exists( 'HTMLPurifier' ) ) {
+            $autoloader = METASLIDER_PATH . 'lib/htmlpurifier/library/HTMLPurifier.auto.php';
+            if ( ! file_exists( $autoloader ) ) {
+                throw new RuntimeException( 'HTMLPurifier autoloader not found: ' . $autoloader );
+            }
+            require_once( $autoloader );
         }
         $config = HTMLPurifier_Config::createDefault();
         // How to filter:
@@ -522,8 +526,7 @@ function metaslider_filter_unsafe_html( $content, $slide, $slider_id, $settings 
         $config   = apply_filters('metaslider_html_purifier_config', $config, $slide, $slider_id, $settings);
         $purifier = new HTMLPurifier( $config );
         $content  = $purifier->purify( $content );
-    } catch ( Exception $e ) {
-        // If something goes wrong then escape
+    } catch ( Throwable $e ) {
         $content = htmlspecialchars( do_shortcode( $content ), ENT_NOQUOTES, 'UTF-8' );
     }
 
