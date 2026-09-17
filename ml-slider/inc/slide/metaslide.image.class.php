@@ -597,29 +597,7 @@ class MetaImageSlide extends MetaSlide
             );
         }
 
-        // Adds schedule tab
-        ob_start();
-        include METASLIDER_PATH . 'admin/views/slides/tabs/schedule.php';
-        $schedule_tab = ob_get_contents();
-        ob_end_clean();
-
-        $tabs['schedule'] = array(
-            'title' => __('Schedule', 'ml-slider'),
-            'content' => $schedule_tab,
-            'pro' => __('Schedule is available in MetaSlider Slideshow Pro', 'ml-slider')
-        );
-
-        // Adds Advanced tab
-        ob_start();
-        include METASLIDER_PATH . 'admin/views/slides/tabs/advanced.php';
-        $advanced_tab = ob_get_contents();
-        ob_end_clean();
-
-        $tabs['advanced'] = array(
-            'title' => __('Advanced', 'ml-slider'),
-            'content' => $advanced_tab,
-            'pro' => __('Advanced settings are available in MetaSlider Slideshow Pro', 'ml-slider')
-        );
+        $tabs = $this->add_pro_upsell_tabs($tabs);
 
         return apply_filters("metaslider_image_slide_tabs", $tabs, $this->slide, $this->slider, $this->settings);
     }
