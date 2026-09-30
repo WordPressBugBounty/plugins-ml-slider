@@ -5,7 +5,7 @@
  * Plugin Name: MetaSlider Slideshow
  * Plugin URI:  https://www.metaslider.com
  * Description: MetaSlider gives you the power to create a beautiful slideshow, carousel, or gallery on your WordPress site.
- * Version:     3.113.0
+ * Version:     3.113.1
  * Author:      MetaSlider
  * Author URI:  https://www.metaslider.com
  * License:     GPL-2.0+
@@ -44,7 +44,7 @@ if (! class_exists('MetaSliderPlugin')) {
          *
          * @var string
          */
-        public $version = '3.113.0';
+        public $version = '3.113.1';
 
         /**
          * Pro installed version number
@@ -175,7 +175,7 @@ if (! class_exists('MetaSliderPlugin')) {
             if (! defined('METASLIDER_VERSION')) {
                 $assets_version = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? uniqid() : $this->version;
 
-                define('METASLIDER_VERSION', '3.113.0');
+                define('METASLIDER_VERSION', '3.113.1'); // We need it defined as string due `composer build` doesn't detect $this->version
                 define('METASLIDER_ASSETS_VERSION', $assets_version);
                 define('METASLIDER_BASE_URL', plugin_dir_url(metaslider_plugin_is_installed('ml-slider')));
                 define('METASLIDER_ASSETS_URL', METASLIDER_BASE_URL . 'assets/');
