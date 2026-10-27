@@ -205,7 +205,7 @@ class MetaSlider_Admin_Table extends WP_List_table
     public function get_columns()
     {
         $columns = array(
-            'cb' => '<input type="checkbox" />',
+            'cb' => '<input type="checkbox" aria-label="' . esc_attr__('Select all slideshows', 'ml-slider') . '" />',
             'slideshow_thumb' => esc_html__('Preview', 'ml-slider'),
             'post_title' => esc_html__('Title', 'ml-slider'),
             'slideshow_type' => esc_html__('Type of Slides', 'ml-slider'),
@@ -240,15 +240,19 @@ class MetaSlider_Admin_Table extends WP_List_table
     {
         $logo = 'data:image/svg+xml;base64,' . base64_encode(file_get_contents(dirname(__FILE__) . '/assets/metaslider.svg'));
         if (get_post_type($slideId) == 'attachment') {
-            $image = wp_get_attachment_image_src($slideId, 'thumbnail');
+            $thumbnail_id = $slideId;
         } else {
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id($slideId), 'thumbnail');
+            $thumbnail_id = get_post_thumbnail_id($slideId);
         }
 
+        $image = wp_get_attachment_image_src($thumbnail_id, 'thumbnail');
+
         if (isset($image[0])) {
-            $slidethumb = "<img src='". esc_url($image[0]) ."'>";
+            // File-name titles make poor alt text, so only the image's own alt text is used
+            $image_alt  = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);
+            $slidethumb = "<img src='". esc_url($image[0]) ."' alt='" . esc_attr($image_alt) . "'>";
         } else {
-            $slidethumb = "<img src='". $logo ."' class='thumb-logo'>";
+            $slidethumb = "<img src='". $logo ."' class='thumb-logo' alt=''>";
         }
         return $slidethumb;
     }
@@ -318,14 +322,17 @@ class MetaSlider_Admin_Table extends WP_List_table
     public function column_cb($item)
     {
         return sprintf(
-            '<input type="checkbox" name="slideshows[]" value="%d" />', (int)$item['ID']
+            '<input type="checkbox" name="slideshows[]" value="%d" aria-label="%s" />',
+            (int)$item['ID'],
+            /* translators: %s: slideshow title */
+            esc_attr(sprintf(__('Select %s', 'ml-slider'), $item['post_title']))
         );
     }
 
     public function column_slideshow_thumb($item)
     {
         $logo = 'data:image/svg+xml;base64,' . base64_encode(file_get_contents(dirname(__FILE__) . '/assets/metaslider.svg'));
-        $placeholder = "<img src='". $logo ."' class='thumb-logo'>";
+        $placeholder = "<img src='". $logo ."' class='thumb-logo' alt=''>";
         $numberOfSlides = count($item['slideshow_thumb']);
 
         $thumbHtml = "<div class='w-16 h-16 bg-gray-light slidethumb'>";
@@ -482,7 +489,7 @@ class MetaSlider_Admin_Table extends WP_List_table
 
         $output = '';
         foreach ($grouped_results as $category => $items) {
-            $output .= "<h5>{$category}:</h5><ul>" . implode('', $items) . "</ul>";
+            $output .= "<h4>{$category}:</h4><ul>" . implode('', $items) . "</ul>";
         }
     
         return empty($output) ? esc_html__('Not found.', 'ml-slider') : $output;
@@ -560,6 +567,11 @@ class MetaSlider_Admin_Table extends WP_List_table
         return $table_data;
     }
 
+    /**
+     * Trash, restore or permanently delete the selected slideshows
+     *
+     * @since 3.114.0 Only acts on slideshows the user can delete
+     */
     protected function process_action()
     {
         $action = $this->current_action();
@@ -604,6 +616,11 @@ class MetaSlider_Admin_Table extends WP_List_table
                     $slideshows = array_map('intval', $toArray);
                 }
             }
+
+            // Only act on slideshows the user can delete, never on other posts
+            $slideshows = array_filter(isset($slideshows) ? $slideshows : array(), function ($slideshow_id) {
+                return 'ml-slider' === get_post_type($slideshow_id) && current_user_can('delete_post', $slideshow_id);
+            });
 
             switch ( $action ) {
                 case 'delete':

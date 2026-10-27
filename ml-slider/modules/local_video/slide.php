@@ -92,7 +92,7 @@ class MetaLocalVideoSlide extends MetaSlide
         if ( isset( $_REQUEST['page'] ) && 'metaslider-start' != $_REQUEST['page'] ) {
             wp_enqueue_script(
                 "metaslider-{$this->slug}-script",
-                plugins_url( 'assets/local_video.js', __FILE__ ),
+                plugins_url( 'assets/local_video' . metaslider_asset_suffix() . '.js', __FILE__ ),
                 array( 'metaslider-admin-script' ),
                 METASLIDER_VERSION,
                 true
@@ -126,7 +126,7 @@ class MetaLocalVideoSlide extends MetaSlide
         if ( isset( $_REQUEST['page'] ) && 'metaslider-start' != $_REQUEST['page'] ) {
             wp_enqueue_style(
                 "metaslider-local-video-style",
-                plugins_url( 'assets/style.css', __FILE__ ),
+                plugins_url( 'assets/style' . metaslider_asset_suffix() . '.css', __FILE__ ),
                 false,
                 METASLIDER_VERSION
             );
@@ -190,6 +190,8 @@ class MetaLocalVideoSlide extends MetaSlide
 
     /**
      * Create a new local video slide.
+     *
+     * @since 3.114.0 Only creates slides in a slideshow the user can edit
      */
     public function ajax_create_slide()
     {
@@ -211,6 +213,7 @@ class MetaLocalVideoSlide extends MetaSlide
 
         $video_id   = intval( $_POST['video_id'] );
         $slider_id  = intval( $_POST['slider_id'] );
+        metaslider_verify_slideshow_for_ajax( $slider_id );
 
         // Only allow mp4, webm and mov videos
         if( ! $this->video_type_is_allowed( $video_id ) ) {
@@ -481,6 +484,7 @@ class MetaLocalVideoSlide extends MetaSlide
         $html  .= '             </div>';
         $html  .= '             <input type="text" name="attachment[' . 
                                         esc_attr( $this->slide->ID ) . '][track][label]"';
+        $html  .=               ' aria-label="' . esc_attr__( 'Language label', 'ml-slider' ) . '"';
         $html  .=               ' placeholder="' . 
                                         esc_attr__( 'For example: English', 'ml-slider' ) . '"';
         $html  .=               ' value="' . esc_attr( $track_label ) . '">';
@@ -494,7 +498,8 @@ class MetaLocalVideoSlide extends MetaSlide
                                         __( 'Language kind', 'ml-slider' ) . '</label>';
         $html  .= '             </div>';
         $html  .= '             <select name="attachment[' . 
-                                    esc_attr( $this->slide->ID ) . '][track][kind]">';
+                                    esc_attr( $this->slide->ID ) . '][track][kind]" aria-label="' .
+                                    esc_attr__( 'Language kind', 'ml-slider' ) . '">';
         $html  .= '                 <option value="captions"' . 
                                         ( $track_kind === 'captions' ? ' selected' : '' ) .'>' . 
                                         esc_html__( 'Captions', 'ml-slider' ) . '</option>';
@@ -522,6 +527,7 @@ class MetaLocalVideoSlide extends MetaSlide
         $html  .= '             </div>';
         $html  .= '             <input style="width:120px;" type="text" name="attachment[' . 
                                         esc_attr( $this->slide->ID ) . '][track][lang]"';
+        $html  .=               ' aria-label="' . esc_attr__( 'Language code', 'ml-slider' ) . '"';
         $html  .=               ' placeholder="' . 
                                         esc_attr__( 'For example: en', 'ml-slider' ) . '"';
         $html  .=               ' value="' . esc_attr( $track_lang ) . '" maxlength="2">';
@@ -587,7 +593,8 @@ class MetaLocalVideoSlide extends MetaSlide
                                 esc_attr( $track_id ) . '" class="update-text-track button button-secondary flex-1">';
         $html  .=               esc_html__( 'Browse', 'ml-slider' );
         $html  .= '         </button>';
-        $html  .= '         <input class="track_url w-100 m-0 border-r-0 border-l-0" type="text" value="' . 
+        $html  .= '         <input class="track_url w-100 m-0 border-r-0 border-l-0" type="text" aria-label="' .
+                                esc_attr__( 'Source', 'ml-slider' ) . '" value="' .
                                 esc_url( $track_url ) . '" readonly>';
         $html  .= '         <button data-slide-id="' . 
                                 esc_attr( $this->slide->ID ) . '" data-attachment-id="' . 
@@ -690,6 +697,17 @@ class MetaLocalVideoSlide extends MetaSlide
         }
 
         $attributes['data-link-url']    = esc_url( $url );
+        // Name the link after its host and path so links to pages on the same site stay distinguishable.
+        $link_url   = esc_url_raw( $url );
+        $link_parts = wp_parse_url( $link_url );
+        $link_name  = ! empty( $link_parts['host'] )
+            ? $link_parts['host'] . untrailingslashit( isset( $link_parts['path'] ) ? $link_parts['path'] : '' )
+            : $link_url;
+        $attributes['data-link-label']  = sprintf(
+            /* translators: %s: the web address the slide links to, without https:// */
+            __( 'Open link: %s', 'ml-slider' ),
+            $link_name
+        );
         $attributes['data-link-target'] = get_post_meta( $this->slide->ID, 'ml-slider_new_window', true ) ? '_blank' : '_self';
 
         // Preview is a srcdoc iframe - force new tab (also covers external_video).
@@ -764,6 +782,13 @@ class MetaLocalVideoSlide extends MetaSlide
             $this->slide->ID,
             'hide_slide_desktop',
             isset($fields['hide_slide_desktop']) && $fields['hide_slide_desktop'] === 'on'
+        );
+
+        // Is slide hidden?
+        update_post_meta(
+            $this->slide->ID,
+            '_meta_slider_slide_is_hidden',
+            isset( $fields['hide_slide'] ) && $fields['hide_slide'] === 'on'
         );
     }
 
@@ -863,6 +888,8 @@ class MetaLocalVideoSlide extends MetaSlide
      * Ajax wrapper to update the slide video.
      * This works for Local video and Layer slides
      * 
+     * @since 3.114.0 Only changes a slide and slideshow the user can edit
+     *
      * @return String The status message and if success, the thumbnail link (JSON)
      */
     public function ajax_update_slide_video()
@@ -903,10 +930,15 @@ class MetaLocalVideoSlide extends MetaSlide
             );
         }
 
+        $slide_id  = absint( $_POST['slide_id'] );
+        $slider_id = absint( $_POST['slider_id'] );
+        metaslider_verify_slide_for_ajax( $slide_id );
+        metaslider_verify_slideshow_for_ajax( $slider_id );
+
         $result = $this->update_slide_video(
-            absint( $_POST['slide_id'] ),
+            $slide_id,
             absint( $_POST['video_id'] ),
-            absint( $_POST['slider_id'] ),
+            $slider_id,
             absint( $_POST['prev_video_id'] )
         );
 
@@ -921,6 +953,8 @@ class MetaLocalVideoSlide extends MetaSlide
     /**
      * Ajax wrapper to remove cover
      * 
+     * @since 3.114.0 Only changes a slide the user can edit
+     *
      * @return String
      */
     public function ajax_remove_cover()
@@ -952,6 +986,7 @@ class MetaLocalVideoSlide extends MetaSlide
         }
         
         $slide_id = absint( $_POST['slide_id'] );
+        metaslider_verify_slide_for_ajax( $slide_id );
         $slide_type = sanitize_text_field( $_POST['slide_type'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- sanitize_text_field() strips the value regardless of slashes; no risk from the missing wp_unslash() here.
         delete_post_meta( $slide_id, '_thumbnail_id' );
 
@@ -1029,6 +1064,8 @@ class MetaLocalVideoSlide extends MetaSlide
      * Ajax wrapper to update the slide video.
      * This works for Local video and Layer slides
      * 
+     * @since 3.114.0 Only changes a slide the user can edit
+     *
      * @return String The status message and if success, the thumbnail link (JSON)
      */
     public function ajax_add_video_source()
@@ -1064,6 +1101,7 @@ class MetaLocalVideoSlide extends MetaSlide
         }
 
         $slide_id   = absint( $_POST['slide_id'] );
+        metaslider_verify_slide_for_ajax( $slide_id );
         $sources    = $this->videoHelper->get_all_sources( $slide_id );
         $video_id   = absint( $_POST['video_id'] );
         $slide_type = sanitize_text_field( $_POST['slide_type'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- sanitize_text_field() strips the value regardless of slashes; no risk from the missing wp_unslash() here.
@@ -1194,6 +1232,8 @@ class MetaLocalVideoSlide extends MetaSlide
      * Ajax wrapper to remove the video source.
      * This works for Local video and Layer slides
      * 
+     * @since 3.114.0 Only changes a slide the user can edit
+     *
      * @return String The status message and if success, the JSON response
      */
     public function ajax_remove_video_source()
@@ -1228,6 +1268,7 @@ class MetaLocalVideoSlide extends MetaSlide
         }
 
         $slide_id   = absint( $_POST['slide_id'] );
+        metaslider_verify_slide_for_ajax( $slide_id );
         $slide_type = sanitize_text_field( $_POST['slide_type'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- sanitize_text_field() strips the value regardless of slashes; no risk from the missing wp_unslash() here.
 
         // Check how many video sources have this slide so we don't allow to delete if we have only one
@@ -1266,6 +1307,8 @@ class MetaLocalVideoSlide extends MetaSlide
 
     /**
      * Ajax wrapper to update the slide text track.
+     *
+     * @since 3.114.0 Only changes a slide and slideshow the user can edit
      *
      * @return String The status message and if success, the thumbnail link (JSON)
      */
@@ -1307,10 +1350,15 @@ class MetaLocalVideoSlide extends MetaSlide
             );
         }
 
+        $slide_id  = absint( $_POST['slide_id'] );
+        $slider_id = absint( $_POST['slider_id'] );
+        metaslider_verify_slide_for_ajax( $slide_id );
+        metaslider_verify_slideshow_for_ajax( $slider_id );
+
         $result = $this->update_slide_track(
-            absint( $_POST['slide_id'] ),
+            $slide_id,
             absint( $_POST['track_id'] ),
-            absint( $_POST['slider_id'] )
+            $slider_id
         );
 
         if ( is_wp_error( $result ) ) {
@@ -1381,6 +1429,8 @@ class MetaLocalVideoSlide extends MetaSlide
     /**
      * Ajax wrapper to remove the slide text track.
      *
+     * @since 3.114.0 Only changes a slide the user can edit
+     *
      * @return String The status message and if success, the JSON response
      */
     public function ajax_remove_slide_track()
@@ -1412,6 +1462,7 @@ class MetaLocalVideoSlide extends MetaSlide
         }
 
         $slide_id = absint( $_POST['slide_id'] );
+        metaslider_verify_slide_for_ajax( $slide_id );
         
         // Updates database record
         $data = get_post_meta( $slide_id, 'ml-slider_track', true );
@@ -1905,6 +1956,7 @@ class MetaLocalVideoSlide extends MetaSlide
                         if (haveLink) {
                             var link = $('<a></a>').attr({
                                 'href': video.data('link-url'),
+                                'aria-label': video.data('link-label'),
                                 'target': video.data('link-target')
                             });
                             video.wrap(link);
@@ -2070,6 +2122,13 @@ class MetaLocalVideoSlide extends MetaSlide
         return array('slide_id' => $new_slide_id, 'html' => $this->get_admin_slide());
     }
 
+    /**
+     * Ajax wrapper for duplicate_slide().
+     *
+     * @since 3.114.0 Only duplicates a slide the user can edit, into a slideshow they can edit
+     *
+     * @return void
+     */
     public function ajax_duplicate_slide()
     {
         if ( ! isset( $_POST['nonce'] ) 
@@ -2097,10 +2156,12 @@ class MetaLocalVideoSlide extends MetaSlide
             );
         }
 
-        $result = $this->duplicate_slide(
-            absint($_POST['slider_id']),
-            absint($_POST['slide_id'])
-        );
+        $slider_id = absint($_POST['slider_id']);
+        $slide_id  = absint($_POST['slide_id']);
+        metaslider_verify_slideshow_for_ajax($slider_id);
+        metaslider_verify_slide_for_ajax($slide_id);
+
+        $result = $this->duplicate_slide($slider_id, $slide_id);
 
         wp_send_json_success($result, 200);
     }

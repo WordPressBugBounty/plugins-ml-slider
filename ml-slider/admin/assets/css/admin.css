@@ -1573,8 +1573,8 @@ input.no_last_pass {
 .metaslider-pro_page_metaslider-start #wpbody-content {
 	background-color: transparent;
 }
-.metaslider_page_metaslider-start #ms-toolbar .container,
-.metaslider-pro_page_metaslider-start #ms-toolbar .container{
+.slideshow_page_metaslider-start #ms-toolbar .container,
+.slideshow-pro_page_metaslider-start #ms-toolbar .container{
     margin: 0;
 }
 
@@ -1819,7 +1819,7 @@ input.no_last_pass {
 	font-size: 14px;
 	line-height: 21px;
 }
-.shortcode-modal h5 {
+.shortcode-modal h4 {
 	margin: 10px 0 0 0;
 	text-transform: uppercase;
 	font-size: 14px;
@@ -1977,7 +1977,7 @@ tr.mobile_number td:last-child {
 	display: block;
 	height: 25px;
 }
-#comparison-chart th h3 {
+#comparison-chart th h2 {
 	text-align: right;
 	text-transform: uppercase;
 	font-size: 16px;
@@ -2002,7 +2002,7 @@ tr.mobile_number td:last-child {
 #comparison-chart td {
 	padding: 10px;
 }
-#comparison-chart td h4 {
+#comparison-chart td h3 {
 	font-size: 16px;
 	font-weight: bold;
 }
@@ -2428,11 +2428,41 @@ td .dot.available {
     grid-template-columns: minmax(0, 25%) 1fr;
     align-items: center;
     position: relative;
+    overflow: hidden;
     
     a {
         position: absolute;
         top: 10px;
         right: 10px;
+    }
+}
+.ms-welcome-confetti {
+    position: absolute;
+    top: -16px;
+    opacity: 0;
+    animation-name: ms-welcome-confetti;
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    animation-fill-mode: forwards;
+}
+@keyframes ms-welcome-confetti {
+    0% {
+        opacity: 0;
+        transform: translate(0, -8px) rotate(0deg);
+    }
+    12% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--drift, 0), var(--fall, 160px)) rotate(var(--spin, 360deg));
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ms-welcome-confetti {
+        display: none;
     }
 }
 #ms-qs-sections {

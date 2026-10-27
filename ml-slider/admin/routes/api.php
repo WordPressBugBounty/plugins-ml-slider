@@ -628,6 +628,8 @@ class MetaSlider_Api
     /**
      * Save a slideshow
      *
+     * @since 3.114.0 Only saves slides the user can edit, in a slideshow they can edit
+     *
      * @param object $request The request
      */
     public function save_slideshow($request)
@@ -637,6 +639,15 @@ class MetaSlider_Api
         }
 
         $data = $this->get_request_data($request, array('slideshow_id', 'attachment', 'count'));
+
+        metaslider_verify_slideshow_for_ajax(absint($data['slideshow_id']));
+
+        // Check every slide before saving any, so a refused slide doesn't leave the slideshow half saved
+        if (isset($data['attachment']) && is_array($data['attachment'])) {
+            foreach (array_keys($data['attachment']) as $slide_id) {
+                metaslider_verify_slide_for_ajax((int) $slide_id);
+            }
+        }
 
         // If we are missing the count, then it's likely the payload was truncated
         if (!$data['count'] && version_compare(phpversion(), '5.3.9', '>=')) {
@@ -1012,7 +1023,8 @@ class MetaSlider_Api
 
         $settings = array(
             'license'         => isset($raw['license'])         ? sanitize_text_field($raw['license'])  : '',
-            'optIn'           => isset($raw['optIn'])            ? (bool) $raw['optIn']                  : false,
+            // Keep the stored value when optIn isn't sent - only the sign-up popup sends it (#2541)
+            'optIn'           => isset($raw['optIn'])            ? (bool) $raw['optIn']                  : MetaSlider_Email_Collection::site_is_optin(),
             'adminBar'        => isset($raw['adminBar'])         ? (bool) $raw['adminBar']               : true,
             'editLink'        => isset($raw['editLink'])         ? (bool) $raw['editLink']               : false,
             'legacy'          => isset($raw['legacy'])           ? (bool) $raw['legacy']                 : true,
@@ -1051,6 +1063,8 @@ class MetaSlider_Api
 
         // TODO: validate the license if not ''
 
+        $was_optin = MetaSlider_Email_Collection::site_is_optin();
+
         update_option('metaslider_global_settings', $settings, true);
 
         // for legacy library
@@ -1066,6 +1080,13 @@ class MetaSlider_Api
             // with the connect service is visible to the browser
             $optin = MetaSlider_Email_Collection::optin();
             $response['optinEmailSent'] = $optin['status'];
+
+            // A failed sign-up must not opt the site in, or the popup never asks again (#2529)
+            if (!$was_optin && !in_array($optin['status'], array('subscribed', 'duplicate'), true)) {
+                $settings['optIn'] = false;
+                $response['optIn'] = false;
+                update_option('metaslider_global_settings', $settings, true);
+            }
 
             // The full exchange with the connect service, shown in the opt-in
             // modal for debugging. Off by default - it names internal
@@ -1136,6 +1157,8 @@ class MetaSlider_Api
         // to check an inbox that never receives anything.
         if ('optin_email' === $key) {
             delete_option('metaslider_optin_email_sent');
+            // A deliberate retry from the popup shouldn't wait out the failure pause (#2536)
+            delete_transient(MetaSlider_Email_Collection::retry_cooldown_key($value));
         }
 
         wp_send_json_success('OK', 200);

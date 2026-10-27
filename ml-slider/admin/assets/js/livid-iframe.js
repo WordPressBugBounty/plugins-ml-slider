@@ -44,6 +44,15 @@
 			$('.spinner').hide()
 		}
 
+		// An <a> ignores disabled, so aria-disabled is what screen readers and the click guard rely on.
+		var setAddButtonEnabled = function (enabled) {
+			if (enabled) {
+				$('.media-button').removeAttr('disabled').attr('aria-disabled', 'false')
+			} else {
+				$('.media-button').attr({ disabled: 'disabled', 'aria-disabled': 'true' })
+			}
+		}
+
 		/**
 		 * Put the tab back the way it loaded. The media modal keeps this iframe
 		 * around between opens, so without this the last URL added is still in
@@ -55,12 +64,12 @@
 			hideSpinner()
 			$('.livid_url').val('')
 			$('.embed-link-settings').html('')
-			$('.media-button').attr('disabled', 'disabled')
+			setAddButtonEnabled(false)
 		}
 
 		var showError = function (message) {
 			$('.embed-link-settings').html('<div class="ms-invalid-input-error">' + message + '</div>')
-			$('.media-button').attr('disabled', 'disabled')
+			setAddButtonEnabled(false)
 		}
 
 		var requestPreview = function (url) {
@@ -79,7 +88,7 @@
 				}
 
 				$('.embed-link-settings').html('<div class="livid-preview">' + response.data.html + '</div>')
-				$('.media-button').removeAttr('disabled')
+				setAddButtonEnabled(true)
 			}).fail(function (xhr) {
 				hideSpinner()
 
@@ -94,8 +103,13 @@
 		$('.livid_url').on('propertychange keyup input paste', function () {
 			var value = $(this).val()
 
+			// Keys that leave the URL as is (arrows, Shift, Tab) must not disable a ready button.
+			if (value === lastPreviewedUrl) {
+				return
+			}
+
 			clearTimeout(previewTimer)
-			$('.media-button').attr('disabled', 'disabled')
+			setAddButtonEnabled(false)
 
 			if (!value.length) {
 				hideSpinner()
@@ -109,10 +123,6 @@
 				return
 			}
 
-			if (value === lastPreviewedUrl) {
-				return
-			}
-
 			previewTimer = setTimeout(function () {
 				lastPreviewedUrl = value
 				requestPreview(value)
@@ -123,7 +133,7 @@
 			event.preventDefault()
 
 			var url = $('.livid_url').val()
-			if (!isLividUrl(url) || $(this).is(':disabled')) {
+			if (!isLividUrl(url) || $(this).attr('aria-disabled') === 'true') {
 				return
 			}
 
@@ -133,7 +143,7 @@
 				'1'
 			), true)
 
-			$('.media-button').attr('disabled', 'disabled')
+			setAddButtonEnabled(false)
 
 			$.post(ajaxurl, {
 				action: 'create_livid_slide',
@@ -144,8 +154,11 @@
 				resetForm()
 				window.parent.metaslider.after_adding_slide_success(response.data)
 			}).fail(function (xhr) {
-				$('.media-button').removeAttr('disabled')
-				showError((xhr.responseJSON && xhr.responseJSON.data && xhr.responseJSON.data.message) || metaslider_livid_iframe.error_invalid_url)
+				var error = xhr.responseJSON && xhr.responseJSON.data
+				// A refused slideshow sends a plain message, other errors send { message }
+				showError((typeof error === 'string' && error) || (error && error.message) || metaslider_livid_iframe.error_invalid_url)
+				// showError() disables the button, but the URL is still valid so allow a retry.
+				setAddButtonEnabled(true)
 			})
 		})
 	})

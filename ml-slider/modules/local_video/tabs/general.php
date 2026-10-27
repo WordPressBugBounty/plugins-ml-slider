@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $sources = $this->videoHelper->get_all_sources( $this->slide->ID );
 
 $mute_checked       = isset( $this->slide_settings['mute'] ) && filter_var(
@@ -67,7 +71,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                             (bool) $mute_checked
                         );
                         ?><span>
-                            <?php _e( 'Mute video', 'ml-slider' ); ?>
+                            <?php esc_html_e( 'Mute video', 'ml-slider' ); ?>
                         </span>
                     </label>
                 </li>
@@ -79,7 +83,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                             (bool) $controls_checked
                         );
                         ?><span>
-                            <?php _e( 'Show controls', 'ml-slider' ); ?>
+                            <?php esc_html_e( 'Show controls', 'ml-slider' ); ?>
                         </span>
                     </label>
                 </li>
@@ -92,7 +96,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                         );
                         ?><span>
                             <?php 
-                            _e( 'Auto play', 'ml-slider' ); 
+                            esc_html_e( 'Auto play', 'ml-slider' );
                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo $this->info_tooltip( __(
                                 'May require video to be muted', 
@@ -110,7 +114,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                             (bool) $lazyLoad_checked
                         );
                         ?> <span>
-                            <?php _e( 'Lazy load video', 'ml-slider' ); ?>
+                            <?php esc_html_e( 'Lazy load video', 'ml-slider' ); ?>
                         </span>
                     </label>
                 </li>
@@ -122,7 +126,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                             (bool) $loop_checked
                         );
                         ?><span>
-                            <?php _e( 'Loop video', 'ml-slider' ); ?>
+                            <?php esc_html_e( 'Loop video', 'ml-slider' ); ?>
                         </span>
                     </label>
                 </li>
@@ -134,7 +138,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                             (bool) $fit_checked
                         );
                         ?><span>
-                            <?php _e( 'Fit video in container', 'ml-slider' ); ?>
+                            <?php esc_html_e( 'Fit video in container', 'ml-slider' ); ?>
                         </span>
                     </label>
                 </li>
@@ -147,7 +151,7 @@ $fade_checked       = isset($this->slide_settings['fade']) && filter_var(
                         );
                         ?><span>
                             <?php 
-                            _e( 'Fade in transition', 'ml-slider' ); 
+                            esc_html_e( 'Fade in transition', 'ml-slider' );
                             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                             echo $this->info_tooltip( __(
                                 'Fade in before video loads. Recommended when slide and slideshow Auto play are enabled, and slideshow Transition effect is fade.',

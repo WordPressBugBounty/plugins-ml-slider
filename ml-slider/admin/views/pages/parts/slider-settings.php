@@ -62,14 +62,14 @@ echo $this->build_settings_rows($aFields);
 ?>
 <div class="ms-loading-settings flex mb-3" style="min-height:500px;">
     <span style="background-image: url(<?php echo esc_url(admin_url( '/images/loading.gif' )); ?>);">
-        <?php _e( 'Loading...', 'ml-slider' ); ?>
+        <?php esc_html_e( 'Loading...', 'ml-slider' ); ?>
     </span>
 </div>
 <div class="ms-settings-table" style="display:none;">
     <div class="ms-settings-box mainOptions ms-on">
         <div class="ms-highlight border-t-0">
             <?php esc_html_e( 'Main Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Main Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -464,7 +464,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box themeOptions ms-off">
         <div class="ms-highlight">
             <?php esc_html_e( 'Theme Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Theme Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -482,7 +482,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box lightboxOptions ms-off">
         <div class="ms-highlight highlight">
             <?php esc_html_e( 'Gallery Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Gallery Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -520,7 +520,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box transitionOptions ms-off">
         <div class="ms-highlight">
             <?php esc_html_e( 'Transition Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Transition Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -835,7 +835,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box carouselOptions ms-off">
         <div class="ms-highlight">
             <?php esc_html_e( 'Carousel Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Carousel Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1056,7 +1056,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box imagesOptions ms-off">
         <div class="ms-highlight highlight">
             <?php esc_html_e( 'Image Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Image Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1171,7 +1171,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box imageStylesOptions ms-off">
         <div class="ms-highlight highlight">
             <?php esc_html_e( 'Image Styles', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Image Styles', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1189,7 +1189,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box advancedOptions ms-off">
         <div class="ms-highlight highlight">
             <?php esc_html_e( 'Layout Features', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Layout Features', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1466,7 +1466,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box containerOptions ms-off">
         <div class="ms-highlight highlight">
             <?php esc_html_e( 'Container Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Container Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1504,7 +1504,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box watermarkOptions ms-off">
         <div class="ms-highlight highlight">
             <?php esc_html_e( 'Watermark Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Watermark Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1544,7 +1544,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box accessibilityOptions ms-off">
         <div class="ms-highlight">
             <?php esc_html_e( 'Accessibility Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Accessibility Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1616,7 +1616,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box developerOptions ms-off">
         <div class="ms-highlight">
             <?php esc_html_e( 'Developer Options', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Developer Options', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1688,7 +1688,7 @@ echo $this->build_settings_rows($aFields);
     <div class="ms-settings-box shortcodeOptions ms-off">
         <div class="ms-highlight">
             <?php esc_html_e( 'Shortcode', 'ml-slider' ) ?>
-            <a href="#" class="ms-toggle-static">
+            <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Shortcode', 'ml-slider' ); ?>">
                 <span class="dashicons"></span>
             </a>
         </div>
@@ -1710,7 +1710,7 @@ echo $this->build_settings_rows($aFields);
         <div class="ms-settings-box trasedSlidesOptions ms-off<?php echo ! $count ? ' ms-hidden-by-default' : ''  ?>" style="<?php echo ! $count ? 'display: none;' : ''  ?>">
             <div class="ms-highlight">
                 <?php esc_html_e( 'Trashed Slides', 'ml-slider' ) ?>
-                <a href="#" class="ms-toggle-static">
+                <a href="#" class="ms-toggle-static" aria-label="<?php esc_attr_e( 'Toggle Trashed Slides', 'ml-slider' ); ?>">
                     <span class="dashicons"></span>
                 </a>
             </div>

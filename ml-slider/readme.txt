@@ -1,8 +1,8 @@
 === Slider, Gallery, and Carousel by MetaSlider - Image Slider, Video Slider ===
 Contributors: andergmartins, htmgarcia, publishpress, stevejburge, rochdesigns
 Tags: slider, video slider, image slider, carousel slider, gallery
-Requires at least: 5.0
-Stable tag: 3.113.1
+Requires at least: 5.9
+Stable tag: 3.114.0
 Requires PHP: 7.0
 Tested up to: 7.1
 License: GPLv2 or later
@@ -27,14 +27,18 @@ MetaSlider slideshows, carousels, sliders and galleries are compatible with the 
 If you’re looking for further customization, [MetaSlider Slideshow Pro](https://www.metaslider.com/upgrade/) offers even more powerful features.
 
 * **YouTube, Vimeo, and TikTok video slides**: Easily include responsive high definition YouTube, Vimeo and TikTok videos in your slideshows.
-* **Layer slides**: Create CSS3 animated HTML Layer slides using the built in drag-and-drop WYSIWYG editor.
+* **Layer slides**: Create CSS3 animated HTML Layer slides using the built-in drag-and-drop WYSIWYG editor.
 * **Post Feed slides**: Automatically show your latest blog posts, events or WooCommerce products in your slide show.
-* **External URL slides**: Display images directly from a non-WordPress sources such as CDNs or image hosts.
+* **External URL slides**: Display images directly from non-WordPress sources such as CDNs or image hosts.
 * **External Video slides**: Create your slideshows with videos from almost any external service.
 * **Stylish, premium themes**: MetaSlider Slideshow Pro provides stylish and exclusive themes for your slideshows.
 * **Slide scheduling and slide visibility**: Pro customers can now schedule sliders to appear only within specific dates, times, and days of the week.
 * **Custom Themes – build your own theme**: MetaSlider now has stunning free slider themes for you to explore. With MetaSlider Slideshow Pro, you can also build your own themes.
 * **Thumbnail Navigation**: Give your slideshows a gallery feel with customizable Thumbnail and Filmstrip Navigation.
+* **Image Folder slides**: Build a slideshow from a folder in your Media Library. Choose every image in a folder under /wp-content/uploads/, or only the images uploaded between two dates.
+* **Ken Burns effect**: Add a slow pan and zoom to still images, the animated transition named after the documentary maker, so a photo slideshow has motion in it.
+* **Repeating slides**: Repeat a slide through the slideshow rather than adding it several times by hand.
+* **Custom slide delay**: Set how long an individual slide stays on screen, instead of every slide sharing the slideshow's timing.
 * **Premium Support**: Get fast access to our professional support team.
 
 ### Image Sliders
@@ -67,7 +71,7 @@ Post Feed slides can be used to show one post at a time but they work particular
 
 ### Animated Layer Sliders
 
-With [MetaSlider Slideshow Pro](https://www.metaslider.com/upgrade/) you can create animated Layer Slides for your slider, slideshow, or carousel. You can use the built in drag-and-drop editor to create CSS3 animated HTML Layer slides. MetaSlider Layer Slides are ideal for easily creating eye catching slider presentations and slideshows that use stunning effects with 50 animation options and a beautiful, easy to use interface. Layers can include text, html, images, photos, videos and even shortcodes! Layer Slide users also benefit from additional optimization and customization options, including using a video as the slide background and adjusting the padding and background color of each layer.
+With [MetaSlider Slideshow Pro](https://www.metaslider.com/upgrade/) you can create animated Layer Slides for your slider, slideshow, or carousel. You can use the built-in drag-and-drop editor to create CSS3 animated HTML Layer slides. MetaSlider Layer Slides are ideal for easily creating eye-catching slider presentations and slideshows that use stunning effects with 50 animation options and a beautiful, easy-to-use interface. Layers can include text, html, images, photos, videos and even shortcodes! Layer Slide users also benefit from additional optimization and customization options, including using a video as the slide background and adjusting the padding and background color of each layer.
 
 ### External Image Sliders
 
@@ -129,7 +133,7 @@ MetaSlider is compatible with some of the most popular WordPress translation plu
 
 ### Slider Lightbox Support
 
-MetaSlider offers responsive image and photo lightbox support with the [MetaSlider Gallery plugin](https://wordpress.org/ml-slider-lightbox), allowing slides to be opened in a lightbox gallery window.
+MetaSlider offers responsive image and photo lightbox support with the [MetaSlider Gallery plugin](https://wordpress.org/plugins/ml-slider-lightbox/), allowing slides to be opened in a lightbox.
 
 ### Slider Plugin Integrations
 
@@ -230,7 +234,7 @@ Yes, image sliders are the most popular way to use MetaSlider. Image slideshows 
 
 It's also possible to build on your image slider and create a carousel slideshow with several images to be visible in the display at the same time.
 
-[See more about carousel image sliders](https://www.metaslider.com/docs/create-image-carousel/)
+[See more about carousel image sliders](https://www.metaslider.com/docs/carousel-slideshow/)
 
 = Can I create Vimeo sliders with MetaSlider? =
 
@@ -267,7 +271,7 @@ Yes, it is possible to specify that your MetaSlider slideshow only appears on sp
 
 = Can I create External URL sliders with MetaSlider? =
 
-Yes, External URL image Slideshows are included in MetaSlider Slideshow Pro. External URL carousels allow you to load images directly from a non-WordPress sources such as CDNs or image hosts.
+Yes, External URL image Slideshows are included in MetaSlider Slideshow Pro. External URL carousels allow you to load images directly from non-WordPress sources such as CDNs or image hosts.
 
 [Read more about External URL sliders](https://www.metaslider.com/docs/external-url-slides/)
 

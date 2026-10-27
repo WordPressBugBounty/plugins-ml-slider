@@ -257,13 +257,13 @@ class MetaLividSlide extends MetaSlide
         wp_enqueue_style('media-views');
         wp_enqueue_style(
             'metaslider-livid-styles',
-            METASLIDER_ADMIN_ASSETS_URL . 'css/livid.css',
+            METASLIDER_ADMIN_ASSETS_URL . 'css/livid' . metaslider_asset_suffix() . '.css',
             false,
             METASLIDER_ASSETS_VERSION
         );
         wp_enqueue_script(
             'metaslider-livid-iframe',
-            METASLIDER_ADMIN_ASSETS_URL . 'js/livid-iframe.js',
+            METASLIDER_ADMIN_ASSETS_URL . 'js/livid-iframe' . metaslider_asset_suffix() . '.js',
             array('jquery'),
             METASLIDER_ASSETS_VERSION,
             true
@@ -290,7 +290,7 @@ class MetaLividSlide extends MetaSlide
         <div class="media-frame-toolbar">
             <div class="media-toolbar">
                 <div class="media-toolbar-primary">
-                    <a href="#" class="button media-button button-primary button-large" disabled="disabled"><?php esc_html_e('Add to slideshow', 'ml-slider'); ?></a>
+                    <a href="#" class="button media-button button-primary button-large" disabled="disabled" aria-disabled="true"><?php esc_html_e('Add to slideshow', 'ml-slider'); ?></a>
                 </div>
             </div>
         </div>
@@ -306,7 +306,7 @@ class MetaLividSlide extends MetaSlide
     {
         wp_enqueue_script(
             'metaslider-livid-admin',
-            METASLIDER_ADMIN_ASSETS_URL . 'js/livid-admin.js',
+            METASLIDER_ADMIN_ASSETS_URL . 'js/livid-admin' . metaslider_asset_suffix() . '.js',
             array('jquery'),
             METASLIDER_ASSETS_VERSION,
             true
@@ -323,11 +323,14 @@ class MetaLividSlide extends MetaSlide
             'error_invalid_url' => esc_html__('Please enter a valid link to a video hosted on livid.com.', 'ml-slider'),
             /* translators: Livid is a video hosting service - keep the name as-is. */
             'error_update_failed' => esc_html__('We could not update the Livid video. Please check the link and try again.', 'ml-slider'),
+            'error_duplicate_failed' => esc_html__('Duplicating the slide failed.', 'ml-slider'),
         ));
     }
 
     /**
      * Ajax handler to create a new Livid slide from a pasted video URL.
+     *
+     * @since 3.114.0 Only creates slides in a slideshow the user can edit
      *
      * @return void
      */
@@ -360,6 +363,7 @@ class MetaLividSlide extends MetaSlide
 
         $url = esc_url_raw(wp_unslash($_POST['url']));
         $slider_id = absint($_POST['slider_id']);
+        metaslider_verify_slideshow_for_ajax($slider_id);
 
         $embed_html = $this->build_embed_html($url);
 
@@ -772,6 +776,8 @@ class MetaLividSlide extends MetaSlide
     /**
      * Ajax wrapper for duplicate_slide().
      *
+     * @since 3.114.0 Only duplicates a slide the user can edit, into a slideshow they can edit
+     *
      * @return void
      */
     public function ajax_duplicate_slide()
@@ -801,10 +807,12 @@ class MetaLividSlide extends MetaSlide
             );
         }
 
-        $result = $this->duplicate_slide(
-            absint($_POST['slider_id']),
-            absint($_POST['slide_id'])
-        );
+        $slider_id = absint($_POST['slider_id']);
+        $slide_id  = absint($_POST['slide_id']);
+        metaslider_verify_slideshow_for_ajax($slider_id);
+        metaslider_verify_slide_for_ajax($slide_id);
+
+        $result = $this->duplicate_slide($slider_id, $slide_id);
 
         wp_send_json_success($result, 200);
     }
@@ -901,7 +909,7 @@ class MetaLividSlide extends MetaSlide
             );
         }
 
-        $tabs = $this->add_pro_upsell_tabs($tabs, array('thumbnail'));
+        $tabs = $this->add_pro_upsell_tabs($tabs);
 
         return apply_filters('metaslider_livid_slide_tabs', $tabs, $this->slide, $this->slider, $this->settings);
     }
@@ -1074,7 +1082,7 @@ class MetaLividSlide extends MetaSlide
         // (and, on Flex, autoplay triggering) both rely on it.
         wp_enqueue_script(
             'metaslider-livid-lazyload',
-            METASLIDER_ASSETS_URL . 'metaslider/livid-lazyload.js',
+            METASLIDER_ASSETS_URL . 'metaslider/livid-lazyload' . metaslider_asset_suffix() . '.js',
             array('jquery'),
             METASLIDER_ASSETS_VERSION,
             true

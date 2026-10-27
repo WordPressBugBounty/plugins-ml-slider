@@ -331,6 +331,7 @@ return $options;
      * Add inline CSS to customize theme design
      *
      * @since 3.93.0 - Moved from each theme.php file
+     * @since 3.114.0 Uses the previewed theme on REST preview requests too
      */
     public function theme_customize($css, $settings, $slideshow_id)
     {
@@ -360,7 +361,9 @@ return $options;
          * stays paired against this SAME theme - mixing one theme's manifest with a different
          * theme's stored customize values produces mismatched CSS (see git history on this file). */
         $theme_id = false;
-        if (is_admin() && isset($_REQUEST['action']) && 'ms_get_preview' == $_REQUEST['action'] && isset($_REQUEST['theme_id'])) {
+        // The theme picker loads its preview through the REST API, where is_admin() is false
+        $is_preview_request = is_admin() || (defined('REST_REQUEST') && REST_REQUEST);
+        if ($is_preview_request && isset($_REQUEST['action']) && 'ms_get_preview' == $_REQUEST['action'] && isset($_REQUEST['theme_id'])) {
             $theme_id = sanitize_text_field($_REQUEST['theme_id']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
         }
         if (!$theme_id) {

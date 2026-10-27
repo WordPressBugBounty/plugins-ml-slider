@@ -79,7 +79,8 @@
 				data: data,
 				type: 'POST',
 				error: function (error) {
-					window.metaslider && window.metaslider.app && window.metaslider.app.MetaSlider.notifyError('metaslider/slide-duplicate-failed', error, true)
+					var message = (error && error.responseJSON && typeof error.responseJSON.data === 'string' && error.responseJSON.data) || metaslider_livid.error_duplicate_failed
+					window.metaslider && window.metaslider.app && window.metaslider.app.MetaSlider.notifyError('metaslider/slide-duplicate-failed', message, true)
 				},
 				success: function (response) {
 					window.metaslider.app.mountNewSlides([response.data])

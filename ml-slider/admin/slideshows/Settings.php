@@ -160,6 +160,7 @@ class MetaSlider_Slideshow_Settings
      * Convert 'on' or 'off' to boolean values
      * 
      * @since 3.92
+     * @since 3.114.0 Saves cropMultiply as an integer from 1 to 4
      * 
      * @param array $settings Slideshow settings
      * 
@@ -178,7 +179,7 @@ class MetaSlider_Slideshow_Settings
          * Reason is these settings have true/false + string options, so is better to handle all as strings
          * Keep original value if is different to 'on' and 'off'. 
          * We include actual booleans in $map just in case. */
-        $dropdowns = array('effect', 'cropMultiply', 'direction', 'easing', 'links', 'navigation', 'smartCrop', 'random', 'loop', 'layer_scaling');
+        $dropdowns = array('effect', 'direction', 'easing', 'links', 'navigation', 'smartCrop', 'random', 'loop', 'layer_scaling');
 
         foreach ($dropdowns as $dropdown) {
             if (isset($settings[$dropdown])) {
@@ -208,6 +209,12 @@ class MetaSlider_Slideshow_Settings
             if (isset($settings[$key])) {
                 $settings[$key] = sanitize_text_field($settings[$key]);
             }
+        }
+
+        // Kept out of $dropdowns above - its true key normalizes 1 to 'true'. Only 1x to 4x exist.
+        if (isset($settings['cropMultiply'])) {
+            $crop_multiply = absint($settings['cropMultiply']);
+            $settings['cropMultiply'] = $crop_multiply >= 1 && $crop_multiply <= 4 ? $crop_multiply : 1;
         }
 
         // width and height: integers or empty only

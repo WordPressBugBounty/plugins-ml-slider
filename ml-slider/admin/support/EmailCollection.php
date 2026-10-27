@@ -37,6 +37,34 @@ if (! class_exists('MetaSlider_Email_Collection')) {
         }
 
         /**
+         * Whether the current user saw an opt-in prompt before 3.114.0 and did not share their email
+         *
+         * @since 3.114.0
+         *
+         * @return boolean
+         */
+        public static function is_existing_user()
+        {
+            // Legacy flag, no longer written - never reuse or delete it, or the Mailjet segment changes
+            $status = get_user_option('metaslider_analytics_onboarding_status');
+            return $status && 'yes' !== $status;
+        }
+
+        /**
+         * Transient name for the pause after a failed send of this address
+         *
+         * @since 3.114.0
+         *
+         * @param string $email The opt-in email address
+         *
+         * @return string
+         */
+        public static function retry_cooldown_key($email)
+        {
+            return 'metaslider_optin_retry_cooldown_' . md5($email);
+        }
+
+        /**
          * Send the opted-in email address to the connect service, which adds
          * it to the mailing list immediately.
          *
@@ -55,6 +83,9 @@ if (! class_exists('MetaSlider_Email_Collection')) {
          *                 'subscribed', 'duplicate', 'invalid' or 'failed'.
          *                 'duplicate' is a success case for the UI: the address
          *                 was already handed off, so nothing was sent again.
+         *
+         * @since 3.112.0
+         * @since 3.114.0 Send a segment for existing users, so they can get their own Mailjet tag.
          */
         public static function optin()
         {
@@ -86,7 +117,7 @@ if (! class_exists('MetaSlider_Email_Collection')) {
             // unrelated toggle) blocks for the full 10s timeout, retrying the
             // same failed call, until the connect service comes back. Skip
             // the network call entirely while a recent attempt is on cooldown.
-            $cooldown_key = 'metaslider_optin_retry_cooldown_' . md5($email);
+            $cooldown_key = self::retry_cooldown_key($email);
 
             if (get_transient($cooldown_key)) {
                 return array(
@@ -112,6 +143,11 @@ if (! class_exists('MetaSlider_Email_Collection')) {
                 'email'  => $email,
             );
 
+            // Lets the connect service tag existing users in Mailjet. New users get no segment.
+            if (self::is_existing_user()) {
+                $payload['segment'] = 'existing';
+            }
+
             $response = wp_remote_post($endpoint, array(
                 // The connect service calls Mailjet's Send API before it
                 // answers, so this round trip includes dispatching an email.
@@ -122,10 +158,7 @@ if (! class_exists('MetaSlider_Email_Collection')) {
                 'headers' => array(
                     'X-MetaSlider-Connect-Key' => apply_filters('metaslider_connect_key', self::CONNECT_KEY),
                 ),
-                // Only the address is stored, so only the address is sent. The
-                // slug identifies this product to the connect service, which
-                // uses it to pick the right Mailjet list. Other MetaSlider
-                // plugins send their own slug here.
+                // The plugin slug picks the Mailjet list on the connect service
                 'body'    => $payload,
             ));
 

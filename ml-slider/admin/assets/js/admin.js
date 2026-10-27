@@ -46,6 +46,24 @@ window.jQuery(function ($) {
     const APP = window.metaslider.app ? window.metaslider.app.MetaSlider : null
 
     /**
+     * The message from a failed AJAX response: a refused slide or slideshow sends a plain string, other errors send { message }
+     *
+     * @since 3.114.0
+     *
+     * @param {Object} xhr      The failed jqXHR
+     * @param {string} fallback Message to use when the response has none
+     *
+     * @return {string}
+     */
+    var server_error_message = function (xhr, fallback) {
+        var data = xhr && xhr.responseJSON && xhr.responseJSON.data
+        if (typeof data === 'string' && data) {
+            return data
+        }
+        return (data && data.message) || fallback
+    }
+
+    /**
      * Event listening to media library edits
      */
     var media_library_events = {
@@ -151,8 +169,12 @@ window.jQuery(function ($) {
             data: data,
             type: 'POST',
             error: function (xhr, status, error) {
-                var err = JSON.parse(xhr.responseText);
-                APP && APP.notifyError('metaslider/slide-create-failed', err.data.messages[1]['errors']['create_failed'][0], true)
+                var err = xhr.responseJSON && xhr.responseJSON.data;
+                // A refused slideshow sends a plain message; a failed image sends a list of errors
+                var message = (typeof err === 'string' && err)
+                    || (err && err.messages && err.messages[1] && err.messages[1]['errors']['create_failed'][0])
+                    || (APP && APP.__('Undefined error occurred', 'ml-slider'));
+                APP && APP.notifyError('metaslider/slide-create-failed', message, true)
             },
             success: function (response) {
                 if(window.location.href.indexOf('metaslider-start') > -1) {
@@ -332,8 +354,7 @@ window.jQuery(function ($) {
                 data: data,
                 type: 'POST',
                 error: function (error) {
-                    var err = JSON.parse(error.responseText);
-                    APP && APP.notifyError('metaslider/slide-update-failed', err.data.message, true)
+                    APP && APP.notifyError('metaslider/slide-update-failed', server_error_message(error, APP.__('There is an error', 'ml-slider')), true)
                 },
                 success: function (response) {
                     /**
@@ -414,7 +435,7 @@ window.jQuery(function ($) {
             data: data,
             type: 'POST',
             error: function (error) {
-                APP && APP.notifyError('metaslider/slide-duplicate-failed', error, true)
+                APP && APP.notifyError('metaslider/slide-duplicate-failed', server_error_message(error, APP.__('Duplicating the slide failed.', 'ml-slider')), true)
             },
             success: function (response) {
 
@@ -1054,7 +1075,7 @@ window.jQuery(function ($) {
             error: function (response) {
 
                 // Delete failed. Remove delete state UI
-                alert(response.responseJSON.data.message);
+                alert(server_error_message(response, 'There was an error with the server and the action could not be completed.'));
                 $slide = $this.parents('#slide-' + $this.data('slideId'));
                 $slide.removeClass('ms-deleting');
                 $slide.find('.ms-delete-overlay').remove();
@@ -1142,12 +1163,7 @@ window.jQuery(function ($) {
                 $slide.removeClass('ms-restoring').addClass('ms-deleted');
                 $slide.find('.ms-delete-overlay').remove();
 
-                // If there was a WP error, this should be populated:
-                if (response.responseJSON) {
-                    alert(response.responseJSON.data.message);
-                } else {
-                    alert('There was an error with the server and the action could not be completed.');
-                }
+                alert(server_error_message(response, 'There was an error with the server and the action could not be completed.'));
             },
             success: function (response) {
 
@@ -1157,7 +1173,7 @@ window.jQuery(function ($) {
                 $slide.removeClass('ms-deleting')
                     .find('.undo-delete-slide, .trash-view-restore').remove();
                 $slide.find('.ms-delete-overlay').remove();
-                $('#slide-' + $this.data('slideId') + ' h4').after('<span class="ms-delete-status is-success">' + metaslider.restored_language + '</span>');
+                $('#slide-' + $this.data('slideId') + ' .slide-details').after('<span class="ms-delete-status is-success">' + metaslider.restored_language + '</span>');
 
                 // We can try to remove the buton actions too (trashed view)
                 $('#slide-' + $this.data('slideId')).find('.row-actions.trash-btns').html('');
@@ -1210,7 +1226,7 @@ window.jQuery(function ($) {
             type: 'POST',
             error: function (response) {
                 // Delete failed. Remove delete state UI
-                alert(response.responseJSON.data.message);
+                alert(server_error_message(response, 'There was an error with the server and the action could not be completed.'));
                 $slide = $this.parents('#slide-' + $this.data('slideId'));
                 $slide.removeClass('ms-deleting');
                 $slide.find('.ms-delete-overlay').remove();
@@ -1396,7 +1412,7 @@ window.jQuery(function ($) {
                 setTimeout(function () {
                     APP && APP.notifyError(
                         'metaslider/slide-update-failed',
-                        APP.__('There was an error when saving crop position or cropping the image', 'ml-slider'),
+                        server_error_message(error, APP.__('There was an error when saving crop position or cropping the image', 'ml-slider')),
                         true
                     );
                 }, 1000);

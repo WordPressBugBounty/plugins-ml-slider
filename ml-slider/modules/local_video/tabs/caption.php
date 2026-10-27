@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $caption = get_post_meta($this->slide->ID, 'ml-slider_caption', true);
 $caption = $caption ? $caption : '';
 ?>

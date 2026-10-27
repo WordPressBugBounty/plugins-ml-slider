@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Keep this file as is. 
  * You can optionally add array() values to allow to customize theme design

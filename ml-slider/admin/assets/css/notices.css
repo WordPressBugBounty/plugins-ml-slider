@@ -6,6 +6,11 @@
     padding-right: 130px!important;
 }
 
+/* WordPress 7.1 tints .updated notices green */
+.updraft-ad-container.updated {
+    background-color: #fff;
+}
+
 .updraft-ad-container > h1 {
     color: #dd6923;
     font-weight: 700;

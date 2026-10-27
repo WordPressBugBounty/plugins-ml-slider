@@ -539,4 +539,4 @@
 			advanceSlideshow($el)
 		}
 	})
-})(jQuery)
+})(window.metaslider_jQuery || jQuery)

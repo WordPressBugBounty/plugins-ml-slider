@@ -119,6 +119,8 @@ class MetaImageSlide extends MetaSlide
      * TODO: deprecate this in favor of only allowing single slide creation
      *
      * @return string The status message and if success, the count of slides added
+     *
+     * @since 3.114.0 Only creates slides in a slideshow the user can edit
      */
     public function ajax_create_image_slides()
     {
@@ -147,20 +149,11 @@ class MetaImageSlide extends MetaSlide
             );
         }
 
-        $capability = apply_filters('metaslider_capability', MetaSliderPlugin::DEFAULT_CAPABILITY_EDIT_SLIDES);
-        if (! current_user_can($capability)) {
-            wp_send_json_error(
-                [
-                    'message' => __('Access denied. Sorry, you do not have permission to complete this task.', 'ml-slider')
-                ],
-                403
-            );
-        }
-
         if(empty($_POST['slider_id'])) {
             $slider_id = MetaSlider_Slideshows::create();
         } else {
             $slider_id = absint($_POST['slider_id']);
+            metaslider_verify_slideshow_for_ajax($slider_id);
         }
 
         $slides = $this->create_slides(
@@ -223,6 +216,8 @@ class MetaImageSlide extends MetaSlide
     /**
      * Ajax wrapper to create new cropped images.
      *
+     * @since 3.114.0 Only resizes a slide and slideshow the user can edit
+     *
      * @return string The status message
      */
     public function ajax_resize_slide()
@@ -254,6 +249,8 @@ class MetaImageSlide extends MetaSlide
 
         $slideshow_id = absint($_POST['slider_id']);
         $slide_id = absint($_POST['slide_id']);
+        metaslider_verify_slide_for_ajax($slide_id);
+        metaslider_verify_slideshow_for_ajax($slideshow_id);
         $settings = get_post_meta($slideshow_id, 'ml-slider_settings', true);
         if (empty($settings) || !is_array($settings)) {
             $settings = array();
@@ -276,6 +273,7 @@ class MetaImageSlide extends MetaSlide
      * Ajax wrapper to save crop position for a given slide image.
      *
      * @since 3.93
+     * @since 3.114.0 Only changes a slide the user can edit
      * 
      * @return string The status message
      */
@@ -306,8 +304,11 @@ class MetaImageSlide extends MetaSlide
             );
         }
 
+        $slide_id = absint($_POST['slide_id']);
+        metaslider_verify_slide_for_ajax($slide_id);
+
         $result = update_post_meta(
-            absint($_POST['slide_id']), 
+            $slide_id, 
             'ml-slider_crop_position', 
             sanitize_text_field($_POST['crop_position']) // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
         );
@@ -397,6 +398,13 @@ class MetaImageSlide extends MetaSlide
         return array('slide_id' => $new_slide_id, 'html' => $this->get_admin_slide());
     }
 
+    /**
+     * Ajax wrapper for duplicate_slide().
+     *
+     * @since 3.114.0 Only duplicates a slide the user can edit, into a slideshow they can edit
+     *
+     * @return void
+     */
     public function ajax_duplicate_slide()
     {
         if (! isset($_REQUEST['_wpnonce']) || ! wp_verify_nonce(sanitize_key($_REQUEST['_wpnonce']), 'metaslider_duplicate_slide')) {
@@ -425,10 +433,12 @@ class MetaImageSlide extends MetaSlide
             );
         }
 
-        $result = $this->duplicate_slide(
-            absint($_POST['slider_id']),
-            absint($_POST['slide_id'])
-        );
+        $slider_id = absint($_POST['slider_id']);
+        $slide_id  = absint($_POST['slide_id']);
+        metaslider_verify_slideshow_for_ajax($slider_id);
+        metaslider_verify_slide_for_ajax($slide_id);
+
+        $result = $this->duplicate_slide($slider_id, $slide_id);
 
         wp_send_json_success($result, 200);
     }
@@ -795,7 +805,7 @@ class MetaImageSlide extends MetaSlide
             'title' => $slide['title']
         );
 
-        if ($this->settings['smartCrop'] == 'disabled_pad') {
+        if (isset($this->settings['smartCrop']) && $this->settings['smartCrop'] == 'disabled_pad') {
             $image_attributes['style'] = $this->flex_smart_pad($image_attributes, $slide);
         }
 
@@ -1149,6 +1159,7 @@ class MetaImageSlide extends MetaSlide
      * @since 3.101
      * @since 3.113.1 Placeholder generation moved to lazy_load_placeholder(), which
      *                falls back to a 1x1 GIF instead of fataling on an unusable size
+     * @since 3.114.0 The srcset swap only touches the slide's own image, once, and skips images with no srcset
      */
     public function image_attributes( $attributes, $slide, $slider_id )
     {
@@ -1165,25 +1176,48 @@ class MetaImageSlide extends MetaSlide
                 return $attributes;
             }
 
-            $data_uri = $this->lazy_load_placeholder( $attributes['width'], $attributes['height'] );
+            // Livid's poster image passes no size, which lazy_load_placeholder() turns into its 1x1 fallback
+            $data_uri = $this->lazy_load_placeholder(
+                isset( $attributes['width'] ) ? $attributes['width'] : 0,
+                isset( $attributes['height'] ) ? $attributes['height'] : 0
+            );
 
             $attributes['data-ms-src'] = $attributes['src'];
             $attributes['src'] = $data_uri;
 
-            // If cropping is disabled, filter the WP image
-            if ( isset( $settings['smartCrop'] ) && $settings['smartCrop'] == 'disabled' ) {
-                add_filter( 
-                    'wp_get_attachment_image_attributes', 
-                    function( $attributes, $attachment, $size ) use ( $data_uri ) {
-                        $attributes['src'] = $data_uri;
+            // If cropping is disabled, filter the WP image of slide types build_image_tag() renders with it
+            $slide_type    = ! empty( $slide['id'] ) ? get_post_meta( $slide['id'], 'ml-slider_type', true ) : '';
+            $attachment_id = 0;
+            if ( isset( $settings['smartCrop'] ) && $settings['smartCrop'] == 'disabled'
+                && ! empty( $slide['id'] )
+                && in_array( $slide_type, array( '', 'image', 'html_overlay' ), true )
+            ) {
+                $attachment_id = 'attachment' === get_post_type( $slide['id'] )
+                    ? (int) $slide['id']
+                    : (int) get_post_thumbnail_id( $slide['id'] );
+            }
+
+            // A slide with no image never reaches wp_get_attachment_image(), so its callback would never come off
+            if ( ! empty( $attachment_id ) ) {
+                $placehold_image = function( $attributes, $attachment ) use ( $data_uri, $attachment_id, &$placehold_image ) {
+                    // This slide's image only, once, so other images keep their real src (#2490)
+                    if ( ! isset( $attachment->ID ) || (int) $attachment->ID !== $attachment_id ) {
+                        return $attributes;
+                    }
+                    remove_filter( 'wp_get_attachment_image_attributes', $placehold_image, 10 );
+
+                    $attributes['src'] = $data_uri;
+
+                    // A placeholder srcset with nothing saved to restore would hide the image for good (#2490)
+                    if ( isset( $attributes['srcset'] ) ) {
                         $attributes['data-ms-srcset'] = $attributes['srcset'];
                         $attributes['srcset'] = $data_uri;
-                        
-                        return $attributes;
-                    }, 
-                    10, 
-                    3
-                );
+                    }
+
+                    return $attributes;
+                };
+
+                add_filter( 'wp_get_attachment_image_attributes', $placehold_image, 10, 2 );
             }
         }
 

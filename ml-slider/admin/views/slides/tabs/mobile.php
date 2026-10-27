@@ -65,7 +65,7 @@
             }
     ?>
             <span class="mobile-checkbox-wrap">
-                <input type="checkbox" name="attachment[<?php echo esc_attr($slide_id); ?>][hide_slide_<?php echo esc_attr($value); ?>]" class="mobile-checkbox tipsy-tooltip-top" title="<?php echo esc_attr($tooltip); ?>" <?php echo esc_attr($checked_slide); ?> />
+                <input type="checkbox" name="attachment[<?php echo esc_attr($slide_id); ?>][hide_slide_<?php echo esc_attr($value); ?>]" class="mobile-checkbox tipsy-tooltip-top" title="<?php echo esc_attr($tooltip); ?>" aria-label="<?php echo esc_attr(sprintf(/* translators: %s: device name, e.g. Smartphone */ __('Hide slide on %s', 'ml-slider'), metaslider_device_label($value))); ?>" <?php echo esc_attr($checked_slide); ?> />
                 <span class="dashicons <?php echo esc_attr( 'dashicons-' . $value ); ?>"></span>
             </span>
     <?php } ?>
@@ -105,7 +105,7 @@
             }
     ?>
             <span class="mobile-checkbox-wrap">
-                <input type="checkbox" name="attachment[<?php echo esc_attr($slide_id); ?>][hide_caption_<?php echo esc_attr($value); ?>]" class="mobile-checkbox tipsy-tooltip-top" title="<?php echo esc_attr($tooltip); ?>" <?php echo esc_attr($checked_caption); ?> />
+                <input type="checkbox" name="attachment[<?php echo esc_attr($slide_id); ?>][hide_caption_<?php echo esc_attr($value); ?>]" class="mobile-checkbox tipsy-tooltip-top" title="<?php echo esc_attr($tooltip); ?>" aria-label="<?php echo esc_attr(sprintf(/* translators: %s: device name, e.g. Smartphone */ __('Hide caption on %s', 'ml-slider'), metaslider_device_label($value))); ?>" <?php echo esc_attr($checked_caption); ?> />
                 <span class="dashicons <?php echo esc_attr( 'dashicons-' . $value ); ?> "></span>
             </span>
     <?php } ?>

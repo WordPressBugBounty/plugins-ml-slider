@@ -527,7 +527,7 @@ class MetaFlexSlider extends MetaSlider
                     $('body').attr('data-msdevice', device);
                     return device;
                 };
-                jQuery(document).ready(function($){
+                $(document).ready(function($){
                     var ms_initDeviceType = function (callback) {
                         var device = ms_deviceType() || null;
                         if (typeof callback === 'function') {
@@ -1020,6 +1020,7 @@ class MetaFlexSlider extends MetaSlider
      * If enabled, add lazy load JS logic
      * 
      * @since 3.101
+     * @since 3.114.0 Skips cloned slides that have no lazy-loaded image
      */
     public function lazy_load($options, $slider_id, $settings)
     {
@@ -1039,7 +1040,7 @@ class MetaFlexSlider extends MetaSlider
                 var _this = jQuery(this);
                 var _img = _this.find('img:first');
                 var imgSrc = _img.data('ms-src');
-                imgSrc.length && _img.attr('src', imgSrc).removeAttr('data-ms-src')
+                imgSrc && imgSrc.length && _img.attr('src', imgSrc).removeAttr('data-ms-src');
             });
 HTML;
 
@@ -1058,7 +1059,7 @@ HTML;
                     if (!imgSrc) break;
                     var imgSrcset = _img.data('ms-srcset');
                     imgSrc.length && _img.attr('src', imgSrc).removeAttr('data-ms-src');
-                    imgSrcset && imgSrcset.length && _img.attr('srcset', imgSrc).removeAttr('data-ms-srcset');
+                    imgSrcset && imgSrcset.length && _img.attr('srcset', imgSrcset).removeAttr('data-ms-srcset');
                 }
             };
             load_images();

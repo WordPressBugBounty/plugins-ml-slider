@@ -225,8 +225,7 @@ class MetaSlider_Admin_Pages extends MetaSliderPlugin
 
         // Register components and add support for the REST API / Admin AJAX
         do_action('metaslider_register_admin_components');
-        $dev = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG;
-        wp_register_script('metaslider-admin-components', METASLIDER_ADMIN_URL . 'assets/dist/js/app' . ($dev ? '' : '.min') . '.js', array('jquery','wp-i18n'), METASLIDER_ASSETS_VERSION, true);
+        wp_register_script('metaslider-admin-components', METASLIDER_ADMIN_URL . 'assets/dist/js/app' . metaslider_asset_suffix() . '.js', array('jquery','wp-i18n'), METASLIDER_ASSETS_VERSION, true);
 
         // Check if rest is available
         $is_rest_enabled = $this->is_rest_enabled();
@@ -270,7 +269,7 @@ class MetaSlider_Admin_Pages extends MetaSliderPlugin
     public function load_upgrade_page_assets()
     {
         if ('upgrade-metaslider' == $this->current_page || !is_plugin_active('ml-slider-pro/ml-slider-pro.php')){
-            wp_enqueue_style('metaslider-upgrade-styles', METASLIDER_ADMIN_URL . 'assets/css/upgrade.css', false, METASLIDER_ASSETS_VERSION);
+            wp_enqueue_style('metaslider-upgrade-styles', METASLIDER_ADMIN_URL . 'assets/css/upgrade' . metaslider_asset_suffix() . '.css', false, METASLIDER_ASSETS_VERSION);
         }
     }
 

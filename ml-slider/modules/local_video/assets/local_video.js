@@ -57,8 +57,10 @@ wp.media.view.Toolbar.Localvideo = wp.media.view.Toolbar.extend({
                 window.parent.metaslider.after_adding_slide_success(response.data);
             }).fail(function(error) { 
                 console.error(error.status,error.statusText);
-                APP && APP.notifyError('metaslider/slide-create-failed', 
-                    APP && __("This isn't a supported video format. Please use MP4, WebM, or MOV videos.", "ml-slider"),
+                // Show the server's reason when it sends one (e.g. not a slideshow, access denied)
+                var message = error.responseJSON && error.responseJSON.data;
+                APP && APP.notifyError('metaslider/slide-create-failed',
+                    (typeof message === 'string' && message) || __("This isn't a supported video format. Please use MP4, WebM, or MOV videos.", "ml-slider"),
                     true
                 );
             });
@@ -177,8 +179,10 @@ window.jQuery(function ($) {
             window.parent.metaslider.after_adding_slide_success(response.data);
         }).fail(function(error) {
             console.error(error.status, error.statusText);
+            // Show the server's reason when it sends one (e.g. not a slideshow, access denied)
+            var message = error.responseJSON && error.responseJSON.data;
             APP && APP.notifyError('metaslider/slide-create-failed',
-                APP && __("This isn't a supported video format. Please use MP4, WebM, or MOV videos.", "ml-slider"),
+                (typeof message === 'string' && message) || __("This isn't a supported video format. Please use MP4, WebM, or MOV videos.", "ml-slider"),
                 true
             );
         });
@@ -236,9 +240,11 @@ window.jQuery(function ($) {
                     }
                 })();
 
-                var errorMsg = typeof textObj !== 'undefined'
-                    ? textObj.data.message
-                    : APP && __("There is an error", "ml-slider");
+                // A refused slide or slideshow sends a plain message, other errors send { message }
+                var errorData = textObj && textObj.data;
+                var errorMsg = (errorData && errorData.message)
+                    || (typeof errorData === 'string' && errorData)
+                    || (APP && __("There is an error", "ml-slider"));
 
                 APP && APP.notifyError('metaslider/slide-update-failed', errorMsg, true);
             },
@@ -386,6 +392,12 @@ window.jQuery(function ($) {
             type: 'POST',
             error: function (error) {
                 console.error(error.status,error.statusText);
+
+                var refused = error.responseJSON && typeof error.responseJSON.data === 'string' && error.responseJSON.data;
+                APP && APP.notifyError('metaslider/slide-update-failed',
+                    refused || __("There is an error", "ml-slider"),
+                    true
+                );
             },
             success: function (response) {
                 console.log(response);
@@ -428,7 +440,8 @@ window.jQuery(function ($) {
                 console.error(error.status,error.statusText);
                 
                 APP && APP.notifyError('metaslider/slide-update-failed', 
-                    APP && __("You can't delete this video. This slide requires at least one video source.", "ml-slider"),
+                    (error.responseJSON && typeof error.responseJSON.data === 'string' && error.responseJSON.data)
+                        || __("You can't delete this video. This slide requires at least one video source.", "ml-slider"),
                     true
                 );
             },
@@ -500,7 +513,8 @@ window.jQuery(function ($) {
                 console.error(error.status,error.statusText);
                 
                 APP && APP.notifyError('metaslider/slide-update-failed', 
-                    APP && __("There was an error removing the text track", "ml-slider"),
+                    (error.responseJSON && typeof error.responseJSON.data === 'string' && error.responseJSON.data)
+                        || __("There was an error removing the text track", "ml-slider"),
                     true
                 );
             },
@@ -685,12 +699,17 @@ window.jQuery(function ($) {
                         }
                     })();
 
-                    var errorMsg = typeof textObj !== 'undefined' 
-                        ? textObj.data.message 
-                        : APP && __("There is an error", "ml-slider");
+                    // A refused slide or slideshow sends a plain message, other errors send { message }
+                    var errorData = textObj && textObj.data;
+                    var refused = typeof errorData === 'string' && errorData;
+                    var errorMsg = (errorData && errorData.message)
+                        || refused
+                        || (APP && __("There is an error", "ml-slider"));
 
                     // @TODO - Let's use the error message from server side like in video for images and text
-                    if( media_type === 'video' ) {
+                    if( refused ) {
+                        APP && APP.notifyError('metaslider/slide-update-failed', refused, true);
+                    } else if( media_type === 'video' ) {
                         
                         APP && APP.notifyError('metaslider/slide-update-failed', 
                             errorMsg,
@@ -903,7 +922,7 @@ window.jQuery(function ($) {
             type: 'POST',
             error: function (error) {
                 APP && APP.notifyError('metaslider/slide-duplicate-failed', 
-                    APP && __("Duplicating the slide failed.", "ml-slider"),
+                    (error && error.responseJSON && typeof error.responseJSON.data === 'string' && error.responseJSON.data) || __("Duplicating the slide failed.", "ml-slider"),
                     true
                 );
             },
